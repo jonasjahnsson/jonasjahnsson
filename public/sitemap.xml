@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+    xmlns:xhtml="http://www.w3.org/1999/xhtml">
+    
+        
+        <url>
+            <loc>https://example.org/photos/gitcoinunicef/</loc>
+            <lastmod>2020-02-09T00:00:00+00:00</lastmod>
+        </url>
+        
+    
+        
+        <url>
+            <loc>https://example.org/photos/globalpizzaparty/</loc>
+            <lastmod>2020-02-09T00:00:00+00:00</lastmod>
+        </url>
+        
+    
+        
+        <url>
+            <loc>https://example.org/photos/permissionlessiii/</loc>
+            <lastmod>2020-02-09T00:00:00+00:00</lastmod>
+        </url>
+        
+    
+        
+        <url>
+            <loc>https://example.org/</loc>
+            <lastmod>2020-02-09T00:00:00+00:00</lastmod>
+        </url>
+        
+    
+        
+        <url>
+            <loc>https://example.org/photos/</loc>
+            <lastmod>2020-02-09T00:00:00+00:00</lastmod>
+        </url>
+        
+    
+        
+        <url>
+            <loc>https://example.org/posts/</loc>
+            <lastmod>2019-09-03T00:00:00+00:00</lastmod>
+        </url>
+        
+    
+        
+        <url>
+            <loc>https://example.org/posts/work/</loc>
+            <lastmod>2019-09-03T00:00:00+00:00</lastmod>
+        </url>
+        
+    
+        
+        <url>
+            <loc>https://example.org/posts/contact/</loc>
+            <lastmod>2019-08-03T00:00:00+00:00</lastmod>
+        </url>
+        
+    
+        
+        <url>
+            <loc>https://example.org/posts/thissite/</loc>
+            <lastmod>2019-08-03T00:00:00+00:00</lastmod>
+        </url>
+        
+    
+        
+        <url>
+            <loc>https://example.org/about/</loc>
+            <lastmod>2016-11-05T21:05:33+05:30</lastmod>
+        </url>
+        
+    
+        
+        <url>
+            <loc>https://example.org/categories/</loc>
+        </url>
+        
+    
+        
+        <url>
+            <loc>https://example.org/tags/</loc>
+        </url>
+        
+    
+</urlset>

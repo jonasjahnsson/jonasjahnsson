@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Photos on Jonas Jahnsson</title>
+    <link>https://example.org/photos/</link>
+    <description>Recent content in Photos on Jonas Jahnsson</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 09 Feb 2020 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://example.org/photos/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Grants round with Unicef</title>
+      <link>https://example.org/photos/gitcoinunicef/</link>
+      <pubDate>Sun, 09 Feb 2020 00:00:00 +0000</pubDate>
+      <guid>https://example.org/photos/gitcoinunicef/</guid>
+      <description>&lt;h3 id=&#34;gitcoin--unicef&#34;&gt;[Gitcoin + Unicef]&lt;/h3&gt;&#xA;&lt;p&gt;Grants rounds are cool, and the coolest of all of them might we when I ran a round with Unicef. A highlight of my career for sure.&lt;/p&gt;&#xA;&lt;p&gt;There was also a piece on me in my local newspaper. &lt;a href=&#34;https://www.venneslatidende.no/naeringsliv/i/l3M8kL/jonas-30-jobber-internasjonalt-med-kryptovaluta-finnes-utrolig-mange-muligheter&#34;&gt;Link&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Hosting the Permissionless III Hackathon</title>
+      <link>https://example.org/photos/globalpizzaparty/</link>
+      <pubDate>Sun, 09 Feb 2020 00:00:00 +0000</pubDate>
+      <guid>https://example.org/photos/globalpizzaparty/</guid>
+      <description>&lt;h3 id=&#34;global-pizza-party&#34;&gt;Global Pizza Party&lt;/h3&gt;&#xA;&lt;p&gt;Sometimes I wonder why i&amp;rsquo;m so attracted to the crypto space. There might be a financial incentive, but it&amp;rsquo;s really the vibes. Global Pizza Party is a celebration happening every year on 22nd of May celebrating the time &lt;a href=&#34;hhttps://www.coindesk.com/markets/2020/05/22/10-years-after-laszlo-hanyecz-bought-pizza-with-10k-bitcoin-he-has-no-regrets/&#34;&gt;Laszo&lt;/a&gt; bought a pizza for 10 000 Bitcoin. Thats billions now if you wonder. There is a organization called PizzaDAO that works year around to secure funds.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Hosting the Permissionless III Hackathon</title>
+      <link>https://example.org/photos/permissionlessiii/</link>
+      <pubDate>Sun, 09 Feb 2020 00:00:00 +0000</pubDate>
+      <guid>https://example.org/photos/permissionlessiii/</guid>
+      <description>&lt;h3 id=&#34;permissionless-iii-hackathon-salt-lake-city-utah&#34;&gt;Permissionless III Hackathon Salt Lake City, Utah&lt;/h3&gt;&#xA;&lt;p&gt;Hosting in-person hackathons are fun. You meet brilliant builders trying to create innovation in an already innovative space.&#xA;Permissionless III was a personal highlight and I loved my time in Salt Lake City.&lt;/p&gt;&#xA;&lt;p&gt;&lt;a href=&#34;https://www.linkedin.com/feed/update/urn:li:activity:7254184089035915265/&#34;&gt;Read more about in my LinkedIn recap&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>
