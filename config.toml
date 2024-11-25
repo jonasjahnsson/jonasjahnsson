@@ -19,7 +19,7 @@ enableBundler = true
 
   [[params.navlinks]]
   name = "contact/"
-  url = "posts/"
+  url = "contact/"
   
   [[params.navlinks]]
   name = "photos/"
