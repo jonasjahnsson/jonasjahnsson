@@ -53,13 +53,6 @@
     
         
         <url>
-            <loc>https://example.org/posts/contact/</loc>
-            <lastmod>2019-08-03T00:00:00+00:00</lastmod>
-        </url>
-        
-    
-        
-        <url>
             <loc>https://example.org/posts/thissite/</loc>
             <lastmod>2019-08-03T00:00:00+00:00</lastmod>
         </url>
@@ -75,6 +68,12 @@
         
         <url>
             <loc>https://example.org/categories/</loc>
+        </url>
+        
+    
+        
+        <url>
+            <loc>https://example.org/contact/</loc>
         </url>
         
     

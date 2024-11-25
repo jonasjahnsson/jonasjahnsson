@@ -18,7 +18,7 @@ enableBundler = true
   url = "about/"
 
   [[params.navlinks]]
-  name = "posts/"
+  name = "contact/"
   url = "posts/"
   
   [[params.navlinks]]
