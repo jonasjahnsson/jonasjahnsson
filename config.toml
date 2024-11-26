@@ -1,5 +1,5 @@
-baseurl = "jonasjahnsson.com"
-title = "jonasjahnsson"
+baseurl = "https://www.jonasjahnsson.com"
+title = "Jonas Jahnsson"
 theme = "hugo-theme-console"
 languageCode = "en-us"
 minify = true
