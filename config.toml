@@ -1,4 +1,4 @@
-baseurl = "https://stupendous-muffin-a03bb6.netlify.app/"
+baseurl = "jonasjahnsson.com"
 title = "jonasjahnsson"
 theme = "hugo-theme-console"
 languageCode = "en-us"
