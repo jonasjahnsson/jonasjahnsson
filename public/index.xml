@@ -34,7 +34,7 @@
       <link>https://example.org/posts/work/</link>
       <pubDate>Tue, 03 Sep 2019 00:00:00 +0000</pubDate>
       <guid>https://example.org/posts/work/</guid>
-      <description>&lt;!-- raw HTML omitted --&gt;&#xA;&lt;p&gt;The web3 revolution is more than just a shift in technology—it’s a movement that empowers individuals, decentralizes control, and fosters global collaboration. My career has been a journey through data, entrepreneurship, and open-source advocacy, ultimately leading me to the forefront of this transformative space.&lt;/p&gt;</description>
+      <description>&lt;!-- raw HTML omitted --&gt;&#xA;&lt;p&gt;The Web3 revolution is more than just a shift in technology—it’s a movement that empowers individuals, decentralizes control, and fosters global collaboration. My career has been a journey through data, entrepreneurship, and open-source advocacy, ultimately leading me to the forefront of this transformative space.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Building the Future of Web3: My Journey Across Ecommerce, Crypto, and Community Empowerment</title>
@@ -42,6 +42,13 @@
       <pubDate>Sat, 05 Nov 2016 21:05:33 +0530</pubDate>
       <guid>https://example.org/about/</guid>
       <description>&lt;h1 id=&#34;heading&#34;&gt;&lt;/h1&gt;&#xA;&lt;p&gt;The Web3 revolution is more than just a shift in technology—it’s a movement that empowers individuals, decentralizes control, and fosters global collaboration. My career has been a journey through data, entrepreneurship, and open-source advocacy, ultimately leading me to the forefront of this transformative space.&lt;/p&gt;&#xA;&lt;h2 id=&#34;from-ecommerce-to-entrepreneurship-the-foundations-of-growth&#34;&gt;From Ecommerce to Entrepreneurship: The Foundations of Growth&lt;/h2&gt;&#xA;&lt;p&gt;I started my career at &lt;strong&gt;Netthandelen&lt;/strong&gt; (now part of &lt;strong&gt;Brandsdal Group&lt;/strong&gt;) at just 19, diving headfirst into the world of ecommerce. Analyzing data and implementing cutting-edge technologies, I helped drive sales and scale operations for one of the Nordic region’s largest ecommerce platforms. It was there I developed a deep understanding of how technology and strategy converge to create value.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Project Website</title>
+      <link>https://example.org/thissite/</link>
+      <pubDate>Sat, 05 Nov 2016 21:05:33 +0530</pubDate>
+      <guid>https://example.org/thissite/</guid>
+      <description>&lt;h1 id=&#34;heading&#34;&gt;&lt;/h1&gt;&#xA;&lt;p&gt;I decided to built a website for myself as a fun little side project. After using Wordpress, Shopify and more easy solutions i decided to build it completely for free, on top of open source software.&lt;/p&gt;&#xA;&lt;h2 id=&#34;tech&#34;&gt;Tech&lt;/h2&gt;&#xA;&lt;p&gt;The site is built with &lt;a href=&#34;https://gohugo.io/&#34;&gt;Hugo&lt;/a&gt;. Super fast static pages, using markdown. This is my first time using it, and it&amp;rsquo;s been a cool experience where I have learned how fast static pages are, how adaptable and cool markdown is, an how to build websites more or less from scratch.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Contact</title>
