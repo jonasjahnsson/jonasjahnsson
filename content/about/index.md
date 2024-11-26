@@ -13,8 +13,8 @@ I started my career at **Netthandelen** (now part of **Brandsdal Group**) at jus
 
 This foundation inspired me to build something of my own—**tickettothemoon.no**, an ecommerce business selling hammocks. Over three years, I transformed it into a **$3M venture**, learning every facet of running a successful ecommerce operation. From supply chain management to customer acquisition, these lessons prepared me for my next big leap: Web3.
 
+{{< figure src="/jonashammock.png" alt="Jonas Hammock" title="From the Hammock Era"  >}}
 
-{{< figure src="/jonashammock.png" alt="Jonas Hammock" title="From the Hammock Era" height="20%" >}}
 
 ## Entering Web3: Scaling Impact with Gitcoin  
 

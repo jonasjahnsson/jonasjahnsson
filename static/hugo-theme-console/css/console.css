@@ -285,8 +285,8 @@ figure {
 }
 
 .profile-pic {
-    width: 150px; /* Fixed width for the image */
-    height: 150px; /* Fixed height to keep the image circular */
+    width: 200px; /* Fixed width for the image */
+    height: 200px; /* Fixed height to keep the image circular */
     border-radius: 50%; /* Makes the image circular */
     margin-right: 1rem; /* Adds space on the right of the image */
     flex-shrink: 0; /* Prevents the image from shrinking */
@@ -310,5 +310,7 @@ figure {
         margin-right: 0; /* Removes right margin */
         margin-bottom: 1rem; /* Adds spacing below the image */
     }
+
+
 }
 

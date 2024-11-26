@@ -7,7 +7,7 @@ type = "gallery"
 
 ### Permissionless III Hackathon Salt Lake City, Utah
 
-Hosting in-person hackathons are fun. You meet brilliant builders trying to create innovation in an already innovative space. 
-Permissionless III was a personal highlight and I loved my time in Salt Lake City. 
+Hosting in-person hackathons is great! You meet brilliant builders creating new ways to tackle problems and building solutions that never stops to impress me.
+Permissionless III was a personal highlight, with great builders from all around the world coming together to work trough what has honestly been a tough year (so far!) in crypto. 
 
-[Read more about in my LinkedIn recap](https://www.linkedin.com/feed/update/urn:li:activity:7254184089035915265/)
+[Read more about in my linkedin recap](https://www.linkedin.com/feed/update/urn:li:activity:7254184089035915265/)
