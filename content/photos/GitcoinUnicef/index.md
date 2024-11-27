@@ -7,6 +7,6 @@ type = "gallery"
 
 ### [Gitcoin + Unicef]
 
-Grants rounds are cool, and the coolest of all of them might we when I ran a round with Unicef. I felt really powerful working with a huge project like Unicef. Also the first time a round was run on the new Gitcoin Grants stack which was great in many ways, with a lot left to prove.
+Grants rounds are cool, and the coolest of all of them might we when I ran a round with Unicef. It felt really cool to work with someone as Unicef. Also the first time a round was run on the new Gitcoin Grants stack which was exciting. We also learnt a LOT. 
 
-There was also a piece on me in my local newspaper. [Link](https://www.venneslatidende.no/naeringsliv/i/l3M8kL/jonas-30-jobber-internasjonalt-med-kryptovaluta-finnes-utrolig-mange-muligheter)
+There was also a piece on me in my local newspaper during this time. [Link](https://www.venneslatidende.no/naeringsliv/i/l3M8kL/jonas-30-jobber-internasjonalt-med-kryptovaluta-finnes-utrolig-mange-muligheter)
