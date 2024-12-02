@@ -4,82 +4,82 @@
     
         
         <url>
-            <loc>https://example.org/photos/gitcoinunicef/</loc>
+            <loc>http://localhost:1313/photos/gitcoinunicef/</loc>
             <lastmod>2020-02-09T00:00:00+00:00</lastmod>
         </url>
         
     
         
         <url>
-            <loc>https://example.org/photos/globalpizzaparty/</loc>
+            <loc>http://localhost:1313/photos/globalpizzaparty/</loc>
             <lastmod>2020-02-09T00:00:00+00:00</lastmod>
         </url>
         
     
         
         <url>
-            <loc>https://example.org/photos/permissionlessiii/</loc>
+            <loc>http://localhost:1313/photos/permissionlessiii/</loc>
             <lastmod>2020-02-09T00:00:00+00:00</lastmod>
         </url>
         
     
         
         <url>
-            <loc>https://example.org/</loc>
+            <loc>http://localhost:1313/</loc>
             <lastmod>2020-02-09T00:00:00+00:00</lastmod>
         </url>
         
     
         
         <url>
-            <loc>https://example.org/photos/</loc>
+            <loc>http://localhost:1313/photos/</loc>
             <lastmod>2020-02-09T00:00:00+00:00</lastmod>
         </url>
         
     
         
         <url>
-            <loc>https://example.org/posts/</loc>
+            <loc>http://localhost:1313/posts/</loc>
             <lastmod>2019-09-03T00:00:00+00:00</lastmod>
         </url>
         
     
         
         <url>
-            <loc>https://example.org/posts/work/</loc>
+            <loc>http://localhost:1313/posts/work/</loc>
             <lastmod>2019-09-03T00:00:00+00:00</lastmod>
         </url>
         
     
         
         <url>
-            <loc>https://example.org/about/</loc>
+            <loc>http://localhost:1313/about/</loc>
             <lastmod>2016-11-05T21:05:33+05:30</lastmod>
         </url>
         
     
         
         <url>
-            <loc>https://example.org/thissite/</loc>
+            <loc>http://localhost:1313/thissite/</loc>
             <lastmod>2016-11-05T21:05:33+05:30</lastmod>
         </url>
         
     
         
         <url>
-            <loc>https://example.org/categories/</loc>
+            <loc>http://localhost:1313/categories/</loc>
         </url>
         
     
         
         <url>
-            <loc>https://example.org/contact/</loc>
+            <loc>http://localhost:1313/contact/</loc>
         </url>
         
     
         
         <url>
-            <loc>https://example.org/tags/</loc>
+            <loc>http://localhost:1313/tags/</loc>
         </url>
         
     

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on Jonas Jahnsson</title>
+    <link>https://example.org/posts/</link>
+    <description>Recent content in Posts on Jonas Jahnsson</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 03 Sep 2019 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://example.org/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Work</title>
+      <link>https://example.org/posts/work/</link>
+      <pubDate>Tue, 03 Sep 2019 00:00:00 +0000</pubDate>
+      <guid>https://example.org/posts/work/</guid>
+      <description>&lt;!-- raw HTML omitted --&gt;&#xA;&lt;p&gt;The Web3 revolution is more than just a shift in technology—it’s a movement that empowers individuals, decentralizes control, and fosters global collaboration. My career has been a journey through data, entrepreneurship, and open-source advocacy, ultimately leading me to the forefront of this transformative space.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Contact</title>
+      <link>https://example.org/contact/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://example.org/contact/</guid>
+      <description>Find me&#x9;─=≡Σ((( つ◕ل͜◕)つ</description>
+    </item>
+  </channel>
+</rss>

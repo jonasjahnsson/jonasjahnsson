@@ -24,4 +24,4 @@ My one sin is that i'm using Google Analytics to track all of you (i'm sorry). O
 
 ## Future
 
-I would like to experiement either with creating some simple games or try to build a some simple dApps. Everything to be hosted here. Any ideas? Hit me up [Link](jonasjahnsson.com/contact)
+I would like to experiement either with creating some simple games or try to build a simple dApp. Everything to be hosted here. Any ideas? Hit me up [Link](jonasjahnsson.com/contact)
