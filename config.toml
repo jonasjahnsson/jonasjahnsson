@@ -1,4 +1,4 @@
-baseurl = "https://www.jonasjahnsson.com"
+baseurl = "https://www.jonasjahnsson.com/"
 title = "Jonas Jahnsson"
 theme = "hugo-theme-console"
 languageCode = "en-us"
