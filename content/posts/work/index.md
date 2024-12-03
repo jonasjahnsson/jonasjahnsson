@@ -1,42 +1,69 @@
 +++
 title = "Work"
-date = "2019-09-03"
 +++
 <br>
-# Building the Future of Web3: My Journey Across Ecommerce, Crypto, and Community Empowerment
+# Exploring My Focus Areas in Crypto: Scaling, Onboarding, and Building a Better Future
 
-The Web3 revolution is more than just a shift in technology—it’s a movement that empowers individuals, decentralizes control, and fosters global collaboration. My career has been a journey through data, entrepreneurship, and open-source advocacy, ultimately leading me to the forefront of this transformative space. 
+When I first dove into the crypto space, I was captivated by the promise of decentralized technology. But more than the tech itself, what truly resonated with me was its potential to make real, tangible change—scaling solutions for massive adoption, bringing onboard the next billion users, empowering developers, and funding public goods that serve everyone. If you know me, you’ll know I’m not just about theory—I’m all about practical, scalable solutions that drive meaningful growth.
+
+Here’s a closer look at my key areas of focus and what excites me about them.
 <!--more-->
-## From Ecommerce to Entrepreneurship: The Foundations of Growth  
 
-I started my career at **Netthandelen** (now part of **Brandsdal Group**) at just 19, diving headfirst into the world of ecommerce. Analyzing data and implementing cutting-edge technologies, I helped drive sales and scale operations for one of the Nordic region’s largest ecommerce platforms. It was there I developed a deep understanding of how technology and strategy converge to create value.
 
-This foundation inspired me to build something of my own—**tickettothemoon.no**, an ecommerce business selling hammocks. Over three years, I transformed it into a **$3M venture**, learning every facet of running a successful ecommerce operation. From supply chain management to customer acquisition, these lessons prepared me for my next big leap: Web3.
+---
 
-{{< figure src="/jonashammock.png" alt="Jonas Hammock" title="A good ol' hammock salesman" width="50%" >}}
+## Scaling: Unlocking the Internet of Value
 
-## Entering Web3: Scaling Impact with Gitcoin  
+Scaling blockchains isn’t just about throughput and numbers (though, wow, those TPS battles can get heated). For me, it’s about building a solid foundation for real-world use cases. Whether it’s optimizing grants programs at Gitcoin or exploring innovative scalability solutions like rollups and modular chains, I love diving deep into the tech and strategy that ensures Web3 can handle what the future throws at it.
 
-As crypto gained momentum, I found myself drawn to the ethos of decentralization and open-source collaboration. A close friend introduced me to **Gitcoin**, and when the opportunity arose to join their marketing team, I seized it.
+Scalability isn’t a buzzword; it’s a necessity. After all, what’s the point of building the future of finance, art, or gaming if it crashes under the weight of its own success?
 
-At Gitcoin, I focused on growing participation in **Grants Rounds**, engaging donors, and creating strategies to amplify community involvement. We tried everything from creating massive waves of **POAPs** (so many that we pushed POAP’s capacity to its limits!) to designing innovative ways to inspire engagement. Some experiments worked brilliantly, while others offered valuable lessons. What fueled me was the challenge of bridging people, technology, and purpose—unlocking new ways to support builders and projects in the space.
+---
 
-## Empowering Builders at buidlbox  
+## Onboarding: Crypto for Everyone
 
-After Gitcoin, I joined **buidlbox**, a hackathon platform that partners with leading Web3 brands to empower developers. My role centered on creating an **analytics framework** to measure both product performance and marketing efforts. Beyond data, my true passion lies in the stories of the builders themselves.
+I’ll admit, the first time I tried to explain "seed phrases" to my mom, it was... an experience. Onboarding the next wave of users is about making crypto intuitive, accessible, and dare I say it, enjoyable.
 
-Seeing developers enter Web3, learn new skills, and turn their ideas into real-world solutions is incredibly rewarding. At buidlbox, I’ve had the privilege of supporting some of the most talented minds in the space, helping them gain visibility and opportunities to thrive.
+Through my work at Gitcoin, Buidlbox, and beyond, I’ve seen firsthand how powerful education and user-centric design can be. It’s not just about the tech; it’s about storytelling—helping people see how Web3 fits into their lives. If we want mainstream adoption, we need to make crypto as seamless as logging into Netflix or tapping your card at the coffee shop.
 
-{{< figure src="/jonas.webp" alt="Jonas Jahnsson at Permissionless" title="Hosting the Permissionless III hackathon" width="50%" >}}
+---
 
-## Why Web3?  
+## DevRel: Empowering the Builders
 
-For as long as I’ve owned a computer, I’ve been captivated by **open-source software** and **peer-to-peer technologies**. Web3 represents the culmination of these ideals, offering a future where creators, developers, and communities have greater control and ownership.
+Developers are the lifeblood of the crypto ecosystem. Without them, we’re all just playing with ideas and hoping someone else turns them into reality. That’s why I’ve dedicated so much of my career to developer relations (DevRel).
 
-Whether it’s through decentralized funding models, platforms that empower builders, or tools that make Web3 accessible to all, I’m committed to advancing the space. My journey has always been about creating, innovating, and connecting—and Web3 is where these passions come alive.
+Hackathons? Love them. Building communities where devs can thrive? Even better. I’ve worked with platforms like Buidlbox to create spaces where builders can connect, learn, and create the next generation of blockchain innovations. Seeing someone’s “aha moment” when they ship their first dApp or integrate a new protocol—it never gets old.
 
-## Let’s Build the Future Together  
+---
 
-I’m eager to continue contributing to the Web3 ecosystem, whether through growth strategies, community building, or developing the tools that enable the next wave of innovation. If you’re looking for someone who thrives on experimentation, brings a builder’s mindset, and has a deep love for decentralized technologies, let’s connect.
+## Growth: The Balancing Act of Scale and Sustainability
 
-The future of Web3 is being written right now—and I’d love to be part of the story.
+Growth in crypto is a different beast. You’re not just chasing clicks or signups—you’re building networks, ecosystems, and communities. It’s a mix of art and science, strategy and serendipity.
+
+Whether it’s growing grants programs, scaling hackathon platforms, or supporting clients in the eCommerce space, my approach has always been about authenticity. Growth isn’t just about numbers on a graph; it’s about creating real value for real people.
+
+---
+
+## Public Goods Funding: A Cause Close to My Heart
+
+Public goods are the backbone of any thriving ecosystem, yet they’re often overlooked or underfunded. Through my work with Gitcoin, I’ve seen how innovative mechanisms like quadratic funding can change the game, making it easier for communities to support the projects they care about.
+
+Crypto has the potential to redefine how we fund and sustain public goods—not just in Web3, but in the world at large. And that’s something I’m incredibly proud to contribute to.
+
+---
+
+## Consensys Layer: Building the Future, Layer by Layer
+
+Last but not least, I’ve had the privilege of working closely with some incredible teams tackling the challenges of the Consensys layer. From tooling for developers to ensuring secure and efficient consensus mechanisms, this work has given me a front-row seat to some of the most exciting innovations in the space.
+
+For me, this layer represents the “heart” of blockchain—where trust, security, and decentralization come together to power everything.
+
+---
+
+## A Final Thought
+
+At the end of the day, what keeps me motivated in this space is the belief that we’re building something bigger than ourselves. Crypto isn’t just about tech or money—it’s about creating opportunities, empowering individuals, and solving problems in ways we never could before.
+
+If any of this resonates with you, let’s chat. Whether you’re a project in need of scaling advice, a dev looking for support, or someone curious about how crypto can make a difference—I’d love to hear from you.
+
+Let’s buidl the future, one block at a time.

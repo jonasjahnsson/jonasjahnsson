@@ -6,21 +6,20 @@
     <description>Recent content in Posts on Jonas Jahnsson</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 03 Sep 2019 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://jonasjahnsson.com/posts/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Work</title>
-      <link>https://jonasjahnsson.com/posts/work/</link>
-      <pubDate>Tue, 03 Sep 2019 00:00:00 +0000</pubDate>
-      <guid>https://jonasjahnsson.com/posts/work/</guid>
-      <description>&lt;!-- raw HTML omitted --&gt;&#xA;&lt;p&gt;The Web3 revolution is more than just a shift in technology—it’s a movement that empowers individuals, decentralizes control, and fosters global collaboration. My career has been a journey through data, entrepreneurship, and open-source advocacy, ultimately leading me to the forefront of this transformative space.&lt;/p&gt;</description>
-    </item>
     <item>
       <title>Contact</title>
       <link>https://jonasjahnsson.com/contact/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://jonasjahnsson.com/contact/</guid>
       <description>Find me&#x9;─=≡Σ((( つ◕ل͜◕)つ</description>
+    </item>
+    <item>
+      <title>Work</title>
+      <link>https://jonasjahnsson.com/posts/work/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://jonasjahnsson.com/posts/work/</guid>
+      <description>&lt;!-- raw HTML omitted --&gt;&#xA;&lt;p&gt;When I first dove into the crypto space, I was captivated by the promise of decentralized technology. But more than the tech itself, what truly resonated with me was its potential to make real, tangible change—scaling solutions for massive adoption, bringing onboard the next billion users, empowering developers, and funding public goods that serve everyone. If you know me, you’ll know I’m not just about theory—I’m all about practical, scalable solutions that drive meaningful growth.&lt;/p&gt;&#xA;&lt;p&gt;Here’s a closer look at my key areas of focus and what excites me about them.&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>
