@@ -5,7 +5,7 @@ title = "Project Website"
 
 # 
 
-I decided to built a website for myself as a fun little side project. After using Wordpress, Shopify and more easy solutions i decided to build it completely for free, on top of open source software. 
+I decided to build a website for myself as a fun little side project. After using Wordpress, Shopify and more drag and drop services I decided to build it completely for free, on top of open source software. 
 
 ## Tech
 
