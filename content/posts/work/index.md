@@ -1,5 +1,6 @@
 +++
-title = "Work"
+title = "My Areas of Focus"
+date = "2024-11-05T21:05:33+05:30"
 +++
 <br>
 # Exploring My Focus Areas in Crypto: Scaling, Onboarding, and Building a Better Future
@@ -14,7 +15,7 @@ Here’s a closer look at my key areas of focus and what excites me about them.
 
 ## Scaling: Unlocking the Internet of Value
 
-Scaling blockchains isn’t just about throughput and numbers (though, wow, those TPS battles can get heated). For me, it’s about building a solid foundation for real-world use cases. Whether it’s optimizing grants programs at Gitcoin or exploring innovative scalability solutions like rollups and modular chains, I love diving deep into the tech and strategy that ensures Web3 can handle what the future throws at it.
+Scaling blockchains isn’t just about throughput and numbers (though, wow, those TPS is wild). For me, it’s about building a solid foundation for real-world use cases. Whether it’s optimizing grants programs at Gitcoin or exploring innovative scalability solutions like rollups and modular chains, I love diving deep into the tech and strategy that ensures Web3 can handle what the future throws at it.
 
 Scalability isn’t a buzzword; it’s a necessity. After all, what’s the point of building the future of finance, art, or gaming if it crashes under the weight of its own success?
 
@@ -24,15 +25,15 @@ Scalability isn’t a buzzword; it’s a necessity. After all, what’s the poin
 
 I’ll admit, the first time I tried to explain "seed phrases" to my mom, it was... an experience. Onboarding the next wave of users is about making crypto intuitive, accessible, and dare I say it, enjoyable.
 
-Through my work at Gitcoin, Buidlbox, and beyond, I’ve seen firsthand how powerful education and user-centric design can be. It’s not just about the tech; it’s about storytelling—helping people see how Web3 fits into their lives. If we want mainstream adoption, we need to make crypto as seamless as logging into Netflix or tapping your card at the coffee shop.
+Through my work at Gitcoin, buidlbox, and beyond, I’ve seen firsthand how powerful education and user-centric design can be. It’s not just about the tech; it’s about storytelling—helping people see how Web3 fits into their lives. If we want mainstream adoption, we need to make crypto as seamless as logging into Netflix or tapping your card at the coffee shop.
 
 ---
 
 ## DevRel: Empowering the Builders
 
-Developers are the lifeblood of the crypto ecosystem. Without them, we’re all just playing with ideas and hoping someone else turns them into reality. That’s why I’ve dedicated so much of my career to developer relations (DevRel).
+Developers are the lifeblood of the crypto ecosystem. Without them, we’re all just playing with ideas and hoping someone else turns them into reality. That’s why I’ve dedicated so much of my career to developer relations and seeing them succeed.
 
-Hackathons? Love them. Building communities where devs can thrive? Even better. I’ve worked with platforms like Buidlbox to create spaces where builders can connect, learn, and create the next generation of blockchain innovations. Seeing someone’s “aha moment” when they ship their first dApp or integrate a new protocol—it never gets old.
+Hackathons? Love them. Building communities where devs can thrive? Even better. At buidlbox we created spaces where builders can connect, learn, and create the next generation of blockchain innovations. Seeing someone’s “aha moment” when they ship their first dApp or integrate a new protocol never gets old.
 
 ---
 

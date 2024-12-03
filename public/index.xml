@@ -6,8 +6,15 @@
     <description>Recent content on Jonas Jahnsson</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 09 Feb 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 05 Nov 2024 21:05:33 +0530</lastBuildDate>
     <atom:link href="https://jonasjahnsson.com/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>My Areas of Focus</title>
+      <link>https://jonasjahnsson.com/posts/work/</link>
+      <pubDate>Tue, 05 Nov 2024 21:05:33 +0530</pubDate>
+      <guid>https://jonasjahnsson.com/posts/work/</guid>
+      <description>&lt;!-- raw HTML omitted --&gt;&#xA;&lt;p&gt;When I first dove into the crypto space, I was captivated by the promise of decentralized technology. But more than the tech itself, what truly resonated with me was its potential to make real, tangible change—scaling solutions for massive adoption, bringing onboard the next billion users, empowering developers, and funding public goods that serve everyone. If you know me, you’ll know I’m not just about theory—I’m all about practical, scalable solutions that drive meaningful growth.&lt;/p&gt;&#xA;&lt;p&gt;Here’s a closer look at my key areas of focus and what excites me about them.&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Grants round with Unicef</title>
       <link>https://jonasjahnsson.com/photos/gitcoinunicef/</link>
@@ -49,13 +56,6 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://jonasjahnsson.com/contact/</guid>
       <description>Find me&#x9;─=≡Σ((( つ◕ل͜◕)つ</description>
-    </item>
-    <item>
-      <title>Work</title>
-      <link>https://jonasjahnsson.com/posts/work/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://jonasjahnsson.com/posts/work/</guid>
-      <description>&lt;!-- raw HTML omitted --&gt;&#xA;&lt;p&gt;When I first dove into the crypto space, I was captivated by the promise of decentralized technology. But more than the tech itself, what truly resonated with me was its potential to make real, tangible change—scaling solutions for massive adoption, bringing onboard the next billion users, empowering developers, and funding public goods that serve everyone. If you know me, you’ll know I’m not just about theory—I’m all about practical, scalable solutions that drive meaningful growth.&lt;/p&gt;&#xA;&lt;p&gt;Here’s a closer look at my key areas of focus and what excites me about them.&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>
