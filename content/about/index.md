@@ -9,7 +9,7 @@ The Web3 revolution is more than just a shift in technology—it’s a movement 
 
 ## From Ecommerce to Entrepreneurship: The Foundations of Growth  
 
-I started my career at **Netthandelen** (now part of **Brandsdal Group**) at just 19, diving headfirst into the world of ecommerce. Analyzing data and implementing cutting-edge technologies, I helped drive sales and scale operations for one of the Nordic region’s largest ecommerce platforms. It was there I developed a deep understanding of how technology and strategy converge to create value.
+I started my career at **Netthandelen** (now part of **Brandsdal Group**) at just 19, diving headfirst into the world of ecommerce. Analyzing data and implementing cutting-edge technologies, I helped drive sales and scale operations for one of the Nordic region’s largest ecommerce platforms. It was there I developed a deep understanding of how technology and a just do it mentality can create value. 
 
 This foundation inspired me to build something of my own—**tickettothemoon.no**, an ecommerce business selling hammocks. Over three years, we transformed it into a **$3M venture**, learning every facet of running a successful ecommerce operation. From supply chain management to customer acquisition, these lessons prepared me for my next big leap.
 
@@ -20,7 +20,7 @@ This foundation inspired me to build something of my own—**tickettothemoon.no*
 
 As crypto gained momentum, I found myself drawn to the ethos of decentralization and open-source collaboration. A close friend introduced me to **Gitcoin**, and when the opportunity arose to join their marketing team, I seized it. My most impactful career decision to date.
 
-At Gitcoin, I focused on growing participation in **Grants Rounds**, engaging donors, and creating strategies to amplify community involvement. We tried everything from creating massive waves of **POAPs** (so many that we pushed POAP’s capacity to its limits!) to designing innovative ways to inspire engagement. Some experiments worked brilliantly, while others offered valuable lessons. What fueled me was the challenge of bridging people, technology, and purpose—unlocking new ways to support builders and projects in the space.  
+At Gitcoin, I focused on growing participation in **Grants Rounds**, engaging donors, and creating strategies to amplify community involvement. We tried everything from creating massive waves of **POAPs** (so many that we pushed POAP’s capacity to its limits lol) to designing innovative ways to inspire engagement. Some experiments worked brilliantly, while others offered valuable lessons. What fueled me was the challenge of bridging people, technology, and purpose—unlocking new ways to support builders and projects in the space.  
 
 I was also fortunate enough to be one of the first full time contributors to the DAO, setting up workflows, coordination tools and onboarding a wave of amazing contributors. 
 
@@ -28,9 +28,9 @@ I was also fortunate enough to be one of the first full time contributors to the
 
 ## Empowering Builders at buidlbox  
 
-Still really interested in enabling builders succeedAfter Gitcoin, I joined **buidlbox**, a hackathon platform that partners with leading Web3 brands to empower developers. My role centered on creating an **analytics framework** to measure both product performance and marketing efforts. Beyond data, my true passion lies in the stories of the builders themselves.
+Still really interested in enabling builders succeed. After Gitcoin, I joined **buidlbox**, a hackathon platform that partners with leading Web3 brands to empower developers. My role centered on creating an **analytics framework** to measure both product performance and marketing efforts. Beyond data, my true passion lies in the stories of the builders themselves.
 
-Seeing developers enter Web3, learn new skills, and turn their ideas into real-world solutions is incredibly rewarding. At buidlbox, I’ve had the privilege of supporting some of the most talented minds in the space, helping them gain visibility and opportunities to thrive.
+Seeing developers enter Web3, learn new skills, and turn their ideas into real-world solutions is incredibly rewarding. At buidlbox, I’ve had the privilege of supporting some of the most talented minds in the space, helping them gain visibility and opportunities to thrive. Biggest win? Becoming frens with 10s of builders that was first introduced to building via buidlbox, now they are doing their thing!!
 
 ## Why Web3?  
 

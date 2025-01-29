@@ -5,7 +5,7 @@ date = "2024-11-05T21:05:33+05:30"
 <br>
 # Exploring My Focus Areas in Crypto: Scaling, Onboarding, and Building a Better Future
 
-When I first dove into the crypto space, I was captivated by the promise of decentralized technology. But more than the tech itself, what truly resonated with me was its potential to make real, tangible change—scaling solutions for massive adoption, bringing onboard the next billion users, empowering developers, and funding public goods that serve everyone. If you know me, you’ll know I’m not just about theory—I’m all about practical, scalable solutions that drive meaningful growth.
+When I first dove into the crypto space, I was captivated by the promise of decentralized technology. But more than the tech itself, what truly resonated with me was its potential to make real, tangible change—scaling solutions for massive adoption, bringing onboard the next billion users, empowering developers, and funding public goods that serve everyone. My goal has always been to create scalable solutions that drive meaningful growth. 
 
 Here’s a closer look at my key areas of focus and what excites me about them.
 <!--more-->
@@ -49,7 +49,7 @@ Whether it’s growing grants programs, scaling hackathon platforms, or supporti
 
 Public goods are the backbone of any thriving ecosystem, yet they’re often overlooked or underfunded. Through my work with Gitcoin, I’ve seen how innovative mechanisms like quadratic funding can change the game, making it easier for communities to support the projects they care about.
 
-Crypto has the potential to redefine how we fund and sustain public goods—not just in Web3, but in the world at large. And that’s something I’m incredibly proud to contribute to.
+Crypto has the potential to redefine how we fund and sustain public goods—not just in Web3, but in the world at large. And that’s something I’m incredibly proud to contribute to. 
 
 ---
 
@@ -63,8 +63,8 @@ For me, this layer represents the “heart” of blockchain—where trust, secur
 
 ## A Final Thought
 
-At the end of the day, what keeps me motivated in this space is the belief that we’re building something bigger than ourselves. Crypto isn’t just about tech or money—it’s about creating opportunities, empowering individuals, and solving problems in ways we never could before.
+At the end of the day, what keeps me motivated in this space is the belief that we’re building something bigger than ourselves. Crypto isn’t just about tech or money - it’s about creating opportunities, empowering individuals, and solving problems in ways we never could before.
 
-If any of this resonates with you, let’s chat. Whether you’re a project in need of scaling advice, a dev looking for support, or someone curious about how crypto can make a difference—I’d love to hear from you.
+If any of this resonates with you, let’s chat. Whether you’re a project in need of scaling advice, a dev looking for support, or someone curious about how crypto can make a difference - I’d love to hear from you.
 
 Let’s buidl the future, one block at a time.
