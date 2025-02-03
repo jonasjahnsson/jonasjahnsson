@@ -4,7 +4,7 @@ url =  "/contact"
 summary = "Find me	─=≡Σ((( つ◕ل͜◕)つ <!--more-->"
 +++
 
-The good news is that i'm pretty much availible anywhere.  
+The good news is that I'm pretty much available anywhere.  
 If you want to challenge me to a 1-1 CS2 duel please use Discord λ
 
 ## [Telegram](https://www.t.me/skinnyjesus)
@@ -15,6 +15,6 @@ If you want to challenge me to a 1-1 CS2 duel please use Discord λ
 
 ### Discord
 
-Not a 100 % sure how to create a link to my user. Find me by searching for jonasjahnsson
+Not 100 % sure how to create a link to my user. Find me by searching for jonasjahnsson
 #  
 ```¯\_(ツ)_/¯```
