@@ -1,7 +1,7 @@
 +++
 title = "Contact"
 url =  "/contact"
-summary = "Find me	─=≡Σ((( つ◕ل͜◕)つ"
+summary = "Find me	─=≡Σ((( つ◕ل͜◕)つ <!--more-->"
 +++
 
 The good news is that i'm pretty much availible anywhere.  

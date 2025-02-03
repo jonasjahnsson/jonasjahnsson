@@ -1,5 +1,5 @@
 +++
-title = "My Areas of Focus"
+title = "The future is Open Sourced"
 date = "2024-11-05T21:05:33+05:30"
 +++
 <br>
