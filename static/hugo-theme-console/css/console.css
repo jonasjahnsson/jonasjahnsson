@@ -298,6 +298,31 @@ figure {
     flex: 1; /* Allows text to take up remaining space */
 }
 
+.wrap-left {
+    float: left;
+    margin-right: 15px;
+    margin-left: 0px;
+    margin-bottom: 10px;
+    max-width: 15%; /* Prevents the image from getting too large */
+  }
+  
+  .wrap-right {
+    float: right;
+    margin-left: 15px;
+    margin-bottom: 10px;
+    max-width: 50%;
+  }
+  
+  /* Disable floating on small screens */
+  @media (max-width: 768px) {
+    .wrap-left,
+    .wrap-right {
+      float: none;
+      display: block;
+      margin: 0 auto; /* Centers image on mobile */
+      max-width: 100%; /* Makes the image full width */
+    }
+  }
 /* Mobile-specific styles */
 @media (max-width: 768px) {
     .about-section {

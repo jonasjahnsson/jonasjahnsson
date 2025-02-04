@@ -7,6 +7,7 @@ date = "2024-11-05T21:05:33+05:30"
 Ever since I roamed the internet as a P2P filesharing kingpin in the mid 00's I've been captivated by the promise of decentralized technology. But more than the tech itself, what truly resonated with me was its potential to make real world solutions to some of society's biggest problems, empowering developers, funding public goods that serve everyone. My goal has always been to create scalable solutions that drive meaningful growth. 
 
 Here’s a closer look at my key areas of focus and what excites me.
+
 <!--more-->
 
 
@@ -37,6 +38,8 @@ Whether it’s growing grants programs, scaling hackathons, I believe in authent
 ---
 
 ## Public Goods: We Need to Fund What Matters
+
+{{< figure src="/fundwhatmatters.png" alt="fundwhatmatters" class="wrap-left" width="300" >}}
 
 Public goods are the backbone of any thriving ecosystem, yet they’re often overlooked or underfunded. Through my work with Gitcoin, I’ve seen how innovative mechanisms like quadratic funding can change the game, making it easier for communities to support the projects they care about.
 
