@@ -32,11 +32,11 @@ Still really interested in enabling builders succeed. After Gitcoin, I joined **
 
 Seeing developers enter Web3, learn new skills, and turn their ideas into real-world solutions is incredibly rewarding. At buidlbox, I’ve had the privilege of supporting some of the most talented minds in the space, helping them gain visibility and opportunities to thrive. Biggest win? Becoming frens with 10s of builders that was first introduced to building via buidlbox, now they are doing their thing!
 
-I believe in infinite sum games and I worked across ecosystems and enabled builders to [keep building](https://blog.buidlbox.io/gitcoin-grants-22-is-live-on-gitcoin-827d3ac435a3) after we had our hacks.
+I believe in infinite sum games and I worked across ecosystems and enabled builders to [keep building](https://blog.buidlbox.io/gitcoin-grants-22-is-live-on-gitcoin-827d3ac435a3) to bring their projects to fruition.
 
 ## Norwegian Crypto Alliance 
 
-With a passion for introducing developers to the ecosystem, I wanted to extend this opportunity to others in the local community. The Norwegian Crypto Alliance is an educational initiative collaborating with Norwegian institutions to create spaces where we can explore blockchain technology, its capabilities, and its potential. I currently organize events for local tech companies through [Digin](https://digin.no/), aiming to build a strong Norwegian community of builders and advocates who can bring this technology to a wider audience. 
+With a passion for introducing developers to the ecosystem, I wanted to extend this opportunity to others in the local community. The **Norwegian Crypto Alliance** is an educational initiative collaborating with Norwegian institutions to create spaces where we can explore blockchain technology, its capabilities, and its potential. I currently organize events for local tech companies through [Digin](https://digin.no/), aiming to build a strong Norwegian community of builders and advocates who can bring this technology to a wider audience. 
 
 ## Why Web3?  
 
@@ -46,6 +46,6 @@ Whether it’s through decentralized funding models, platforms that empower buil
 
 ## Let’s Build the Future Together  
 
-I’m eager to continue contributing to the Web3 ecosystem, whether through growth strategies, community building, or developing the tools that enable the next wave of innovation. If you’re looking for someone who thrives on experimentation, brings a builder’s mindset, and has a deep love for decentralized technologies, let’s connect.
+I’m eager to continue contributing to the ecosystem, whether through growth strategies, community building, or developing the tools that enable the next wave of innovation. If you’re looking for someone who thrives on experimentation, brings a builder’s mindset, and has a deep love for decentralized technologies, let’s connect.
 
-The future of Web3 is being written right now — and I’d love to be part of the story.
+The future of Web3 is being written right now — and I want nothing more than support the future of the open internet.

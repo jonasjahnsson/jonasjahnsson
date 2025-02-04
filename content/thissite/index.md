@@ -3,13 +3,12 @@ date = "2016-11-05T21:05:33+05:30"
 title = "Project Website"
 +++
 
-# 
-
+##
 I decided to build a website for myself as a fun little side project. After using Wordpress, Shopify and more drag and drop services I decided to build it completely for free, on top of open source software. 
 
 ## Tech
 
-The site is built with [Hugo](https://gohugo.io/). Super fast static pages, using markdown. This is my first time using it, and it's been a fun experiment.  I learned how fast static pages are, how adaptable and cool markdown is, and how the foundations of websites work.  
+The site is built with [Hugo](https://gohugo.io/). Super fast static pages, using markdown. This is my first time using it, and it's been a fun experiment.  Static sites are fast!! 
 
 The site is built with the [Console Theme](https://themes.gohugo.io/themes/hugo-theme-console/). With a lots of modifications. 
 
@@ -24,4 +23,4 @@ My one sin is that i'm using Google Analytics to track all of you (i'm sorry). O
 
 ## Future
 
-I would like to experiement either with creating some simple games or try to build a simple dApp. Everything to be hosted here. Any ideas? Hit me up [Link](jonasjahnsson.com/contact)
+I would like to experiement either with creating some simple games or try to build a simple dApp. Everything to be hosted here. Any ideas? Hit me up [Link](/contact)
