@@ -1,0 +1,35 @@
+/* eth-snow.css */
+
+/* Ensure the snowflakes are positioned absolutely */
+.snowflake {
+    position: absolute;
+    top: -50px; /* Start above the viewport */
+    pointer-events: none; /* Ensure clicks pass through */
+    user-select: none; /* Prevent text selection */
+    animation: fall 5s linear infinite; /* Test with only the fall animation */
+    z-index: 9999; /* Ensßure snowflakes are on top */
+    opacity: 0.4; /* Make snowflakes 70% transparent */
+}
+
+/* Keyframes for the falling animation */
+@keyframes fall {
+    0% {
+        transform: translateY(0) rotate(0deg);
+    }
+    100% {
+        transform: translateY(100vh) rotate(360deg); /* Fall to the bottom of the viewport */
+    }
+}
+
+/* Keyframes for the sway (left-to-right) animation */
+@keyframes sway {
+    0% {
+        transform: translateX(0);
+    }
+    50% {
+        transform: translateX(50px); /* Adjust the sway distance */
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
