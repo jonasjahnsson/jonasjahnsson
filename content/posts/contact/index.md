@@ -4,7 +4,7 @@ url =  "/contact"
 summary = "Find me	─=≡Σ((( つ◕ل͜◕)つ <!--more-->"
 +++
  
-If you want to challenge me to a 1-1 in CS let me knowλ
+If you want to challenge me to a 1-1 in CS let me know λ 
 
 ## [Telegram](https://www.t.me/skinnyjesus)
 
