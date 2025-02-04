@@ -1,17 +1,19 @@
 +++
-date = "2016-11-05T21:05:33+05:30"
-title = "Building the Future of Web3: My Journey Across Ecommerce, Crypto, and Community Empowerment"
+date = "2024-11-02T21:05:33+05:30"
+title = "How I got here"
 +++
 
 # 
 
-The Web3 revolution is more than just a shift in technology—it’s a movement that empowers individuals, decentralizes control, and fosters global collaboration. My career has been a journey through data, entrepreneurship, and open-source advocacy, ultimately leading me to the forefront of this transformative space.
+The Web3 revolution is more than just a shift in technology—it’s a movement that empowers individuals, decentralizes control, and fosters global collaboration. My career has been a journey through ecommerce, entrepreneurship, and open-source advocacy, ultimately leading me to the forefront of this transformative space. 
+
+<!--more-->
 
 ## From Ecommerce to Entrepreneurship: The Foundations of Growth  
 
 I started my career at **Netthandelen** (now part of **Brandsdal Group**) at just 19, diving headfirst into the world of ecommerce. Analyzing data and implementing cutting-edge technologies, I helped drive sales and scale operations for one of the Nordic region’s largest ecommerce platforms. It was there I developed a deep facination for experimentation and how the sum off hundreds of small changes can scale a company from $10M to $150M. 
 
-This foundation inspired me to build something of my own **tickettothemoon.no**, an ecommerce business selling hammocks. Over three years, we transformed it into a **$3M venture**, learning every facet of running a successful ecommerce operation. From supply chain management to customer acquisition, these lessons prepared me for my next big leap.
+This foundation inspired me to build something of my own **tickettothemoon.no**, an ecommerce business selling hammocks. The idea was to make it easier than ever for Norwegians to touch grass. Over three years, we transformed it into a **$3M venture**, learning every facet of running a successful ecommerce operation. From supply chain management to customer acquisition, these lessons prepared me for my next big leap.
 
 {{< figure src="/jonashammock.png" alt="Jonas Hammock" title="From the Hammock Era"  >}}
 
