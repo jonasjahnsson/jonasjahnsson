@@ -14,8 +14,8 @@ enableBundler = true
   animateStyle = "animated zoomIn fast" 
 
   [[params.navlinks]]
-  name = "about/"
-  url = "about/"
+  name = "posts/"
+  url = "posts/"
 
   [[params.navlinks]]
   name = "contact/"
