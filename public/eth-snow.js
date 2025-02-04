@@ -31,4 +31,4 @@ function createSnowflake() {
 }
 
 // Create snowflakes at regular intervals
-setInterval(createSnowflake, 3000); // Adjust interval for more/less snowflakesß
+setInterval(createSnowflake, 9000); // Adjust interval for more/less snowflakesß
