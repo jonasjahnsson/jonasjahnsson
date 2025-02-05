@@ -7,9 +7,9 @@ type = "gallery"
 
 ### Global Pizza Party 
 
-Sometimes I catch myself wondering: why am I so drawn to the this space? The tech is fascinating, but honestly? It’s the vibes. The energy here is unmatched, and this community? Absolutely my favorite.  
-
 One of the most unique traditions we have is Global Pizza Party, held every May 22nd to honor the legendary moment [Laszlo Hanyecz](https://www.coindesk.com/markets/2020/05/22/10-years-after-laszlo-hanyecz-bought-pizza-with-10k-bitcoin-he-has-no-regrets/) traded 10,000 Bitcoin for a pizza. Billions of $$$ today. Wild, right? 
+
+Travelling the world I've attended multiple Pizza Parties, to connect, learn and share the Crypto narrative. 
 
 Shoutout to [PizzaDAO](https://www.globalpizzaparty.xyz/), the heroes who hustle year-round to keep this tradition alive and well-fed.
 
