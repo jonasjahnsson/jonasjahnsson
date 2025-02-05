@@ -78,4 +78,22 @@
     </div>
     <script src="/eth-snow.js" defer></script>
   </body>
+  <script>
+    
+    const profilePic = document.getElementById('profile-pic');
+
+    profilePic.addEventListener('click', () => {
+        profilePic.style.opacity = '0'; 
+
+        setTimeout(() => {
+            if (profilePic.src.endsWith('jonas_original.jpg')) {
+                profilePic.src = 'jonas_wink.jpg'; 
+            } else {
+                profilePic.src = 'jonas_original.jpg'; 
+            }
+
+            profilePic.style.opacity = '1'; 
+        }, 300); 
+    });
+</script>
 </html>

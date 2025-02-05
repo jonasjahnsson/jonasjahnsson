@@ -291,7 +291,7 @@ figure {
     margin-right: 1rem; /* Adds space on the right of the image */
     flex-shrink: 0; /* Prevents the image from shrinking */
     object-fit: cover; /* Ensures the image covers the space without stretching */
-    object-position: 50% -5.1rem; /* Centers the image and moves it 3rem down */
+    object-position: 50% 0rem; /* Centers the image and moves it 3rem down */
 }
 
 .about-section p {

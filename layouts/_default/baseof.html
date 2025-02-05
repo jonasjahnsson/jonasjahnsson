@@ -67,4 +67,22 @@
     </div>
     <script src="{{ "/eth-snow.js" | relURL }}" defer></script>
   </body>
+  <script>
+    // JavaScript for toggling the profile picture
+    const profilePic = document.getElementById('profile-pic');
+
+    profilePic.addEventListener('click', () => {
+        profilePic.style.opacity = '0'; // Fade out
+
+        setTimeout(() => {
+            if (profilePic.src.endsWith('jonas_original.jpg')) {
+                profilePic.src = 'jonas_wink.jpg'; // Change to the winking image
+            } else {
+                profilePic.src = 'jonas_original.jpg'; // Change back to the original image
+            }
+
+            profilePic.style.opacity = '1'; // Fade in
+        }, 300); // Match the duration of the CSS transition
+    });
+</script>
 </html>
