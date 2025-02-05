@@ -12,6 +12,7 @@
 </div>
 <br/>
 
+
 <div class="posts-list">
 {{ with .Site.GetPage "/posts" }}
     {{ range first 3 (sort .Data.Pages "Date" "desc" (where .Pages ".Params.private" "!=" true))}}
@@ -26,19 +27,23 @@
 </div>
 
 <h1>Some content</h1>
-
 <div class="image-grid">
-{{ with .Site.GetPage "/photos" }}
-    {{ range first 3 (sort .Data.Pages "Date" "desc")}}
-        <a href="{{ .Permalink }}" title="{{ .Title }}">
-        {{ $image := .Page.Resources.GetMatch .Params.image }}
-        {{ with $image }}
-            {{ $thumb := .Resize "400x" }}
-            <img src="{{ $thumb.RelPermalink }}" alt="{{ .Title }}" class="img-responsive">
-        {{end}}
-        </a>
+    {{ with .Site.GetPage "/photos" }}
+        {{ range first 3 (sort .Data.Pages "Date" "desc")}}
+            <div class="image-item">
+                <a href="{{ .Permalink }}" title="{{ .Title }}">
+                    {{ $image := .Page.Resources.GetMatch .Params.image }}
+                    {{ with $image }}
+                        {{ $thumb := .Resize "400x" }}
+                        <img src="{{ $thumb.RelPermalink }}" alt="{{ .Title }}" class="img-responsive">
+                    {{ end }}
+                </a>
+                <h3 class="image-title">
+                    <a href="{{ .Permalink }}">{{ .Title }}</a>
+                </h3>
+            </div>
+        {{ end }}
     {{ end }}
-{{ end }}
 </div>
 
 {{ end }}

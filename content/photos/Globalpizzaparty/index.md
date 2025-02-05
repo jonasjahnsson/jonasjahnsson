@@ -1,7 +1,7 @@
 +++
 image = "JonasPizzaWeb.png"
 date = "2020-02-09"
-title = "Hosting the 2024 Global Pizza Party (Norway)"
+title = "Hosting the 2024 Global Pizza Party"
 type = "gallery"
 +++
 

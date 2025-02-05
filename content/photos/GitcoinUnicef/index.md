@@ -1,7 +1,7 @@
 +++
 image = "JonasUnicefWeb.png"
 date = "2020-02-09"
-title = "Grants round with Unicef"
+title = "Round Manager for Gitcoin + Unicef"
 type = "gallery"
 +++
 

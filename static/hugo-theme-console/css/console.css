@@ -291,7 +291,7 @@ figure {
     margin-right: 1rem; /* Adds space on the right of the image */
     flex-shrink: 0; /* Prevents the image from shrinking */
     object-fit: cover; /* Ensures the image covers the space without stretching */
-    object-position: 50% 0rem; /* Centers the image and moves it 3rem down */
+    object-position: 50% -.0.0000001rem; /* Centers the image and moves it 3rem down */
 }
 
 .about-section p {
@@ -338,4 +338,19 @@ figure {
 
 
 }
+.image-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.image-description {
+    font-size: 14px;
+    color: #666;
+    margin-top: 5px;
+    max-width: 80%;
+}
+
+
 
