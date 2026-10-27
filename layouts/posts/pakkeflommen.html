@@ -1,5 +1,6 @@
 {{ define "main" }}
 <style>
+<style>
 /* Pakkeflommen: bygger på terminal.css-variablene til resten av siden */
 .pf{--pf-red:#d20962;--pf-blue:var(--primary-color);--pf-muted:var(--secondary-color);--pf-soft:#e8eff2;color:var(--font-color)}
 .pf p{color:#444;max-width:46em}
@@ -62,7 +63,7 @@
 .pf h2 .anchor{color:var(--pf-muted);text-decoration:none;opacity:0;font-weight:400;transition:opacity .15s}
 .pf h2:hover .anchor,.pf h2 .anchor:focus{opacity:1}
 @media (hover:none){.pf h2 .anchor{opacity:.5}}
-.pf h2 .anchor.copied::after{content:" kopiert";font-size:.5em;vertical-align:middle}
+.pf h2 .anchor.copied::after{font-size:.5em;vertical-align:middle}
 h1.pf-title{display:block!important;font-size:clamp(2.4em,8vw,4.6em)!important;line-height:1.05!important;margin:10px 0 6px!important;padding:0 0 .12em!important;overflow:visible!important;font-weight:700;letter-spacing:-.01em}
 .pf-title::after{content:none!important}
 .pf .hero{display:grid;grid-template-columns:auto minmax(0,1fr);gap:20px;align-items:center;margin:18px 0 10px}
@@ -73,23 +74,36 @@ h1.pf-title{display:block!important;font-size:clamp(2.4em,8vw,4.6em)!important;l
 @media (prefers-reduced-motion:reduce){.pf .blink::after{animation:none}.pf .scene .needle{animation:none}}
 .pf .scene .needle{animation:pfsew .18s ease-in-out infinite alternate}
 @keyframes pfsew{from{transform:translateY(0)}to{transform:translateY(3px)}}
+
+.pf[data-lang="en"] .nb,.pf[data-lang="nb"] .en{display:none!important}
+.pf .langbar{display:flex;justify-content:flex-end;gap:0;margin:0 0 6px}
+.pf .langbar .btn{margin:0;padding:2px 12px;font-size:.85em}
+.pf .langbar .btn + .btn{margin-left:-1px}
+.pf h2 .anchor.copied::after{content:" copied"}
+.pf[data-lang="nb"] h2 .anchor.copied::after{content:" kopiert"}
 </style>
 
-<h1 class="pf-title">{{ .Title }}</h1>
-<div class="post-date">{{ .Date.Format "Jan. 2, 2006" }}</div>
+<div class="pf" id="pf-root" data-lang="en">
+<div class="langbar" role="group" aria-label="Language / Språk">
+  <a class="btn btn-default" id="pf-lang-en" href="?lang=en" hreflang="en" aria-pressed="true">EN</a>
+  <a class="btn btn-ghost" id="pf-lang-nb" href="?lang=no" hreflang="nb" aria-pressed="false">NO</a>
+</div>
 
-<article class="pf" lang="nb">
+<h1 class="pf-title"><span class="en">Temu's Trash Heap</span><span class="nb">Temus søppelhaug</span></h1>
+<div class="post-date"><span class="en">{{ .Date.Format "Jan. 2, 2006" }}</span><span class="nb">27. oktober 2026</span></div>
+
+<article>
 
 <div class="hero">
-  <svg class="flag-big" viewBox="0 0 30 20" aria-label="Kinas flagg" role="img"><defs><polygon id="pfst" points="0,-1 0.2245,-0.309 0.951,-0.309 0.363,0.118 0.588,0.809 0,0.382 -0.588,0.809 -0.363,0.118 -0.951,-0.309 -0.2245,-0.309"/></defs><rect width="30" height="20" fill="#DE2910"/><g fill="#FFDE00"><use href="#pfst" transform="translate(5 5) scale(3)"/><use href="#pfst" transform="translate(10 2) rotate(-120.96)"/><use href="#pfst" transform="translate(12 4) rotate(-98.13)"/><use href="#pfst" transform="translate(12 7) rotate(-74.05)"/><use href="#pfst" transform="translate(10 9) rotate(-51.34)"/></g></svg>
-  <div class="route" aria-label="Fra Kina til Norge" style="margin:0">
-    <span>KINA</span>
-    <span class="arrow" aria-hidden="true">-------- ✈ ca. 8 500 km ------></span>
-    <span><svg class="flag" viewBox="0 0 22 16" aria-hidden="true"><rect width="22" height="16" fill="#BA0C2F"/><rect x="6" width="4" height="16" fill="#fff"/><rect y="6" width="22" height="4" fill="#fff"/><rect x="7" width="2" height="16" fill="#00205B"/><rect y="7" width="22" height="2" fill="#00205B"/></svg>NORGE</span>
+  <svg class="flag-big" viewBox="0 0 30 20" aria-label="Flag of China" role="img"><defs><polygon id="pfst" points="0,-1 0.2245,-0.309 0.951,-0.309 0.363,0.118 0.588,0.809 0,0.382 -0.588,0.809 -0.363,0.118 -0.951,-0.309 -0.2245,-0.309"/></defs><rect width="30" height="20" fill="#DE2910"/><g fill="#FFDE00"><use href="#pfst" transform="translate(5 5) scale(3)"/><use href="#pfst" transform="translate(10 2) rotate(-120.96)"/><use href="#pfst" transform="translate(12 4) rotate(-98.13)"/><use href="#pfst" transform="translate(12 7) rotate(-74.05)"/><use href="#pfst" transform="translate(10 9) rotate(-51.34)"/></g></svg>
+  <div class="route" style="margin:0">
+    <span><span class="en">CHINA</span><span class="nb">KINA</span></span>
+    <span class="arrow" aria-hidden="true">-------- ✈ <span class="en">approx. 8,500 km</span><span class="nb">ca. 8 500 km</span> ------></span>
+    <span><svg class="flag" viewBox="0 0 22 16" aria-hidden="true"><rect width="22" height="16" fill="#BA0C2F"/><rect x="6" width="4" height="16" fill="#fff"/><rect y="6" width="22" height="4" fill="#fff"/><rect x="7" width="2" height="16" fill="#00205B"/><rect y="7" width="22" height="2" fill="#00205B"/></svg><span class="en">NORWAY</span><span class="nb">NORGE</span></span>
   </div>
 </div>
 <figure style="margin:20px 0">
-<svg class="scene" viewBox="0 0 800 300" role="img" aria-label="Tegning: syere bøyd over symaskiner i et trangt verksted, klokka viser 22:40, og en haug med ferdige plagg og pakker vokser i hjørnet.">
+<svg class="scene" viewBox="0 0 800 300" role="img" aria-label="Illustration: garment workers bent over sewing machines in a cramped workshop. The clock shows 22:40, and a pile of parcels grows in the corner.">
   <defs>
     <g id="pfws">
       <rect x="-38" y="18" width="76" height="8" fill="#6b6f73"/>
@@ -107,94 +121,101 @@ h1.pf-title{display:block!important;font-size:clamp(2.4em,8vw,4.6em)!important;l
   <g fill="#cfd3d6"><rect x="40" y="22" width="70" height="44"/><rect x="150" y="22" width="70" height="44"/><rect x="260" y="22" width="70" height="44"/><rect x="370" y="22" width="70" height="44"/><rect x="480" y="22" width="70" height="44"/></g>
   <g stroke="#9aa0a6" stroke-width="2"><line x1="100" y1="0" x2="100" y2="10"/><rect x="60" y="10" width="80" height="5" fill="#fbfbf7"/><line x1="250" y1="0" x2="250" y2="10"/><rect x="210" y="10" width="80" height="5" fill="#fbfbf7"/><line x1="400" y1="0" x2="400" y2="10"/><rect x="360" y="10" width="80" height="5" fill="#fbfbf7"/><line x1="550" y1="0" x2="550" y2="10"/><rect x="510" y="10" width="80" height="5" fill="#fbfbf7"/><line x1="700" y1="0" x2="700" y2="10"/><rect x="660" y="10" width="80" height="5" fill="#fbfbf7"/></g>
   <g transform="translate(640 30)"><circle r="24" fill="#fff" stroke="#2b2d30" stroke-width="3"/><line x1="0" y1="0" x2="10" y2="12" stroke="#2b2d30" stroke-width="3"/><line x1="0" y1="0" x2="-14" y2="-6" stroke="#d20962" stroke-width="2"/><text x="34" y="6" font-size="14" fill="#2b2d30">22:40</text></g>
-  <rect x="560" y="68" width="210" height="24" fill="#2b2d30"/><text x="570" y="85" font-size="13" fill="#fff">08:00–22:30 · 6 dager/uke</text>
+  <rect x="560" y="68" width="210" height="24" fill="#2b2d30"/><text class="en" x="570" y="85" font-size="13" fill="#fff">08:00–22:30 · 6 days/week</text><text class="nb" x="570" y="85" font-size="13" fill="#fff">08:00–22:30 · 6 dager/uke</text>
   <g transform="translate(90 150) scale(0.85)"><use href="#pfws"/></g><g transform="translate(210 150) scale(0.85)"><use href="#pfws"/></g><g transform="translate(330 150) scale(0.85)"><use href="#pfws"/></g><g transform="translate(450 150) scale(0.85)"><use href="#pfws"/></g><g transform="translate(570 150) scale(0.85)"><use href="#pfws"/></g><g transform="translate(130 205) scale(1.0)"><use href="#pfws"/></g><g transform="translate(270 205) scale(1.0)"><use href="#pfws"/></g><g transform="translate(410 205) scale(1.0)"><use href="#pfws"/></g><g transform="translate(550 205) scale(1.0)"><use href="#pfws"/></g>
   <g>
     <path d="M690 300 L700 210 Q735 180 770 205 L800 300 Z" fill="#b9bec3"/>
     <g fill="#d20962" opacity=".85"><rect x="712" y="214" width="22" height="14" rx="2"/><rect x="742" y="226" width="26" height="16" rx="2"/><rect x="722" y="244" width="24" height="15" rx="2"/></g>
     <g fill="#fbfbf7" stroke="#9aa0a6"><rect x="704" y="262" width="34" height="22"/><rect x="744" y="258" width="30" height="24"/></g>
-    <text x="700" y="296" font-size="11" fill="#2b2d30">→ NORGE</text>
+    <text class="en" x="700" y="296" font-size="11" fill="#2b2d30">→ NORWAY</text><text class="nb" x="700" y="296" font-size="11" fill="#2b2d30">→ NORGE</text>
   </g>
 </svg>
-<figcaption class="small">Illustrasjon. Public Eye intervjuet arbeidere hos Shein-leverandører i Guangzhou i 2024. Mange jobbet rundt 75 timer i uka, langt over grensen i kinesisk lov og i Sheins egne regler.</figcaption>
+
+<figcaption class="small"><span class="en">Illustration. In 2024 Public Eye interviewed workers at Shein suppliers in Guangzhou. Many worked around 75 hours a week, far above the limit in Chinese law and in Shein's own code of conduct.</span><span class="nb">Illustrasjon. Public Eye intervjuet arbeidere hos Shein-leverandører i Guangzhou i 2024. Mange jobbet rundt 75 timer i uka, langt over grensen i kinesisk lov og i Sheins egne regler.</span></figcaption>
 </figure>
 
-<p>Norge får flere småpakker fra Kina enn noen gang. EU har innført toll på dem, men Norge har ikke gjort det. Her er tallene, og hvor mye det faktisk blir når du stabler pakkene opp.</p>
+<p class="en">Norway is receiving more small parcels from China than ever before. The EU has introduced a customs duty on them, but Norway has not. Here are the numbers, and what they add up to when you stack the parcels.</p>
+<p class="nb">Norge får flere småpakker fra Kina enn noen gang. EU har innført toll på dem, men Norge har ikke gjort det. Her er tallene, og hvor mye det faktisk blir når du stabler pakkene opp.</p>
 
 <div class="terminal-card">
-  <header>live_teller.sh</header>
+  <header><span class="en">live_counter.sh</span><span class="nb">live_teller.sh</span></header>
   <div class="counter">
     <div>
-      <div class="small">Varer fra Temu, Shein og lignende til <b>Norge</b> siden du åpnet siden</div>
+      <div class="small"><span class="en">Items from Temu, Shein and similar sites shipped to <b>Norway</b> since you opened this page</span><span class="nb">Varer fra Temu, Shein og lignende til <b>Norge</b> siden du åpnet siden</span></div>
       <div class="big num red blink" id="pf-live">0</div>
     </div>
   </div>
-  <div class="small" style="margin-top:8px">Norge: <b id="pf-every">1,6</b> varer i sekundet (50 mill. i 2025).</div>
+  <div class="small" style="margin-top:8px"><span class="en"><b class="pf-every">1.6</b> items per second (50 million in 2025).</span><span class="nb"><b class="pf-every">1,6</b> varer i sekundet (50 mill. i 2025).</span></div>
 </div>
 
-<h2 id="omfang">Hvor mye er det? <a class="anchor" href="#omfang" aria-label="Lenke til denne delen">#</a></h2>
-<p class="cmd">cat omfang.txt</p>
-<p>Varer under 3 000 kroner fra registrerte nettbutikker som Temu og Shein kommer inn gjennom VOEC-ordningen. Norge krever moms, men ingen toll. I 2023 var det 3,8 millioner slike forsendelser fra Kina. I 2025 var det 10,6 millioner.</p>
-<div class="ascii" aria-label="Forsendelser fra Kina via VOEC: 3,8 millioner i 2023 og 10,6 millioner i 2025">2023 <span class="m">██████████████</span>                          3,8 mill.
+<h2 id="omfang"><span class="en">How much is it?</span><span class="nb">Hvor mye er det?</span> <a class="anchor" href="#omfang" aria-label="Link to this section">#</a></h2>
+<p class="cmd"><span class="en">cat scale.txt</span><span class="nb">cat omfang.txt</span></p>
+<p class="en">Goods under NOK 3,000 (about €260) from registered online stores like Temu and Shein enter Norway through the VOEC scheme. Norway charges VAT on them, but no customs duty. In 2023 there were 3.8 million such shipments from China. In 2025 there were 10.6 million.</p>
+<p class="nb">Varer under 3 000 kroner fra registrerte nettbutikker som Temu og Shein kommer inn gjennom VOEC-ordningen. Norge krever moms, men ingen toll. I 2023 var det 3,8 millioner slike forsendelser fra Kina. I 2025 var det 10,6 millioner.</p>
+<div class="ascii en" aria-label="Shipments from China via VOEC: 3.8 million in 2023 and 10.6 million in 2025">2023 <span class="m">██████████████</span>                          3.8 m
+2025 <span class="r">████████████████████████████████████████</span> 10.6 m</div>
+<div class="ascii nb" aria-label="Forsendelser fra Kina via VOEC: 3,8 millioner i 2023 og 10,6 millioner i 2025">2023 <span class="m">██████████████</span>                          3,8 mill.
 2025 <span class="r">████████████████████████████████████████</span> 10,6 mill.</div>
-<p class="small">Forsendelser fra Kina via VOEC. Kilde: Tolletaten via Energi og Klima.</p>
+<p class="small"><span class="en">Shipments from China via VOEC. Source: Norwegian Customs, via Energi og Klima.</span><span class="nb">Forsendelser fra Kina via VOEC. Kilde: Tolletaten via Energi og Klima.</span></p>
 
 <div class="stats">
-  <div class="terminal-card"><div><b class="num">50 mill.</b><span>varer fra Temu, Shein og lignende i 2025</span></div></div>
-  <div class="terminal-card"><div><b class="num">1,1 mill.</b><span>pakker i august 2026, ny rekord</span></div></div>
-  <div class="terminal-card"><div><b class="num red">+35 %</b><span>fra august i fjor</span></div></div>
-  <div class="terminal-card"><div><b class="num red">+263 %</b><span>klesimport fra utenlandske nettbutikker, 2024–2025</span></div></div>
+  <div class="terminal-card"><div><b class="num"><span class="en">50 m</span><span class="nb">50 mill.</span></b><span><span class="en">items from Temu, Shein and similar sites in 2025</span><span class="nb">varer fra Temu, Shein og lignende i 2025</span></span></div></div>
+  <div class="terminal-card"><div><b class="num"><span class="en">1.1 m</span><span class="nb">1,1 mill.</span></b><span><span class="en">parcels in August 2026, a new record</span><span class="nb">pakker i august 2026, ny rekord</span></span></div></div>
+  <div class="terminal-card"><div><b class="num red">+35 %</b><span><span class="en">compared with August last year</span><span class="nb">fra august i fjor</span></span></div></div>
+  <div class="terminal-card"><div><b class="num red">+263 %</b><span><span class="en">clothing imports from foreign online stores, 2024–2025</span><span class="nb">klesimport fra utenlandske nettbutikker, 2024–2025</span></span></div></div>
 </div>
 
 <div class="field" style="max-width:520px">
-  <label for="pf-hh">Hvor mange bor i husstanden din? <span id="pf-hhOut">3</span></label>
+  <label for="pf-hh"><span class="en">How many people live in your household?</span><span class="nb">Hvor mange bor i husstanden din?</span> <span id="pf-hhOut">3</span></label>
   <input type="range" id="pf-hh" min="1" max="8" value="3">
-  <small>Hele landet fordelt på 5,6 millioner innbyggere.</small>
+  <small><span class="en">National totals divided across Norway's 5.6 million inhabitants.</span><span class="nb">Hele landet fordelt på 5,6 millioner innbyggere.</span></small>
 </div>
-<p>Statistisk sett tok husstanden din imot <b class="num" id="pf-hhP">5,7</b> pakker og <b class="num" id="pf-hhV">27</b> varer fra slike nettbutikker i 2025.</p>
+<p><span class="en">Statistically, your household received <b class="num pf-hhP"></b> parcels and <b class="num pf-hhV"></b> items from these sites in 2025.</span><span class="nb">Statistisk sett tok husstanden din imot <b class="num pf-hhP"></b> pakker og <b class="num pf-hhV"></b> varer fra slike nettbutikker i 2025.</span></p>
 
-<h2 id="stablet">10,6 millioner pakker, stablet opp <a class="anchor" href="#stablet" aria-label="Lenke til denne delen">#</a></h2>
-<p class="cmd">./sammenlign --pakker 10600000</p>
-<p>Hva blir 10,6 millioner pakker når du legger dem i én stabel, på rekke eller på en vekt? Velg en sammenligning.</p>
-<div class="tabs" role="group" aria-label="Velg sammenligning">
-  <button type="button" class="btn btn-default" data-v="hoyde" aria-pressed="true">høyde</button>
-  <button type="button" class="btn btn-ghost" data-v="rekke" aria-pressed="false">rekke</button>
-  <button type="button" class="btn btn-ghost" data-v="vekt" aria-pressed="false">vekt</button>
-  <button type="button" class="btn btn-ghost" data-v="volum" aria-pressed="false">volum</button>
-  <button type="button" class="btn btn-ghost" data-v="fly" aria-pressed="false">fly</button>
+<h2 id="stablet"><span class="en">10.6 million parcels, stacked up</span><span class="nb">10,6 millioner pakker, stablet opp</span> <a class="anchor" href="#stablet" aria-label="Link to this section">#</a></h2>
+<p class="cmd"><span class="en">./compare --parcels 10600000</span><span class="nb">./sammenlign --pakker 10600000</span></p>
+<p class="en">What do 10.6 million parcels become when you put them in one stack, in a line or on a scale? Pick a comparison.</p>
+<p class="nb">Hva blir 10,6 millioner pakker når du legger dem i én stabel, på rekke eller på en vekt? Velg en sammenligning.</p>
+<div class="tabs" role="group" aria-label="Comparison">
+  <button type="button" class="btn btn-default" data-v="hoyde" aria-pressed="true"><span class="en">height</span><span class="nb">høyde</span></button>
+  <button type="button" class="btn btn-ghost" data-v="rekke" aria-pressed="false"><span class="en">line</span><span class="nb">rekke</span></button>
+  <button type="button" class="btn btn-ghost" data-v="vekt" aria-pressed="false"><span class="en">weight</span><span class="nb">vekt</span></button>
+  <button type="button" class="btn btn-ghost" data-v="volum" aria-pressed="false"><span class="en">volume</span><span class="nb">volum</span></button>
+  <button type="button" class="btn btn-ghost" data-v="fly" aria-pressed="false"><span class="en">planes</span><span class="nb">fly</span></button>
 </div>
-<div class="terminal-card"><header id="pf-stagehead">høyde</header><div id="pf-stage" aria-live="polite"></div></div>
-<p class="small">Antatt typisk pakke: plastpose på 25 × 18 × 5 cm og 0,4 kg. Se metode nederst.</p>
+<div class="terminal-card"><header id="pf-stagehead"></header><div id="pf-stage" aria-live="polite"></div></div>
+<p class="small"><span class="en">Assumed typical parcel: a plastic bag of 25 × 18 × 5 cm weighing 0.4 kg. See method at the bottom.</span><span class="nb">Antatt typisk pakke: plastpose på 25 × 18 × 5 cm og 0,4 kg. Se metode nederst.</span></p>
 
-<h2 id="co2">Hva koster det i CO₂? <a class="anchor" href="#co2" aria-label="Lenke til denne delen">#</a></h2>
-<p class="cmd">./co2 --aar 2025</p>
-<p>De fleste pakkene flys fra Kina. Utslippene fra frakten og fra produksjonen av varene havner i andre lands klimaregnskap, ikke i Norges. Ingen har publisert et offisielt tall for disse utslippene, så du kan justere antakelsene selv.</p>
+<h2 id="co2"><span class="en">What does it cost in CO₂?</span><span class="nb">Hva koster det i CO₂?</span> <a class="anchor" href="#co2" aria-label="Link to this section">#</a></h2>
+<p class="cmd"><span class="en">./co2 --year 2025</span><span class="nb">./co2 --aar 2025</span></p>
+<p class="en">Most parcels are flown in from China. The emissions from shipping and from making the goods end up in other countries' climate accounts, not Norway's. Nobody has published an official figure for these emissions, so you can adjust the assumptions yourself.</p>
+<p class="nb">De fleste pakkene flys fra Kina. Utslippene fra frakten og fra produksjonen av varene havner i andre lands klimaregnskap, ikke i Norges. Ingen har publisert et offisielt tall for disse utslippene, så du kan justere antakelsene selv.</p>
 <div class="calc">
   <div>
     <div class="field">
-      <label for="pf-w">Snittvekt per pakke <span id="pf-wOut"></span></label>
+      <label for="pf-w"><span class="en">Average weight per parcel</span><span class="nb">Snittvekt per pakke</span> <span id="pf-wOut"></span></label>
       <input type="range" id="pf-w" min="0.1" max="1.5" step="0.05" value="0.4">
-      <small>Antakelse. De fleste pakkene er lette plastposer.</small>
+      <small><span class="en">Assumption. Most parcels are light plastic bags.</span><span class="nb">Antakelse. De fleste pakkene er lette plastposer.</span></small>
     </div>
     <div class="field">
-      <label for="pf-ef">Utslipp fra flyfrakt <span id="pf-efOut"></span></label>
+      <label for="pf-ef"><span class="en">Air freight emissions</span><span class="nb">Utslipp fra flyfrakt</span> <span id="pf-efOut"></span></label>
       <input type="range" id="pf-ef" min="0.5" max="2.0" step="0.05" value="0.9">
-      <small>kg CO₂e per tonn per km. Utgangspunktet er 0,90, som er britiske myndigheters faktor for langdistanse flyfrakt (2025) inkludert høydeeffekt.</small>
+      <small><span class="en">kg CO₂e per tonne per km. The default of 0.90 is the UK government's factor for long-haul air freight (2025), including radiative forcing.</span><span class="nb">kg CO₂e per tonn per km. Utgangspunktet er 0,90, som er britiske myndigheters faktor for langdistanse flyfrakt (2025) inkludert høydeeffekt.</span></small>
     </div>
     <div class="field">
-      <label for="pf-pr">Produksjon per vare <span id="pf-prOut"></span></label>
+      <label for="pf-pr"><span class="en">Production per item</span><span class="nb">Produksjon per vare</span> <span id="pf-prOut"></span></label>
       <input type="range" id="pf-pr" min="0" max="10" step="0.25" value="1">
-      <small>kg CO₂e per vare. Utgangspunktet er 1 kg, et forsiktig snitt fordi mange varer er små, som hårstrikk og mobildeksler. En T-skjorte ligger på 7–18 kg. Shein oppgir selv at produksjonen gir mer utslipp enn frakten.</small>
+      <small><span class="en">kg CO₂e per item. The default of 1 kg is a cautious average, because many items are small, like hair ties and phone cases. A T-shirt is 7–18 kg. Shein itself reports that production emits more than shipping.</span><span class="nb">kg CO₂e per vare. Utgangspunktet er 1 kg, et forsiktig snitt fordi mange varer er små, som hårstrikk og mobildeksler. En T-skjorte ligger på 7–18 kg. Shein oppgir selv at produksjonen gir mer utslipp enn frakten.</span></small>
     </div>
     <div class="field">
-      <label for="pf-dist">Flydistanse <span id="pf-distOut"></span></label>
+      <label for="pf-dist"><span class="en">Flight distance</span><span class="nb">Flydistanse</span> <span id="pf-distOut"></span></label>
       <input type="range" id="pf-dist" min="7000" max="10000" step="100" value="8500">
-      <small>Sør-Kina til Oslo i luftlinje er ca. 8 500 km.</small>
+      <small><span class="en">Southern China to Oslo is about 8,500 km in a straight line.</span><span class="nb">Sør-Kina til Oslo i luftlinje er ca. 8 500 km.</span></small>
     </div>
   </div>
   <div>
-    <div class="terminal-card"><header>resultat</header><div>
-      <div class="small">Utslipp fra pakkene i 2025</div>
+    <div class="terminal-card"><header><span class="en">result</span><span class="nb">resultat</span></header><div>
+      <div class="small"><span class="en">Emissions from the parcels in 2025</span><span class="nb">Utslipp fra pakkene i 2025</span></div>
       <div class="big num red" id="pf-tot">–</div>
       <div class="small" id="pf-per"></div>
       <ul class="cmp" id="pf-cmp"></ul>
@@ -202,76 +223,103 @@ h1.pf-title{display:block!important;font-size:clamp(2.4em,8vw,4.6em)!important;l
     </div></div>
   </div>
 </div>
-<p>Utslippene fra pakkene utgjør en liten del av Norges samlede utslipp, som var 44,1 millioner tonn i 2025. Det store problemet er at de fleste av disse utslippene ikke telles noe sted i norsk politikk. Om lag to tredeler av utslippene fra norsk forbruk skjer i andre land.</p>
+<p class="en">The emissions from the parcels are a small share of Norway's total emissions, which were 44.1 million tonnes in 2025. The bigger problem is that most of these emissions are not counted anywhere in Norwegian policy. About two thirds of the emissions caused by Norwegian consumption happen in other countries.</p>
+<p class="nb">Utslippene fra pakkene utgjør en liten del av Norges samlede utslipp, som var 44,1 millioner tonn i 2025. Det store problemet er at de fleste av disse utslippene ikke telles noe sted i norsk politikk. Om lag to tredeler av utslippene fra norsk forbruk skjer i andre land.</p>
 
-<h2 id="soppel">Kjøpt i dag, kastet i morgen <a class="anchor" href="#soppel" aria-label="Lenke til denne delen">#</a></h2>
-<p class="cmd">du -sh /søppel</p>
-<p>Mye av det som kommer i pakkene er billige klær, plast og små elektroniske duppeditter. Det ender raskt som avfall i Norge, og det er norske kommuner og forbrukere som betaler for å håndtere det.</p>
+<h2 id="soppel"><span class="en">Bought today, thrown out tomorrow</span><span class="nb">Kjøpt i dag, kastet i morgen</span> <a class="anchor" href="#soppel" aria-label="Link to this section">#</a></h2>
+<p class="cmd"><span class="en">du -sh /trash</span><span class="nb">du -sh /søppel</span></p>
+<p class="en">Much of what arrives in the parcels is cheap clothing, plastic and small electronic gadgets. It quickly becomes waste in Norway, and Norwegian municipalities and consumers pay to deal with it.</p>
+<p class="nb">Mye av det som kommer i pakkene er billige klær, plast og små elektroniske duppeditter. Det ender raskt som avfall i Norge, og det er norske kommuner og forbrukere som betaler for å håndtere det.</p>
 <div class="stats">
-  <div class="terminal-card"><div><b class="num">14 000 t</b><span>klær og tekstiler kjøpt direkte fra utenlandske nettbutikker i 2025, opp 263 % på ett år</span></div></div>
-  <div class="terminal-card"><div><b class="num red">44 405 t</b><span>tekstiler gikk til restavfall og forbrenning i Norge i 2025. Det er ca. 122 tonn om dagen.</span></div></div>
-  <div class="terminal-card"><div><b class="num">2 %</b><span>av tekstilene som ble solgt i Norge, ble brukt på nytt her i landet</span></div></div>
-  <div class="terminal-card"><div><b class="num">364 t</b><span>tekstiler ble materialgjenvunnet i Norge. Resten ble eksportert eller brent.</span></div></div>
+  <div class="terminal-card"><div><b class="num"><span class="en">14,000 t</span><span class="nb">14 000 t</span></b><span><span class="en">of clothing and textiles bought directly from foreign online stores in 2025, up 263 % in one year</span><span class="nb">klær og tekstiler kjøpt direkte fra utenlandske nettbutikker i 2025, opp 263 % på ett år</span></span></div></div>
+  <div class="terminal-card"><div><b class="num red"><span class="en">44,405 t</span><span class="nb">44 405 t</span></b><span><span class="en">of textiles went to residual waste and incineration in Norway in 2025. That is about 122 tonnes a day.</span><span class="nb">tekstiler gikk til restavfall og forbrenning i Norge i 2025. Det er ca. 122 tonn om dagen.</span></span></div></div>
+  <div class="terminal-card"><div><b class="num">2 %</b><span><span class="en">of the textiles sold in Norway were reused in Norway</span><span class="nb">av tekstilene som ble solgt i Norge, ble brukt på nytt her i landet</span></span></div></div>
+  <div class="terminal-card"><div><b class="num">364 t</b><span><span class="en">of textiles were recycled into new material in Norway. The rest was exported or burned.</span><span class="nb">tekstiler ble materialgjenvunnet i Norge. Resten ble eksportert eller brent.</span></span></div></div>
 </div>
-<p>14 000 tonn klær fra nettbutikker i utlandet veier nesten like mye som to Eiffeltårn. Det er klær for ett år.</p>
+<p class="en">14,000 tonnes of clothing from foreign online stores weighs almost as much as two Eiffel Towers. That is one year of clothes.</p>
+<p class="nb">14 000 tonn klær fra nettbutikker i utlandet veier nesten like mye som to Eiffeltårn. Det er klær for ett år.</p>
 
-<h3>Duppeditter med kort liv</h3>
-<p>En spørreundersøkelse blant over 10 000 voksne i 12 europeiske land viser hvor kort levetid billig elektronikk har.</p>
-<div class="pctrow">Har eid en billig elektronisk dings som ble brukt <b>mindre enn seks måneder</b>: 58 %<div class="progress-bar"><div class="progress-bar-filled" style="width:58%"></div></div></div>
-<div class="pctrow">Har kastet en etter <b>én gangs bruk eller innen en måned</b>: 39 %<div class="progress-bar"><div class="progress-bar-filled" style="width:39%"></div></div></div>
-<div class="pctrow">Leverte den til gjenvinningsstasjon: 27 %<div class="progress-bar grey"><div class="progress-bar-filled" style="width:27%"></div></div></div>
-<p class="small">Kilde: WEEE Forum, 2026.</p>
+<h3><span class="en">Gadgets with a short life</span><span class="nb">Duppeditter med kort liv</span></h3>
+<p class="en">A survey of more than 10,000 adults in 12 European countries shows how short a life cheap electronics have.</p>
+<p class="nb">En spørreundersøkelse blant over 10 000 voksne i 12 europeiske land viser hvor kort levetid billig elektronikk har.</p>
+<div class="pctrow"><span class="en">Have owned a cheap electronic gadget that was used for <b>less than six months</b>: 58 %</span><span class="nb">Har eid en billig elektronisk dings som ble brukt <b>mindre enn seks måneder</b>: 58 %</span><div class="progress-bar"><div class="progress-bar-filled" style="width:58%"></div></div></div>
+<div class="pctrow"><span class="en">Have thrown one away <b>after a single use or within a month</b>: 39 %</span><span class="nb">Har kastet en etter <b>én gangs bruk eller innen en måned</b>: 39 %</span><div class="progress-bar"><div class="progress-bar-filled" style="width:39%"></div></div></div>
+<div class="pctrow"><span class="en">Took it to a recycling centre: 27 %</span><span class="nb">Leverte den til gjenvinningsstasjon: 27 %</span><div class="progress-bar grey"><div class="progress-bar-filled" style="width:27%"></div></div></div>
+<p class="small"><span class="en">Source: WEEE Forum, 2026.</span><span class="nb">Kilde: WEEE Forum, 2026.</span></p>
 
 <div class="terminal-alert">
-  <p style="margin-top:0"><b>Hvem betaler for søppelet?</b> Butikker som selger elektronikk og emballasje i Norden, må betale for at avfallet blir samlet inn og gjenvunnet. I Danmark var bare seks kinesiske elektronikkselgere registrert i ordningen, og ingen av dem solgte på Temu. Da betaler danske selskaper regningen.</p>
-  <p style="margin-bottom:0">Norge innfører produsentansvar for tekstiler 1. januar 2027. Uten kontroll av småpakkene er det lite som tyder på at Temu-selgerne kommer til å betale sin del.</p>
+  <p style="margin-top:0" class="en"><b>Who pays for the waste?</b> Companies that sell electronics and packaging in the Nordics must pay for that waste to be collected and recycled. In Denmark, only six Chinese electronics sellers were registered in the scheme, and none of them sold on Temu. So Danish companies pick up the bill.</p>
+  <p style="margin-top:0" class="nb"><b>Hvem betaler for søppelet?</b> Butikker som selger elektronikk og emballasje i Norden, må betale for at avfallet blir samlet inn og gjenvunnet. I Danmark var bare seks kinesiske elektronikkselgere registrert i ordningen, og ingen av dem solgte på Temu. Da betaler danske selskaper regningen.</p>
+  <p style="margin-bottom:0" class="en">Norway introduces producer responsibility for textiles on 1 January 2027. Without control of the small parcels, there is little to suggest that Temu sellers will pay their share.</p>
+  <p style="margin-bottom:0" class="nb">Norge innfører produsentansvar for tekstiler 1. januar 2027. Uten kontroll av småpakkene er det lite som tyder på at Temu-selgerne kommer til å betale sin del.</p>
 </div>
-<p>Pakkene er også søppel i seg selv. Hvis hver av de 10,6 millionene var en plastpose på 15 gram, blir det <b class="num">ca. 160 tonn</b> engangsplast, bare til emballasje.</p>
+<p class="en">The parcels are trash in themselves too. If each of the 10.6 million was a 15-gram plastic bag, that is <b class="num">about 160 tonnes</b> of single-use plastic, just for packaging.</p>
+<p class="nb">Pakkene er også søppel i seg selv. Hvis hver av de 10,6 millionene var en plastpose på 15 gram, blir det <b class="num">ca. 160 tonn</b> engangsplast, bare til emballasje.</p>
 
-<h2 id="sikkerhet">110 av 162 strøk <a class="anchor" href="#sikkerhet" aria-label="Lenke til denne delen">#</a></h2>
-<p class="cmd">grep -c FAIL forbrukerradet_test.log</p>
-<p>Forbrukerrådet testet 162 produkter fra Temu og Shein. 110 av dem brøt europeiske sikkerhetskrav. Nesten alle lekene hadde problemer, og ett smykke inneholdt 8 500 ganger tillatt mengde kadmium.</p>
-<p>Hver rute under er ett testet produkt. Trekk en tilfeldig vare og se om den ville bestått.</p>
+<h2 id="sikkerhet"><span class="en">110 of 162 failed</span><span class="nb">110 av 162 strøk</span> <a class="anchor" href="#sikkerhet" aria-label="Link to this section">#</a></h2>
+<p class="cmd"><span class="en">grep -c FAIL consumer_council_test.log</span><span class="nb">grep -c FAIL forbrukerradet_test.log</span></p>
+<p class="en">The Norwegian Consumer Council tested 162 products from Temu and Shein. 110 of them broke European safety requirements. Almost all the toys had problems, and one piece of jewellery contained 8,500 times the permitted level of cadmium.</p>
+<p class="nb">Forbrukerrådet testet 162 produkter fra Temu og Shein. 110 av dem brøt europeiske sikkerhetskrav. Nesten alle lekene hadde problemer, og ett smykke inneholdt 8 500 ganger tillatt mengde kadmium.</p>
+<p class="en">Each square below is one tested product. Draw a random item and see whether it would have passed.</p>
+<p class="nb">Hver rute under er ett testet produkt. Trekk en tilfeldig vare og se om den ville bestått.</p>
 <div class="grid162" id="pf-g162" aria-hidden="true"></div>
 <div class="draw">
-  <button type="button" class="btn btn-error" id="pf-draw">Trekk en vare</button>
-  <div class="terminal-alert" id="pf-verdict" aria-live="polite">Rødt betyr at varen brøt kravene.</div>
+  <button type="button" class="btn btn-error" id="pf-draw"><span class="en">Draw an item</span><span class="nb">Trekk en vare</span></button>
+  <div class="terminal-alert" id="pf-verdict" aria-live="polite"></div>
 </div>
-<p>Satt på spissen: Hvis 68 % av 50 millioner varer brøt kravene, ville det vært <b class="num red">34 millioner</b> ulovlige produkter i norske hjem på ett år. Testen var ikke laget for å være representativ, så tallet er en illustrasjon og ikke et anslag. Tollerforbundet sier at Tolletaten ikke har kontroll på hva som kommer inn.</p>
+<p class="en">Taken to its extreme: if 68 % of 50 million items broke the rules, that would be <b class="num red">34 million</b> illegal products in Norwegian homes in one year. The test was not designed to be representative, so this figure is an illustration, not an estimate. The customs officers' union says Norwegian Customs has no control over what comes in.</p>
+<p class="nb">Satt på spissen: Hvis 68 % av 50 millioner varer brøt kravene, ville det vært <b class="num red">34 millioner</b> ulovlige produkter i norske hjem på ett år. Testen var ikke laget for å være representativ, så tallet er en illustrasjon og ikke et anslag. Tollerforbundet sier at Tolletaten ikke har kontroll på hva som kommer inn.</p>
 
-<h2 id="sverige">Sverige stengte døra. Norge holdt den åpen. <a class="anchor" href="#sverige" aria-label="Lenke til denne delen">#</a></h2>
-<p class="cmd">diff sverige.txt norge.txt</p>
-<p>1. juli 2026 innførte EU 3 euro i toll per varelinje på småpakker under 150 euro. Fra november kommer et kontrollgebyr på 2 euro per pakke. Sverige, Danmark og Finland er med. Norge er det ikke.</p>
+<h2 id="sverige"><span class="en">Sweden shut the door. Norway left it open.</span><span class="nb">Sverige stengte døra. Norge holdt den åpen.</span> <a class="anchor" href="#sverige" aria-label="Link to this section">#</a></h2>
+<p class="cmd"><span class="en">diff sweden.txt norway.txt</span><span class="nb">diff sverige.txt norge.txt</span></p>
+<p class="en">On 1 July 2026 the EU introduced a €3 customs duty per item line on small parcels worth less than €150. From November a handling fee of €2 per parcel comes on top. Sweden, Denmark and Finland are part of this. Norway is not.</p>
+<p class="nb">1. juli 2026 innførte EU 3 euro i toll per varelinje på småpakker under 150 euro. Fra november kommer et kontrollgebyr på 2 euro per pakke. Sverige, Danmark og Finland er med. Norge er det ikke.</p>
 <div class="vs">
-  <div class="terminal-card"><header>sverige</header><div><div class="big blue">Kraftig ned</div><p>Salget fra Temu og Shein falt kraftig. Anslagene i mediene ligger på mellom 50 og 75 prosent.</p></div></div>
-  <div class="terminal-card"><header>norge, aug 2026</header><div><div class="big red">+35 %</div><p>Ny rekord med over 1,1 millioner pakker på én måned.</p></div></div>
+  <div class="terminal-card"><header><span class="en">sweden</span><span class="nb">sverige</span></header><div><div class="big blue"><span class="en">Sharply down</span><span class="nb">Kraftig ned</span></div><p class="en">Sales from Temu and Shein fell sharply. Media estimates range from 50 to 75 percent.</p><p class="nb">Salget fra Temu og Shein falt kraftig. Anslagene i mediene ligger på mellom 50 og 75 prosent.</p></div></div>
+  <div class="terminal-card"><header><span class="en">norway, aug 2026</span><span class="nb">norge, aug 2026</span></header><div><div class="big red">+35 %</div><p class="en">A new record, with more than 1.1 million parcels in one month.</p><p class="nb">Ny rekord med over 1,1 millioner pakker på én måned.</p></div></div>
 </div>
 
-<h2 id="politikk">Utredet, ikke vedtatt <a class="anchor" href="#politikk" aria-label="Lenke til denne delen">#</a></h2>
-<p class="cmd">git log --politikk</p>
+<h2 id="politikk"><span class="en">Studied, not decided</span><span class="nb">Utredet, ikke vedtatt</span> <a class="anchor" href="#politikk" aria-label="Link to this section">#</a></h2>
+<p class="cmd"><span class="en">git log --politics</span><span class="nb">git log --politikk</span></p>
 <div class="terminal-timeline">
-  <div class="terminal-card"><header>juni 2026</header><div><b>Stortinget ber om utredning.</b><p>Regjeringen skal utrede toll og kontrollgebyr på småpakker, en tekstilavgift og momsfritak for brukte varer.</p></div></div>
-  <div class="terminal-card eu"><header>1. juli 2026</header><div><b>EU innfører toll.</b><p>3 euro per varelinje på pakker under 150 euro.</p></div></div>
-  <div class="terminal-card no"><header>august 2026</header><div><b>Norge setter rekord.</b><p>Over 1,1 millioner småpakker fra kinesiske nettbutikker.</p></div></div>
-  <div class="terminal-card no"><header>7. oktober 2026</header><div><b>Statsbudsjettet for 2027 har ingen tiltak.</b><p>Ingen avgift og intet gebyr på småpakker.</p></div></div>
-  <div class="terminal-card"><header>24. oktober 2026</header><div><b>Bransjen ber om hastemøte.</b><p>Virke og HK vil møte finansministeren og klimaministeren. Finansministeren sier Temu er et problem, men at Norge ikke kan kopiere EU fordi Norge ikke har toll på de fleste varer.</p></div></div>
-  <div class="terminal-card eu"><header>november 2026</header><div><b>EU innfører kontrollgebyr.</b><p>2 euro per pakke i tillegg til tollen.</p></div></div>
+  <div class="terminal-card"><header><span class="en">June 2026</span><span class="nb">juni 2026</span></header><div><b class="en">Parliament asks for a review.</b><b class="nb">Stortinget ber om utredning.</b><p class="en">The government is to study a customs duty and handling fee on small parcels, a textile levy and a VAT exemption for second-hand goods.</p><p class="nb">Regjeringen skal utrede toll og kontrollgebyr på småpakker, en tekstilavgift og momsfritak for brukte varer.</p></div></div>
+  <div class="terminal-card eu"><header><span class="en">1 July 2026</span><span class="nb">1. juli 2026</span></header><div><b class="en">The EU introduces a duty.</b><b class="nb">EU innfører toll.</b><p class="en">€3 per item line on parcels under €150.</p><p class="nb">3 euro per varelinje på pakker under 150 euro.</p></div></div>
+  <div class="terminal-card no"><header><span class="en">August 2026</span><span class="nb">august 2026</span></header><div><b class="en">Norway sets a record.</b><b class="nb">Norge setter rekord.</b><p class="en">More than 1.1 million small parcels from Chinese online stores.</p><p class="nb">Over 1,1 millioner småpakker fra kinesiske nettbutikker.</p></div></div>
+  <div class="terminal-card no"><header><span class="en">7 October 2026</span><span class="nb">7. oktober 2026</span></header><div><b class="en">The 2027 national budget has no measures.</b><b class="nb">Statsbudsjettet for 2027 har ingen tiltak.</b><p class="en">No levy and no fee on small parcels.</p><p class="nb">Ingen avgift og intet gebyr på småpakker.</p></div></div>
+  <div class="terminal-card"><header><span class="en">24 October 2026</span><span class="nb">24. oktober 2026</span></header><div><b class="en">The retail sector asks for an urgent meeting.</b><b class="nb">Bransjen ber om hastemøte.</b><p class="en">Virke and HK want to meet the finance minister and the climate minister. The finance minister says Temu is a problem, but that Norway cannot copy the EU because Norway has no customs duty on most goods.</p><p class="nb">Virke og HK vil møte finansministeren og klimaministeren. Finansministeren sier Temu er et problem, men at Norge ikke kan kopiere EU fordi Norge ikke har toll på de fleste varer.</p></div></div>
+  <div class="terminal-card eu"><header><span class="en">November 2026</span><span class="nb">november 2026</span></header><div><b class="en">The EU introduces a handling fee.</b><b class="nb">EU innfører kontrollgebyr.</b><p class="en">€2 per parcel on top of the duty.</p><p class="nb">2 euro per pakke i tillegg til tollen.</p></div></div>
 </div>
 
-<h2 id="krav">Dette bør skje <a class="anchor" href="#krav" aria-label="Lenke til denne delen">#</a></h2>
+<h2 id="krav"><span class="en">What should happen</span><span class="nb">Dette bør skje</span> <a class="anchor" href="#krav" aria-label="Link to this section">#</a></h2>
 <p class="cmd">cat todo.md</p>
-<ol class="asks">
+<ol class="asks en">
+  <li><b>A handling fee per parcel, at least at EU level.</b> If Norway cannot copy the EU's duty, we need a Norwegian solution with the same effect. Waiting is not a solution.</li>
+  <li><b>More resources for Norwegian Customs.</b> 35,000 parcels arrive every day. Customs must have the capacity to check what is in them.</li>
+  <li><b>The same rules for everyone selling to Norwegian consumers.</b> Norwegian and European businesses must follow rules on safety, chemicals and labelling. That must also apply to those shipping directly from China.</li>
+</ol>
+<ol class="asks nb">
   <li><b>Et kontrollgebyr per pakke, minst på EU-nivå.</b> Hvis Norge ikke kan kopiere EUs toll, trenger vi en norsk løsning som gir samme effekt. Å vente er ikke en løsning.</li>
   <li><b>Flere ressurser til Tolletaten.</b> Det kommer 35 000 pakker om dagen. Tolletaten må ha kapasitet til å kontrollere hva som er i dem.</li>
   <li><b>Like regler for alle som selger til norske forbrukere.</b> Norske og europeiske aktører må følge krav til sikkerhet, kjemikalier og merking. Det må også gjelde dem som sender direkte fra Kina.</li>
 </ol>
-<p>Virke, HK, LO, Forbrukerrådet, Framtiden i våre hender og Vend står sammen om dette. Det er sjelden så mange er enige.</p>
+<p class="en">Virke, HK, LO, the Consumer Council, Framtiden i våre hender and Vend stand together on this. It is rare for so many to agree.</p>
+<p class="nb">Virke, HK, LO, Forbrukerrådet, Framtiden i våre hender og Vend står sammen om dette. Det er sjelden så mange er enige.</p>
 
-<h2 id="kilder">Metode og kilder <a class="anchor" href="#kilder" aria-label="Lenke til denne delen">#</a></h2>
-<p class="cmd">man pakkeflommen</p>
-<dl>
+<h2 id="kilder"><span class="en">Method and sources</span><span class="nb">Metode og kilder</span> <a class="anchor" href="#kilder" aria-label="Link to this section">#</a></h2>
+<p class="cmd"><span class="en">man temus-trash-heap</span><span class="nb">man temus-soppelhaug</span></p>
+<dl class="en">
+  <dt>Parcels and items</dt><dd>"Parcels" means shipments from China registered in the VOEC scheme. "Items" is Norwegian Customs' figure for individual goods from Temu, Shein and similar online stores, as cited by Framtiden i våre hender. One parcel can hold several items.</dd>
+  <dt>The counter at the top</dt><dd>50 million items in 2025 spread across the seconds of the year, about 1.6 items per second. The counter shows individual items, not parcels.</dd>
+  <dt>Size and weight</dt><dd>Assumption: 25 × 18 × 5 cm and 0.4 kg per parcel. No public source gives the average for Norway.</dd>
+  <dt>Planes</dt><dd>Parcels are usually flown to hubs in Europe, such as Liège in Belgium, and carried on by truck or in the hold of passenger planes. The number of planes is therefore converted from weight: a Boeing 777 freighter carries about 102 tonnes. Globally, Temu and Shein shipped about 9,000 tonnes a day in 2024, according to Cargo Facts Consulting.</dd>
+  <dt>Emissions</dt><dd>Weight × distance × air freight emission factor, plus production emissions per item. The air freight factor is the UK government's factor for long-haul air freight including radiative forcing (0.90 kg CO₂e per tonne-km, 2025). Car emissions are calculated at 0.15 kg CO₂ per km. Norwegian emissions per person are 44.1 million tonnes divided by 5.6 million inhabitants.</dd>
+  <dt>Production</dt><dd>The default is 1 kg CO₂e per item. Shein reported 11.2 million tonnes of CO₂e from production and materials in 2024, against 8.5 million tonnes from transport. Production therefore caused about 1.3 times the emissions of shipping. With 4.7 items per parcel and about 3 kg from shipping per parcel, that gives about 0.85 kg per item, rounded up to 1 kg. For comparison, a T-shirt is 7–18 kg CO₂e, with a median of 10.6 kg (Carbonfact). The figure is cautious.</dd>
+  <dt>Waste</dt><dd>The textile figures are from the NORSUS report "Kunnskapsstatus for tekstiler og tekstilavfall i Norge" (2026). The report itself says the figure for online imports is uncertain. Packaging is calculated with an assumed plastic bag of 15 g per parcel. The Eiffel Tower weighs about 7,300 tonnes.</dd>
+  <dt>Comparisons</dt><dd>Mount Everest 8,849 m, the International Space Station about 400 km up, Lindesnes–Nordkapp (Norway's southern tip to North Cape) about 2,500 km by road, blue whale about 150 tonnes, Olympic pool 2,500 m³, around the Earth 40,075 km.</dd>
+</dl>
+<dl class="nb">
   <dt>Pakker og varer</dt><dd>«Pakker» betyr forsendelser fra Kina registrert i VOEC-ordningen. «Varer» er Tolletatens tall for enkeltvarer fra Temu, Shein og lignende nettbutikker, slik Framtiden i våre hender gjengir det. En pakke kan inneholde flere varer.</dd>
-  <dt>Telleren øverst</dt><dd>Norge: 50 millioner varer i 2025 fordelt på årets sekunder, ca. 1,6 varer i sekundet. Telleren viser enkeltvarer, ikke pakker. En pakke kan inneholde flere varer.</dd>
+  <dt>Telleren øverst</dt><dd>50 millioner varer i 2025 fordelt på årets sekunder, ca. 1,6 varer i sekundet. Telleren viser enkeltvarer, ikke pakker.</dd>
   <dt>Størrelse og vekt</dt><dd>Antakelse: 25 × 18 × 5 cm og 0,4 kg per pakke. Ingen offentlig kilde oppgir snittet for Norge.</dd>
   <dt>Fly</dt><dd>Pakkene flys som regel til knutepunkter i Europa, som Liège i Belgia, og fraktes videre med bil eller i lasterommet på vanlige fly. Antallet fly er derfor regnet om fra vekt: et Boeing 777-fraktfly tar ca. 102 tonn. Globalt sendte Temu og Shein ca. 9 000 tonn om dagen i 2024, ifølge Cargo Facts Consulting.</dd>
   <dt>Utslipp</dt><dd>Vekt × distanse × utslippsfaktor for flyfrakt, pluss produksjonsutslipp per vare. Faktoren for flyfrakt er britiske myndigheters faktor for langdistanse flyfrakt med høydeeffekt (0,90 kg CO₂e per tonn-km, 2025). Utslipp fra bil er regnet med 0,15 kg CO₂ per km. Norske utslipp per innbygger er 44,1 millioner tonn fordelt på 5,6 millioner innbyggere.</dd>
@@ -279,90 +327,144 @@ h1.pf-title{display:block!important;font-size:clamp(2.4em,8vw,4.6em)!important;l
   <dt>Avfall</dt><dd>Tekstiltallene er fra NORSUS-rapporten «Kunnskapsstatus for tekstiler og tekstilavfall i Norge» (2026). Tallet for nettimport er usikkert, ifølge rapporten selv. Emballasjen er regnet med en antatt plastpose på 15 g per pakke. Eiffeltårnet veier ca. 7 300 tonn.</dd>
   <dt>Sammenligninger</dt><dd>Mount Everest 8 849 m, Den internasjonale romstasjonen ca. 400 km over bakken, Lindesnes–Nordkapp ca. 2 500 km langs veien, blåhval ca. 150 tonn, olympisk basseng 2 500 m³, jorda rundt 40 075 km.</dd>
 </dl>
+<p class="small en">Most sources are Norwegian-language.</p>
 <ul class="sources">
-  <li><a href="https://www.energiogklima.no/data/hver-dag-kjoper-vi-27-000-sma-pakker-fra-kina">Energi og Klima: Hver dag kjøper vi 27 000 små pakker fra Kina</a> (1. juli 2026)</li>
-  <li><a href="https://e24.no/naeringsliv/i/9kvK9d/slaar-temu-alarm-vi-har-ikke-kontroll">E24: Slår Temu-alarm – «Vi har ikke kontroll»</a> (10. oktober 2026)</li>
-  <li><a href="https://e24.no/naeringsliv/i/7pjJ5V/heftig-hopp-i-antall-kina-pakker">E24: Heftig hopp i antall Kina-pakker</a> (august 2026)</li>
-  <li><a href="https://e24.no/naeringsliv/i/Jr84GP/trapper-opp-lobbykampen-mot-temu">E24: Trapper opp lobbykampen mot Temu</a> (24. oktober 2026)</li>
-  <li><a href="https://kommunikasjon.ntb.no/pressemelding/19093927/50-millioner-temu-varer-pa-ett-ar-na-ma-regjeringen-levere-i-statsbudsjettet?publisherId=17848511&amp;lang=no">Framtiden i våre hender: 50 millioner Temu-varer på ett år</a> (6. oktober 2026)</li>
-  <li><a href="https://kommunikasjon.ntb.no/pressemelding/19095198/regjeringen-snakker-om-trygghet-men-gjor-norge-til-en-dumpingplass-for-risikofylte-varer?lang=no">Framtiden i våre hender: Regjeringen gjør Norge til en dumpingplass</a> (7. oktober 2026)</li>
-  <li><a href="https://netthandel.no/norge-utreder-toll-og-kontrollavgifter-for-lavprisimport-fra-temu-og-shein/">Netthandel.no: Norge utreder toll og kontrollavgifter</a> (10. juni 2026)</li>
-  <li><a href="https://aktuelt.norsirk.no/den-norske-temu-boomen-sender-tekstilavfallet-til-v%C3%A6rs-44-000-tonn-g%C3%A5r-rett-til-forbrenning">NORSIRK: Den norske Temu-boomen sender tekstilavfallet til værs</a> (13. mai 2026)</li>
-  <li><a href="https://theprint.in/science/fast-tech-has-a-slow-death-cheap-gadgets-pile-up-as-e-waste-says-new-study/3071624/">ThePrint: Fast tech has a slow death</a> (WEEE Forum, oktober 2026)</li>
-  <li><a href="https://scandasia.com/temu-sellers-avoid-e-waste-payments-burdening-danish-businesses/">ScandAsia/DR: Temu-selgere unngår å betale for elektronikkavfall</a></li>
-  <li><a href="https://www.forbesafrica.com/daily-cover-story/2024/05/22/youre-buying-so-much-from-temu-and-shein-the-air-cargo-industry-cant-keep-up">Forbes Africa: Temu, Shein og flyfrakt</a> (2024)</li>
-  <li><a href="https://fashionunited.uk/news/fashion/probe-reveals-persistent-labour-issues-at-shein-despite-promises-of-improvement/2024051475560">FashionUnited: Public Eye om 75-timersuker hos Sheins leverandører</a> (mai 2024)</li>
-  <li><a href="https://earth.org/fast-fashion-giant-sheins-emissions-balloon-in-2024/">Earth.org: Sheins utslipp i 2024</a></li>
-  <li><a href="https://www.carbonfact.com/blog/t-shirt">Carbonfact: Klimaavtrykket til en T-skjorte</a></li>
+  <li><a href="https://www.energiogklima.no/data/hver-dag-kjoper-vi-27-000-sma-pakker-fra-kina">Energi og Klima: Hver dag kjøper vi 27 000 små pakker fra Kina</a> (1.7.2026)</li>
+  <li><a href="https://e24.no/naeringsliv/i/9kvK9d/slaar-temu-alarm-vi-har-ikke-kontroll">E24: Slår Temu-alarm – «Vi har ikke kontroll»</a> (10.10.2026)</li>
+  <li><a href="https://e24.no/naeringsliv/i/7pjJ5V/heftig-hopp-i-antall-kina-pakker">E24: Heftig hopp i antall Kina-pakker</a> (8.2026)</li>
+  <li><a href="https://e24.no/naeringsliv/i/Jr84GP/trapper-opp-lobbykampen-mot-temu">E24: Trapper opp lobbykampen mot Temu</a> (24.10.2026)</li>
+  <li><a href="https://kommunikasjon.ntb.no/pressemelding/19093927/50-millioner-temu-varer-pa-ett-ar-na-ma-regjeringen-levere-i-statsbudsjettet?publisherId=17848511&amp;lang=no">Framtiden i våre hender: 50 millioner Temu-varer på ett år</a> (6.10.2026)</li>
+  <li><a href="https://kommunikasjon.ntb.no/pressemelding/19095198/regjeringen-snakker-om-trygghet-men-gjor-norge-til-en-dumpingplass-for-risikofylte-varer?lang=no">Framtiden i våre hender: Regjeringen gjør Norge til en dumpingplass</a> (7.10.2026)</li>
+  <li><a href="https://netthandel.no/norge-utreder-toll-og-kontrollavgifter-for-lavprisimport-fra-temu-og-shein/">Netthandel.no: Norge utreder toll og kontrollavgifter</a> (10.6.2026)</li>
+  <li><a href="https://aktuelt.norsirk.no/den-norske-temu-boomen-sender-tekstilavfallet-til-v%C3%A6rs-44-000-tonn-g%C3%A5r-rett-til-forbrenning">NORSIRK: Den norske Temu-boomen sender tekstilavfallet til værs</a> (13.5.2026)</li>
+  <li><a href="https://theprint.in/science/fast-tech-has-a-slow-death-cheap-gadgets-pile-up-as-e-waste-says-new-study/3071624/">ThePrint: Fast tech has a slow death</a> (WEEE Forum, 10.2026)</li>
+  <li><a href="https://scandasia.com/temu-sellers-avoid-e-waste-payments-burdening-danish-businesses/">ScandAsia/DR: Temu sellers avoid e-waste payments</a></li>
+  <li><a href="https://www.forbesafrica.com/daily-cover-story/2024/05/22/youre-buying-so-much-from-temu-and-shein-the-air-cargo-industry-cant-keep-up">Forbes Africa: You're buying so much from Temu and Shein the air cargo industry can't keep up</a> (2024)</li>
+  <li><a href="https://fashionunited.uk/news/fashion/probe-reveals-persistent-labour-issues-at-shein-despite-promises-of-improvement/2024051475560">FashionUnited: Probe reveals persistent labour issues at Shein</a> (5.2024)</li>
+  <li><a href="https://earth.org/fast-fashion-giant-sheins-emissions-balloon-in-2024/">Earth.org: Shein's emissions balloon in 2024</a></li>
+  <li><a href="https://www.carbonfact.com/blog/t-shirt">Carbonfact: Carbon footprint of a T-shirt</a></li>
   <li><a href="https://www.miljodirektoratet.no/aktuelt/fagmeldinger/2026/juni-2026/utslipp-av-klimagasser-gikk-litt-ned-i-2025/">Miljødirektoratet: Utslipp av klimagasser gikk litt ned i 2025</a></li>
-  <li><a href="https://www.climatiq.io/data/emission-factor/3ba8fc0a-a314-445b-b0e9-b23d1f081abd">Utslippsfaktor for flyfrakt (britiske myndigheter, 2025)</a></li>
+  <li><a href="https://www.climatiq.io/data/emission-factor/3ba8fc0a-a314-445b-b0e9-b23d1f081abd">UK government air freight emission factor (2025)</a></li>
 </ul>
-<p class="small">Tallene er hentet fra offentlige kilder per oktober 2026. Utregninger som bygger på antakelser, er merket. <a href="{{ "posts/" | absURL }}">← tilbake til posts/</a></p>
+<p class="small"><span class="en">Figures from public sources as of October 2026. Calculations based on assumptions are marked.</span><span class="nb">Tallene er hentet fra offentlige kilder per oktober 2026. Utregninger som bygger på antakelser, er merket.</span> <a href="{{ "posts/" | absURL }}"><span class="en">← back to posts/</span><span class="nb">← tilbake til posts/</span></a></p>
 </article>
+</div>
 
 <script>
 (function(){
-  var fmt=function(n,d){d=d||0;return n.toLocaleString('nb-NO',{minimumFractionDigits:d,maximumFractionDigits:d});};
+  var root=document.getElementById('pf-root');
   var $=function(id){return document.getElementById('pf-'+id);};
+  var $$=function(c){return document.querySelectorAll(c);};
   var PARCELS=10.6e6, ITEMS=50e6, POP=5.6e6, NOR_T=44.1e6, KG=0.4, L=0.25, H=0.05, W=0.18;
   var YEAR=365*86400, RATE=ITEMS/YEAR;
-
-  var t0=performance.now(); $('every').textContent=fmt(RATE,1);
-  var tick=function(){var s=(performance.now()-t0)/1000;$('live').textContent=fmt(Math.floor(s*RATE));};
-  setInterval(tick,50); tick();
-
-  var hh=$('hh'); var upHH=function(){var n=+hh.value;$('hhOut').textContent=n;$('hhP').textContent=fmt(PARCELS/POP*n,1);$('hhV').textContent=fmt(ITEMS/POP*n);};
-  hh.addEventListener('input',upHH); upHH();
+  var lang='en';
+  var fmt=function(n,d){d=d||0;return n.toLocaleString(lang==='nb'?'nb-NO':'en-GB',{minimumFractionDigits:d,maximumFractionDigits:d});};
+  var T={
+    en:{title:"Temu's Trash Heap",
+      head:{hoyde:'height',rekke:'line',vekt:'weight',volum:'volume',fly:'planes'},
+      hoyde:function(km){return '<div class="big num red">'+fmt(km)+' km</div><p>Stacked on top of each other, the parcels reach higher than the orbit of the International Space Station. Mount Everest is barely a line next to them.</p>'+bar([['parcel stack',km,fmt(km)+' km',1],['space station',400,'approx. 400 km'],['mount everest',8.849,'8.8 km'],['galdhøpiggen (NO)',2.469,'2.5 km']]);},
+      rekke:function(km){return '<div class="big num red">'+fmt(km)+' km</div><p>Laid end to end, the parcels stretch further than Norway from its southern tip to the North Cape. And that is just one year of parcels.</p>'+bar([['parcel line',km,fmt(km)+' km',1],['lindesnes–north cape',2500,'approx. 2,500 km'],['oslo–bergen',463,'approx. 460 km']]);},
+      vekt:function(t){return '<div class="big num red">'+fmt(t)+' tonnes</div><p>That is as much as '+fmt(t/150)+' blue whales, or '+fmt(t/7300,1)+' Eiffel Towers.</p>'+blocks(t/150,'▇ = one blue whale (approx. 150 tonnes)');},
+      volum:function(m3,p){return '<div class="big num red">'+fmt(m3)+' m³</div><p>The parcels would fill '+fmt(p,1)+' Olympic swimming pools, before anything has been unpacked and thrown away.</p>'+blocks(p,'▇ = one Olympic pool (2,500 m³)');},
+      fly:function(f){return '<div class="big num red">'+fmt(f)+' planes</div><p>That is how many full Boeing 777 freighters it takes to carry one year of parcels to Norway. In August the pace was one full freighter a week. Globally, Temu and Shein shipped about 9,000 tonnes a day in 2024, equal to <b>88 full freighters every day</b>.</p>'+blocks(f,'▇ = one full 777 freighter (approx. 102 tonnes)');},
+      per:function(tr,pr){return 'Shipping: '+fmt(tr,1)+' kg per parcel'+(pr>0?' · Production: '+fmt(pr,2)+' kg per item':'');},
+      cmp:function(tr,tot){return ['The shipping of one parcel emits as much as driving <b>'+fmt(tr/0.15)+' km</b> in a petrol car.','In total, that equals driving a petrol car <b>'+fmt(tot*1000/0.15/40075)+' times</b> around the Earth.','That equals the Norwegian emissions of <b>'+fmt(tot/(NOR_T/POP))+' people</b> for a year.'];},
+      share:function(p){return 'That is <b>'+fmt(p,2)+' %</b> of Norway\'s emissions in 2025, yet none of it appears in Norway\'s climate accounts.';},
+      verdictIdle:'Red means the product broke the rules.',
+      fail:function(n){return 'FAIL: Product '+n+' of 162 would have failed the test.';},
+      ok:function(n){return 'OK: Product '+n+' of 162 would have passed. This time.';}},
+    nb:{title:'Temus søppelhaug',
+      head:{hoyde:'høyde',rekke:'rekke',vekt:'vekt',volum:'volum',fly:'fly'},
+      hoyde:function(km){return '<div class="big num red">'+fmt(km)+' km</div><p>Stablet oppå hverandre blir pakkene høyere enn banen til Den internasjonale romstasjonen. Mount Everest blir så vidt en strek ved siden av.</p>'+bar([['pakkestabelen',km,fmt(km)+' km',1],['romstasjonen',400,'ca. 400 km'],['mount everest',8.849,'8,8 km'],['galdhøpiggen',2.469,'2,5 km']]);},
+      rekke:function(km){return '<div class="big num red">'+fmt(km)+' km</div><p>Lagt etter hverandre rekker pakkene lenger enn fra Lindesnes til Nordkapp. Det er bare ett år med pakker.</p>'+bar([['pakkerekka',km,fmt(km)+' km',1],['lindesnes–nordkapp',2500,'ca. 2 500 km'],['oslo–bergen',463,'ca. 460 km']]);},
+      vekt:function(t){return '<div class="big num red">'+fmt(t)+' tonn</div><p>Det er like mye som '+fmt(t/150)+' blåhvaler, eller '+fmt(t/7300,1)+' Eiffeltårn.</p>'+blocks(t/150,'▇ = én blåhval (ca. 150 tonn)');},
+      volum:function(m3,p){return '<div class="big num red">'+fmt(m3)+' m³</div><p>Pakkene ville fylt '+fmt(p,1)+' olympiske svømmebasseng, og det er før noe er pakket ut og kastet.</p>'+blocks(p,'▇ = ett olympisk basseng (2 500 m³)');},
+      fly:function(f){return '<div class="big num red">'+fmt(f)+' fly</div><p>Så mange fulle Boeing 777-fraktfly trengs for ett år med pakker til Norge. I august var tempoet ett fullt fraktfly i uka. Globalt sendte Temu og Shein ca. 9 000 tonn om dagen i 2024, som tilsvarer <b>88 fulle fraktfly hver dag</b>.</p>'+blocks(f,'▇ = ett fullt 777-fraktfly (ca. 102 tonn)');},
+      per:function(tr,pr){return 'Frakt: '+fmt(tr,1)+' kg per pakke'+(pr>0?' · Produksjon: '+fmt(pr,2)+' kg per vare':'');},
+      cmp:function(tr,tot){return ['En pakke slipper ut like mye fra frakten som å kjøre <b>'+fmt(tr/0.15)+' km</b> med bensinbil.','Til sammen tilsvarer det å kjøre bensinbil <b>'+fmt(tot*1000/0.15/40075)+' ganger</b> rundt jorda.','Det er like mye som de norske utslippene til <b>'+fmt(tot/(NOR_T/POP))+' innbyggere</b> i ett år.'];},
+      share:function(p){return 'Det tilsvarer <b>'+fmt(p,2)+' %</b> av Norges utslipp i 2025, men ingenting av det står i norsk klimaregnskap.';},
+      verdictIdle:'Rødt betyr at varen brøt kravene.',
+      fail:function(n){return 'FAIL: Produkt '+n+' av 162 ville strøket i testen.';},
+      ok:function(n){return 'OK: Produkt '+n+' av 162 ville bestått. Denne gangen.';}}
+  };
 
   var bar=function(rows){var max=Math.max.apply(null,rows.map(function(r){return r[1];}));var lw=Math.max.apply(null,rows.map(function(r){return r[0].length;}));
     return '<div class="ascii">'+rows.map(function(r){var n=Math.max(1,Math.round(r[1]/max*36));var b=new Array(n+1).join('█');var pad=new Array(lw-r[0].length+2).join(' ');
       return r[0]+pad+'<span class="'+(r[3]?'r':'m')+'">'+b+'</span> '+r[2];}).join('\n')+'</div>';};
   var blocks=function(count,label){var full=Math.floor(count),s='';for(var i=0;i<Math.min(full,120);i++)s+='▇';if(count-full>0.25&&full<120)s+='▃';
     return '<div class="ascii"><span class="r">'+s+'</span>\n<span class="m">'+label+'</span></div>';};
-  var views={
-    hoyde:function(){var km=PARCELS*H/1000;return '<div class="big num red">'+fmt(km)+' km</div><p>Stablet oppå hverandre blir pakkene høyere enn banen til Den internasjonale romstasjonen. Mount Everest blir så vidt en strek ved siden av.</p>'+
-      bar([['pakkestabelen',km,fmt(km)+' km',1],['romstasjonen',400,'ca. 400 km'],['mount everest',8.849,'8,8 km'],['galdhøpiggen',2.469,'2,5 km']]);},
-    rekke:function(){var km=PARCELS*L/1000;return '<div class="big num red">'+fmt(km)+' km</div><p>Lagt etter hverandre rekker pakkene lenger enn fra Lindesnes til Nordkapp. Det er bare ett år med pakker.</p>'+
-      bar([['pakkerekka',km,fmt(km)+' km',1],['lindesnes–nordkapp',2500,'ca. 2 500 km'],['oslo–bergen',463,'ca. 460 km']]);},
-    vekt:function(){var t=PARCELS*KG/1000;return '<div class="big num red">'+fmt(t)+' tonn</div><p>Det er like mye som '+fmt(t/150)+' blåhvaler, eller '+fmt(t/7300,1)+' Eiffeltårn.</p>'+blocks(t/150,'▇ = én blåhval (ca. 150 tonn)');},
-    volum:function(){var m3=PARCELS*L*W*H,p=m3/2500;return '<div class="big num red">'+fmt(m3)+' m³</div><p>Pakkene ville fylt '+fmt(p,1)+' olympiske svømmebasseng, og det er før noe er pakket ut og kastet.</p>'+blocks(p,'▇ = ett olympisk basseng (2 500 m³)');},
-    fly:function(){var t=PARCELS*KG/1000,f=t/102;return '<div class="big num red">'+fmt(f)+' fly</div><p>Så mange fulle Boeing 777-fraktfly trengs for ett år med pakker til Norge. I august var tempoet ett fullt fraktfly i uka. Globalt sendte Temu og Shein ca. 9 000 tonn om dagen i 2024, som tilsvarer <b>88 fulle fraktfly hver dag</b>.</p>'+blocks(f,'▇ = ett fullt 777-fraktfly (ca. 102 tonn)');}
-  };
-  var btns=document.querySelectorAll('.pf .tabs .btn');
-  var show=function(v){$('stage').innerHTML=views[v]();$('stagehead').textContent=v;
-    btns.forEach(function(b){var on=b.getAttribute('data-v')===v;b.setAttribute('aria-pressed',on);b.className='btn '+(on?'btn-default':'btn-ghost');});};
-  btns.forEach(function(b){b.addEventListener('click',function(){show(b.getAttribute('data-v'));});}); show('hoyde');
 
-  var calc=function(){
+  // counter
+  var t0=performance.now();
+  var tick=function(){$('live').textContent=fmt(Math.floor((performance.now()-t0)/1000*RATE));};
+  setInterval(tick,50);
+
+  // household
+  var hh=$('hh');
+  var upHH=function(){var n=+hh.value;$('hhOut').textContent=n;
+    $$('.pf-hhP').forEach(function(e){e.textContent=fmt(PARCELS/POP*n,1);});
+    $$('.pf-hhV').forEach(function(e){e.textContent=fmt(ITEMS/POP*n);});};
+  hh.addEventListener('input',upHH);
+
+  // comparisons
+  var view='hoyde';
+  var btns=$$('.pf .tabs .btn');
+  var show=function(v){view=v;var t=T[lang];var html;
+    if(v==='hoyde')html=t.hoyde(PARCELS*H/1000);
+    else if(v==='rekke')html=t.rekke(PARCELS*L/1000);
+    else if(v==='vekt')html=t.vekt(PARCELS*KG/1000);
+    else if(v==='volum'){var m3=PARCELS*L*W*H;html=t.volum(m3,m3/2500);}
+    else html=t.fly(PARCELS*KG/1000/102);
+    $('stage').innerHTML=html;$('stagehead').textContent=t.head[v];
+    btns.forEach(function(b){var on=b.getAttribute('data-v')===v;b.setAttribute('aria-pressed',on);b.className='btn '+(on?'btn-default':'btn-ghost');});};
+  btns.forEach(function(b){b.addEventListener('click',function(){show(b.getAttribute('data-v'));});});
+
+  // CO2
+  var calc=function(){var t=T[lang];
     var w=+$('w').value, ef=+$('ef').value, pr=+$('pr').value, d=+$('dist').value;
     $('wOut').textContent=fmt(w,2)+' kg'; $('efOut').textContent=fmt(ef,2); $('prOut').textContent=fmt(pr,2)+' kg'; $('distOut').textContent=fmt(d)+' km';
-    var trans=w/1000*d*ef, tot=(PARCELS*trans+ITEMS*pr)/1000;
+    var tr=w/1000*d*ef, tot=(PARCELS*tr+ITEMS*pr)/1000;
     $('tot').textContent=fmt(tot)+' t CO₂e';
-    $('per').textContent='Frakt: '+fmt(trans,1)+' kg per pakke'+(pr>0?' · Produksjon: '+fmt(pr,2)+' kg per vare':'');
-    $('cmp').innerHTML=['En pakke slipper ut like mye fra frakten som å kjøre <b>'+fmt(trans/0.15)+' km</b> med bensinbil.',
-      'Til sammen tilsvarer det å kjøre bensinbil <b>'+fmt(tot*1000/0.15/40075)+' ganger</b> rundt jorda.',
-      'Det er like mye som de norske utslippene til <b>'+fmt(tot/(NOR_T/POP))+' innbyggere</b> i ett år.'].map(function(s){return '<li>'+s+'</li>';}).join('');
-    $('share').innerHTML='Det tilsvarer <b>'+fmt(tot/NOR_T*100,2)+' %</b> av Norges utslipp i 2025, men ingenting av det står i norsk klimaregnskap.';
-  };
-  ['w','ef','pr','dist'].forEach(function(id){$(id).addEventListener('input',calc);}); calc();
+    $('per').textContent=t.per(tr,pr);
+    $('cmp').innerHTML=t.cmp(tr,tot).map(function(s){return '<li>'+s+'</li>';}).join('');
+    $('share').innerHTML=t.share(tot/NOR_T*100);};
+  ['w','ef','pr','dist'].forEach(function(id){$(id).addEventListener('input',calc);});
 
+  // safety grid
   var g=$('g162'), bad={}, seed=7, rnd=function(){seed=(seed*16807)%2147483647;return seed/2147483647;};
   var idx=[];for(var i=0;i<162;i++)idx.push(i);
-  for(i=idx.length-1;i>0;i--){var j=Math.floor(rnd()*(i+1)),t=idx[i];idx[i]=idx[j];idx[j]=t;}
+  for(i=idx.length-1;i>0;i--){var j=Math.floor(rnd()*(i+1)),tmp=idx[i];idx[i]=idx[j];idx[j]=tmp;}
   idx.slice(0,110).forEach(function(k){bad[k]=1;});
   var cells=[];for(i=0;i<162;i++){var s=document.createElement('span');if(bad[i])s.className='bad';g.appendChild(s);cells.push(s);}
   var last=-1;
+  var verdict=function(){var v=$('verdict'),t=T[lang];
+    if(last<0){v.className='terminal-alert';v.textContent=t.verdictIdle;}
+    else if(bad[last]){v.className='terminal-alert terminal-alert-error';v.textContent=t.fail(last+1);}
+    else{v.className='terminal-alert';v.textContent=t.ok(last+1);}};
   $('draw').addEventListener('click',function(){
     if(last>=0)cells[last].classList.remove('pick');
-    var k=Math.floor(Math.random()*162);last=k;cells[k].classList.add('pick');
-    var v=$('verdict'),name='Produkt '+(k+1)+' av 162';
-    if(bad[k]){v.className='terminal-alert terminal-alert-error';v.textContent='FAIL: '+name+' ville strøket i testen.';}
-    else{v.className='terminal-alert';v.textContent='OK: '+name+' ville bestått. Denne gangen.';}
-  });
-  document.querySelectorAll('.pf h2 .anchor').forEach(function(a){a.addEventListener('click',function(){
+    last=Math.floor(Math.random()*162);cells[last].classList.add('pick');verdict();});
+
+  // anchors: copy link (keeps ?lang)
+  $$('.pf h2 .anchor').forEach(function(a){a.addEventListener('click',function(){
     var url=location.href.split('#')[0]+a.getAttribute('href');
     if(navigator.clipboard){navigator.clipboard.writeText(url).then(function(){a.classList.add('copied');setTimeout(function(){a.classList.remove('copied');},1500);}).catch(function(){});}
   });});
+
+  // language
+  var setLang=function(l,push){lang=l;root.setAttribute('data-lang',l);
+    document.documentElement.setAttribute('lang',l==='nb'?'nb':'en');
+    document.title=T[l].title;
+    $('lang-en').className='btn '+(l==='en'?'btn-default':'btn-ghost');$('lang-en').setAttribute('aria-pressed',l==='en');
+    $('lang-nb').className='btn '+(l==='nb'?'btn-default':'btn-ghost');$('lang-nb').setAttribute('aria-pressed',l==='nb');
+    $$('.pf-every').forEach(function(e){e.textContent=fmt(RATE,1);});
+    tick();upHH();show(view);calc();verdict();
+    if(push&&history.replaceState){var u=new URL(location.href);if(l==='nb')u.searchParams.set('lang','no');else u.searchParams.delete('lang');history.replaceState(null,'',u.toString());}
+  };
+  ['en','nb'].forEach(function(l){$('lang-'+l).addEventListener('click',function(e){e.preventDefault();setLang(l,true);});});
+  var q=(new URLSearchParams(location.search).get('lang')||'').toLowerCase();
+  setLang(/^(no|nb|nn|nor|norsk)$/.test(q)?'nb':'en',false);
+  if(location.hash){var h=document.getElementById(location.hash.slice(1));if(h)h.scrollIntoView();}
 })();
 </script>
 {{ end }}
