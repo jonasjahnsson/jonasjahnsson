@@ -58,6 +58,11 @@
 .pf dl dt{font-weight:700;margin-top:10px}
 .pf dl dd{margin:0 0 6px;color:#666}
 .pf .sources li{color:#666;margin-bottom:4px}
+.pf h2{scroll-margin-top:20px}
+.pf h2 .anchor{color:var(--pf-muted);text-decoration:none;opacity:0;font-weight:400;transition:opacity .15s}
+.pf h2:hover .anchor,.pf h2 .anchor:focus{opacity:1}
+@media (hover:none){.pf h2 .anchor{opacity:.5}}
+.pf h2 .anchor.copied::after{content:" kopiert";font-size:.5em;vertical-align:middle}
 h1.pf-title{display:block!important;font-size:clamp(2.4em,8vw,4.6em)!important;line-height:1.05!important;margin:10px 0 6px!important;padding:0 0 .12em!important;overflow:visible!important;font-weight:700;letter-spacing:-.01em}
 .pf-title::after{content:none!important}
 .pf .hero{display:grid;grid-template-columns:auto minmax(0,1fr);gap:20px;align-items:center;margin:18px 0 10px}
@@ -127,7 +132,7 @@ h1.pf-title{display:block!important;font-size:clamp(2.4em,8vw,4.6em)!important;l
   <div class="small" style="margin-top:8px">Norge: <b id="pf-every">1,6</b> varer i sekundet (50 mill. i 2025).</div>
 </div>
 
-<h2>Hvor mye er det?</h2>
+<h2 id="omfang">Hvor mye er det? <a class="anchor" href="#omfang" aria-label="Lenke til denne delen">#</a></h2>
 <p class="cmd">cat omfang.txt</p>
 <p>Varer under 3 000 kroner fra registrerte nettbutikker som Temu og Shein kommer inn gjennom VOEC-ordningen. Norge krever moms, men ingen toll. I 2023 var det 3,8 millioner slike forsendelser fra Kina. I 2025 var det 10,6 millioner.</p>
 <div class="ascii" aria-label="Forsendelser fra Kina via VOEC: 3,8 millioner i 2023 og 10,6 millioner i 2025">2023 <span class="m">██████████████</span>                          3,8 mill.
@@ -148,7 +153,7 @@ h1.pf-title{display:block!important;font-size:clamp(2.4em,8vw,4.6em)!important;l
 </div>
 <p>Statistisk sett tok husstanden din imot <b class="num" id="pf-hhP">5,7</b> pakker og <b class="num" id="pf-hhV">27</b> varer fra slike nettbutikker i 2025.</p>
 
-<h2>10,6 millioner pakker, stablet opp</h2>
+<h2 id="stablet">10,6 millioner pakker, stablet opp <a class="anchor" href="#stablet" aria-label="Lenke til denne delen">#</a></h2>
 <p class="cmd">./sammenlign --pakker 10600000</p>
 <p>Hva blir 10,6 millioner pakker når du legger dem i én stabel, på rekke eller på en vekt? Velg en sammenligning.</p>
 <div class="tabs" role="group" aria-label="Velg sammenligning">
@@ -161,7 +166,7 @@ h1.pf-title{display:block!important;font-size:clamp(2.4em,8vw,4.6em)!important;l
 <div class="terminal-card"><header id="pf-stagehead">høyde</header><div id="pf-stage" aria-live="polite"></div></div>
 <p class="small">Antatt typisk pakke: plastpose på 25 × 18 × 5 cm og 0,4 kg. Se metode nederst.</p>
 
-<h2>Hva koster det i CO₂?</h2>
+<h2 id="co2">Hva koster det i CO₂? <a class="anchor" href="#co2" aria-label="Lenke til denne delen">#</a></h2>
 <p class="cmd">./co2 --aar 2025</p>
 <p>De fleste pakkene flys fra Kina. Utslippene fra frakten og fra produksjonen av varene havner i andre lands klimaregnskap, ikke i Norges. Ingen har publisert et offisielt tall for disse utslippene, så du kan justere antakelsene selv.</p>
 <div class="calc">
@@ -199,7 +204,7 @@ h1.pf-title{display:block!important;font-size:clamp(2.4em,8vw,4.6em)!important;l
 </div>
 <p>Utslippene fra pakkene utgjør en liten del av Norges samlede utslipp, som var 44,1 millioner tonn i 2025. Det store problemet er at de fleste av disse utslippene ikke telles noe sted i norsk politikk. Om lag to tredeler av utslippene fra norsk forbruk skjer i andre land.</p>
 
-<h2>Kjøpt i dag, kastet i morgen</h2>
+<h2 id="soppel">Kjøpt i dag, kastet i morgen <a class="anchor" href="#soppel" aria-label="Lenke til denne delen">#</a></h2>
 <p class="cmd">du -sh /søppel</p>
 <p>Mye av det som kommer i pakkene er billige klær, plast og små elektroniske duppeditter. Det ender raskt som avfall i Norge, og det er norske kommuner og forbrukere som betaler for å håndtere det.</p>
 <div class="stats">
@@ -223,7 +228,7 @@ h1.pf-title{display:block!important;font-size:clamp(2.4em,8vw,4.6em)!important;l
 </div>
 <p>Pakkene er også søppel i seg selv. Hvis hver av de 10,6 millionene var en plastpose på 15 gram, blir det <b class="num">ca. 160 tonn</b> engangsplast, bare til emballasje.</p>
 
-<h2>110 av 162 strøk</h2>
+<h2 id="sikkerhet">110 av 162 strøk <a class="anchor" href="#sikkerhet" aria-label="Lenke til denne delen">#</a></h2>
 <p class="cmd">grep -c FAIL forbrukerradet_test.log</p>
 <p>Forbrukerrådet testet 162 produkter fra Temu og Shein. 110 av dem brøt europeiske sikkerhetskrav. Nesten alle lekene hadde problemer, og ett smykke inneholdt 8 500 ganger tillatt mengde kadmium.</p>
 <p>Hver rute under er ett testet produkt. Trekk en tilfeldig vare og se om den ville bestått.</p>
@@ -234,7 +239,7 @@ h1.pf-title{display:block!important;font-size:clamp(2.4em,8vw,4.6em)!important;l
 </div>
 <p>Satt på spissen: Hvis 68 % av 50 millioner varer brøt kravene, ville det vært <b class="num red">34 millioner</b> ulovlige produkter i norske hjem på ett år. Testen var ikke laget for å være representativ, så tallet er en illustrasjon og ikke et anslag. Tollerforbundet sier at Tolletaten ikke har kontroll på hva som kommer inn.</p>
 
-<h2>Sverige stengte døra. Norge holdt den åpen.</h2>
+<h2 id="sverige">Sverige stengte døra. Norge holdt den åpen. <a class="anchor" href="#sverige" aria-label="Lenke til denne delen">#</a></h2>
 <p class="cmd">diff sverige.txt norge.txt</p>
 <p>1. juli 2026 innførte EU 3 euro i toll per varelinje på småpakker under 150 euro. Fra november kommer et kontrollgebyr på 2 euro per pakke. Sverige, Danmark og Finland er med. Norge er det ikke.</p>
 <div class="vs">
@@ -242,7 +247,7 @@ h1.pf-title{display:block!important;font-size:clamp(2.4em,8vw,4.6em)!important;l
   <div class="terminal-card"><header>norge, aug 2026</header><div><div class="big red">+35 %</div><p>Ny rekord med over 1,1 millioner pakker på én måned.</p></div></div>
 </div>
 
-<h2>Utredet, ikke vedtatt</h2>
+<h2 id="politikk">Utredet, ikke vedtatt <a class="anchor" href="#politikk" aria-label="Lenke til denne delen">#</a></h2>
 <p class="cmd">git log --politikk</p>
 <div class="terminal-timeline">
   <div class="terminal-card"><header>juni 2026</header><div><b>Stortinget ber om utredning.</b><p>Regjeringen skal utrede toll og kontrollgebyr på småpakker, en tekstilavgift og momsfritak for brukte varer.</p></div></div>
@@ -253,7 +258,7 @@ h1.pf-title{display:block!important;font-size:clamp(2.4em,8vw,4.6em)!important;l
   <div class="terminal-card eu"><header>november 2026</header><div><b>EU innfører kontrollgebyr.</b><p>2 euro per pakke i tillegg til tollen.</p></div></div>
 </div>
 
-<h2>Dette bør skje</h2>
+<h2 id="krav">Dette bør skje <a class="anchor" href="#krav" aria-label="Lenke til denne delen">#</a></h2>
 <p class="cmd">cat todo.md</p>
 <ol class="asks">
   <li><b>Et kontrollgebyr per pakke, minst på EU-nivå.</b> Hvis Norge ikke kan kopiere EUs toll, trenger vi en norsk løsning som gir samme effekt. Å vente er ikke en løsning.</li>
@@ -262,7 +267,7 @@ h1.pf-title{display:block!important;font-size:clamp(2.4em,8vw,4.6em)!important;l
 </ol>
 <p>Virke, HK, LO, Forbrukerrådet, Framtiden i våre hender og Vend står sammen om dette. Det er sjelden så mange er enige.</p>
 
-<h2>Metode og kilder</h2>
+<h2 id="kilder">Metode og kilder <a class="anchor" href="#kilder" aria-label="Lenke til denne delen">#</a></h2>
 <p class="cmd">man pakkeflommen</p>
 <dl>
   <dt>Pakker og varer</dt><dd>«Pakker» betyr forsendelser fra Kina registrert i VOEC-ordningen. «Varer» er Tolletatens tall for enkeltvarer fra Temu, Shein og lignende nettbutikker, slik Framtiden i våre hender gjengir det. En pakke kan inneholde flere varer.</dd>
@@ -354,6 +359,10 @@ h1.pf-title{display:block!important;font-size:clamp(2.4em,8vw,4.6em)!important;l
     if(bad[k]){v.className='terminal-alert terminal-alert-error';v.textContent='FAIL: '+name+' ville strøket i testen.';}
     else{v.className='terminal-alert';v.textContent='OK: '+name+' ville bestått. Denne gangen.';}
   });
+  document.querySelectorAll('.pf h2 .anchor').forEach(function(a){a.addEventListener('click',function(){
+    var url=location.href.split('#')[0]+a.getAttribute('href');
+    if(navigator.clipboard){navigator.clipboard.writeText(url).then(function(){a.classList.add('copied');setTimeout(function(){a.classList.remove('copied');},1500);}).catch(function(){});}
+  });});
 })();
 </script>
 {{ end }}
