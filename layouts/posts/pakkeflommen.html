@@ -1,8 +1,8 @@
 {{ define "main" }}
 <style>
 /* Pakkeflommen: bygger på terminal.css-variablene til resten av siden */
-/* Kun farger fra sidens tema: blå #1a95e0, svart #151515, tekst #444, grå #727578, lys #e8eff2, hvit */
-.pf{--pf-acc:#1a95e0;--pf-ink:#151515;--pf-muted:#727578;--pf-soft:#e8eff2;color:var(--pf-ink)}
+/* Kun farger fra sidens tema: rød #d20962 (dårlige tall), blå #1a95e0, svart #151515, tekst #444, grå #727578, lys #e8eff2, hvit */
+.pf{--pf-bad:#d20962;--pf-acc:#1a95e0;--pf-ink:#151515;--pf-muted:#727578;--pf-soft:#e8eff2;color:var(--pf-ink)}
 .pf p{color:#444;max-width:46em}
 .pf h2{margin:70px 0 10px;font-size:1.5em}
 .pf h2::before{content:"## ";color:var(--pf-acc)}
@@ -11,7 +11,7 @@
 .pf .cmd::before{content:"$ ";color:var(--pf-acc)}
 .pf .big{font-size:2.6em;font-weight:700;line-height:1.1;font-variant-numeric:tabular-nums}
 .pf .num{font-variant-numeric:tabular-nums}
-.pf .red{color:var(--pf-acc)} .pf .blue{color:var(--pf-muted)}
+.pf .red{color:var(--pf-bad)} .pf .blue{color:var(--pf-acc)}
 .pf .small{font-size:.85em;color:var(--pf-muted)}
 .pf .route{display:flex;flex-wrap:wrap;align-items:center;gap:10px 20px;margin:10px 0 20px}
 .pf .route span{display:inline-flex;align-items:center;gap:8px;font-weight:700}
@@ -26,7 +26,7 @@
 .pf .stats .terminal-card>div>span{font-size:.9em;color:#666}
 .pf .ascii .lbl{color:var(--pf-muted);white-space:pre-wrap}
 .pf .ascii{font-variant-numeric:tabular-nums;white-space:pre;overflow-x:auto;line-height:1.5;margin:10px 0;padding:10px;background:var(--pf-soft)}
-.pf .ascii .r{color:var(--pf-acc)} .pf .ascii .m{color:var(--pf-muted)}
+.pf .ascii .r{color:var(--pf-bad)} .pf .ascii .m{color:var(--pf-muted)}
 .pf input[type=range]{width:100%;accent-color:var(--pf-acc);padding:0;border:0}
 .pf .field{margin-bottom:16px}
 .pf .field label{display:flex;justify-content:space-between;gap:10px;font-weight:700}
@@ -41,7 +41,7 @@
 .pf ul.cmp li::before{content:"> ";color:var(--pf-acc);font-weight:700}
 .pf .grid162{display:grid;grid-template-columns:repeat(18,1fr);gap:3px;max-width:540px;margin:16px 0}
 .pf .grid162 span{aspect-ratio:1;background:var(--pf-soft);box-shadow:inset 0 0 0 1px #d3dde2}
-.pf .grid162 span.bad{background:var(--pf-acc);box-shadow:none}
+.pf .grid162 span.bad{background:var(--pf-bad);box-shadow:none}
 .pf .grid162 span.pick{outline:3px solid var(--pf-ink);outline-offset:1px}
 .pf .draw{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
 .pf .draw .terminal-alert{margin:0;flex:1;min-width:240px}
@@ -53,15 +53,15 @@
 .pf .terminal-card>header{background:var(--pf-acc)}
 .pf .terminal-timeline .terminal-card>header{background:var(--pf-muted)}
 .pf .terminal-timeline .eu>header{background:var(--pf-ink)}
-.pf .terminal-timeline .no>header{background:var(--pf-acc)}
+.pf .terminal-timeline .no>header{background:var(--pf-bad)}
 .pf .stats .terminal-card{border-left:4px solid var(--pf-acc)}
 .pf #pf-stage{min-height:250px}
 .pf ol.asks li{margin-bottom:12px;color:#444}
 .pf .pctrow{margin:12px 0}
 .pf .progress-bar{margin:6px 0 2px;height:14px;background:var(--pf-soft)}
-.pf .progress-bar-filled{background:var(--pf-acc)}
+.pf .progress-bar-filled{background:var(--pf-bad)}
 .pf .progress-bar-filled::before{content:none}
-.pf .progress-bar.grey .progress-bar-filled{background:var(--pf-muted)}
+.pf .progress-bar.grey .progress-bar-filled{background:var(--pf-acc)}
 .pf dl dt{font-weight:700;margin-top:10px}
 .pf dl dd{margin:0 0 6px;color:#666}
 .pf .sources li{color:#666;margin-bottom:4px}
@@ -73,8 +73,8 @@
 h1.pf-title{display:block!important;font-size:clamp(2.4em,8vw,4.6em)!important;line-height:1.05!important;margin:10px 0 6px!important;padding:0 0 .12em!important;overflow:visible!important;font-weight:700;letter-spacing:-.01em}
 .pf-title::after{content:none!important}
 .pf .hero{display:grid;grid-template-columns:auto minmax(0,1fr);gap:20px;align-items:center;margin:18px 0 10px}
-.pf .flag-big{width:150px;height:100px;outline:1px solid var(--pf-soft)}
-@media (max-width:600px){.pf .hero{grid-template-columns:1fr}.pf .flag-big{width:120px;height:80px}}
+.pf .flag-big{width:170px;height:118px;overflow:visible;filter:drop-shadow(0 3px 4px rgba(21,21,21,.18))}
+@media (max-width:600px){.pf .hero{grid-template-columns:1fr}.pf .flag-big{width:140px;height:97px}}
 .pf .scene{width:100%;height:auto;display:block;background:var(--pf-soft)}
 .pf .scene text{font-family:var(--font-stack)}
 @media (prefers-reduced-motion:reduce){.pf .blink::after{animation:none}.pf .scene .needle{animation:none}}
@@ -101,7 +101,33 @@ h1.pf-title{display:block!important;font-size:clamp(2.4em,8vw,4.6em)!important;l
 <article>
 
 <div class="hero">
-  <svg class="flag-big" viewBox="0 0 30 20" aria-label="Flag of China" role="img"><defs><polygon id="pfst" points="0,-1 0.2245,-0.309 0.951,-0.309 0.363,0.118 0.588,0.809 0,0.382 -0.588,0.809 -0.363,0.118 -0.951,-0.309 -0.2245,-0.309"/></defs><rect width="30" height="20" fill="#DE2910"/><g fill="#FFDE00"><use href="#pfst" transform="translate(5 5) scale(3)"/><use href="#pfst" transform="translate(10 2) rotate(-120.96)"/><use href="#pfst" transform="translate(12 4) rotate(-98.13)"/><use href="#pfst" transform="translate(12 7) rotate(-74.05)"/><use href="#pfst" transform="translate(10 9) rotate(-51.34)"/></g></svg>
+  <svg class="flag-big" viewBox="-2.4 -1.6 34 23.6" aria-label="Flag of China" role="img">
+    <defs>
+      <polygon id="pfst" points="0,-1 0.2245,-0.309 0.951,-0.309 0.363,0.118 0.588,0.809 0,0.382 -0.588,0.809 -0.363,0.118 -0.951,-0.309 -0.2245,-0.309"/>
+      <clipPath id="pfwave"><path d="M0 0.6 C6 -0.6 11 1.4 17 0.4 S26 -0.4 30 0.5 L30 20.5 C26 19.6 23 21.2 17 20.4 S6 19.4 0 20.6 Z"/></clipPath>
+      <linearGradient id="pfshade" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0" stop-color="#000" stop-opacity=".18"/>
+        <stop offset=".18" stop-color="#fff" stop-opacity=".16"/>
+        <stop offset=".38" stop-color="#000" stop-opacity=".14"/>
+        <stop offset=".6" stop-color="#fff" stop-opacity=".14"/>
+        <stop offset=".82" stop-color="#000" stop-opacity=".16"/>
+        <stop offset="1" stop-color="#fff" stop-opacity=".08"/>
+      </linearGradient>
+    </defs>
+    <rect x="-1.9" y="-1.4" width="1" height="23.2" rx=".4" fill="#727578"/>
+    <circle cx="-1.4" cy="-1.1" r=".75" fill="#151515"/>
+    <g clip-path="url(#pfwave)">
+      <rect x="0" y="-1" width="30" height="22.5" fill="#DE2910"/>
+      <g fill="#FFDE00">
+        <use href="#pfst" transform="translate(5 5.2) scale(3)"/>
+        <use href="#pfst" transform="translate(10 2.1) rotate(-120.96)"/>
+        <use href="#pfst" transform="translate(12 4.1) rotate(-98.13)"/>
+        <use href="#pfst" transform="translate(12 7.1) rotate(-74.05)"/>
+        <use href="#pfst" transform="translate(10 9.1) rotate(-51.34)"/>
+      </g>
+      <rect x="0" y="-1" width="30" height="22.5" fill="url(#pfshade)"/>
+    </g>
+  </svg>
   <div class="route" style="margin:0">
     <span><span class="en">CHINA</span><span class="nb">KINA</span></span>
     <span class="arrow" aria-hidden="true">-------- ✈ <span class="en">approx. 8,500 km</span><span class="nb">ca. 8 500 km</span> ------></span>
@@ -165,8 +191,8 @@ h1.pf-title{display:block!important;font-size:clamp(2.4em,8vw,4.6em)!important;l
 <p class="small"><span class="en">Shipments from China via VOEC. Source: Norwegian Customs, via Energi og Klima.</span><span class="nb">Forsendelser fra Kina via VOEC. Kilde: Tolletaten via Energi og Klima.</span></p>
 
 <div class="stats">
-  <div class="terminal-card"><div><b class="num"><span class="en">50 m</span><span class="nb">50 mill.</span></b><span><span class="en">items from Temu, Shein and similar sites in 2025</span><span class="nb">varer fra Temu, Shein og lignende i 2025</span></span></div></div>
-  <div class="terminal-card"><div><b class="num"><span class="en">1.1 m</span><span class="nb">1,1 mill.</span></b><span><span class="en">parcels in August 2026, a new record</span><span class="nb">pakker i august 2026, ny rekord</span></span></div></div>
+  <div class="terminal-card"><div><b class="num red"><span class="en">50 m</span><span class="nb">50 mill.</span></b><span><span class="en">items from Temu, Shein and similar sites in 2025</span><span class="nb">varer fra Temu, Shein og lignende i 2025</span></span></div></div>
+  <div class="terminal-card"><div><b class="num red"><span class="en">1.1 m</span><span class="nb">1,1 mill.</span></b><span><span class="en">parcels in August 2026, a new record</span><span class="nb">pakker i august 2026, ny rekord</span></span></div></div>
   <div class="terminal-card"><div><b class="num red">+35 %</b><span><span class="en">compared with August last year</span><span class="nb">fra august i fjor</span></span></div></div>
   <div class="terminal-card"><div><b class="num red">+263 %</b><span><span class="en">clothing imports from foreign online stores, 2024–2025</span><span class="nb">klesimport fra utenlandske nettbutikker, 2024–2025</span></span></div></div>
 </div>
@@ -237,7 +263,7 @@ h1.pf-title{display:block!important;font-size:clamp(2.4em,8vw,4.6em)!important;l
 <p class="en">Much of what arrives in the parcels is cheap clothing, plastic and small electronic gadgets. It quickly becomes waste in Norway, and Norwegian municipalities and consumers pay to deal with it.</p>
 <p class="nb">Mye av det som kommer i pakkene er billige klær, plast og små elektroniske duppeditter. Det ender raskt som avfall i Norge, og det er norske kommuner og forbrukere som betaler for å håndtere det.</p>
 <div class="stats">
-  <div class="terminal-card"><div><b class="num"><span class="en">14,000 t</span><span class="nb">14 000 t</span></b><span><span class="en">of clothing and textiles bought directly from foreign online stores in 2025, up 263 % in one year</span><span class="nb">klær og tekstiler kjøpt direkte fra utenlandske nettbutikker i 2025, opp 263 % på ett år</span></span></div></div>
+  <div class="terminal-card"><div><b class="num red"><span class="en">14,000 t</span><span class="nb">14 000 t</span></b><span><span class="en">of clothing and textiles bought directly from foreign online stores in 2025, up 263 % in one year</span><span class="nb">klær og tekstiler kjøpt direkte fra utenlandske nettbutikker i 2025, opp 263 % på ett år</span></span></div></div>
   <div class="terminal-card"><div><b class="num red"><span class="en">44,405 t</span><span class="nb">44 405 t</span></b><span><span class="en">of textiles went to residual waste and incineration in Norway in 2025. That is about 122 tonnes a day.</span><span class="nb">tekstiler gikk til restavfall og forbrenning i Norge i 2025. Det er ca. 122 tonn om dagen.</span></span></div></div>
   <div class="terminal-card"><div><b class="num">2 %</b><span><span class="en">of the textiles sold in Norway were reused in Norway</span><span class="nb">av tekstilene som ble solgt i Norge, ble brukt på nytt her i landet</span></span></div></div>
   <div class="terminal-card"><div><b class="num">364 t</b><span><span class="en">of textiles were recycled into new material in Norway. The rest was exported or burned.</span><span class="nb">tekstiler ble materialgjenvunnet i Norge. Resten ble eksportert eller brent.</span></span></div></div>
@@ -448,7 +474,7 @@ h1.pf-title{display:block!important;font-size:clamp(2.4em,8vw,4.6em)!important;l
   var last=-1;
   var verdict=function(){var v=$('verdict'),t=T[lang];
     if(last<0){v.className='terminal-alert';v.textContent=t.verdictIdle;}
-    else if(bad[last]){v.className='terminal-alert terminal-alert-primary';v.textContent=t.fail(last+1);}
+    else if(bad[last]){v.className='terminal-alert terminal-alert-error';v.textContent=t.fail(last+1);}
     else{v.className='terminal-alert';v.textContent=t.ok(last+1);}};
   $('draw').addEventListener('click',function(){
     if(last>=0)cells[last].classList.remove('pick');
