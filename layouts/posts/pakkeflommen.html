@@ -79,11 +79,15 @@
   <header>live_teller.sh</header>
   <div class="counter">
     <div>
-      <div class="small">Pakker fra kinesiske nettbutikker siden du åpnet siden</div>
-      <div class="big num blink" id="pf-live">0</div>
+      <div class="small">Varer fra Temu, Shein og lignende til <b>Norge</b> siden du åpnet siden</div>
+      <div class="big num" id="pf-live">0</div>
     </div>
-    <div class="small">1 pakke hvert <b id="pf-every">2,4</b> sek<br>tempo i august 2026</div>
+    <div>
+      <div class="small">Billigvarer til <b>EU</b> i samme tidsrom</div>
+      <div class="big num red blink" id="pf-liveEU">0</div>
+    </div>
   </div>
+  <div class="small" style="margin-top:8px">Norge: <b id="pf-every">1,6</b> varer i sekundet (50 mill. i 2025). EU: <b id="pf-everyEU">187</b> varer i sekundet (5,9 mrd. i 2025).</div>
 </div>
 
 <h2>Hvor mye er det?</h2>
@@ -225,7 +229,7 @@
 <p class="cmd">man pakkeflommen</p>
 <dl>
   <dt>Pakker og varer</dt><dd>«Pakker» betyr forsendelser fra Kina registrert i VOEC-ordningen. «Varer» er Tolletatens tall for enkeltvarer fra Temu, Shein og lignende nettbutikker, slik Framtiden i våre hender gjengir det. En pakke kan inneholde flere varer.</dd>
-  <dt>Telleren øverst</dt><dd>1,1 millioner pakker i august fordelt på 31 dager, som gir én pakke omtrent hvert 2,4. sekund.</dd>
+  <dt>Tellerne øverst</dt><dd>Norge: 50 millioner varer i 2025 fordelt på årets sekunder, ca. 1,6 varer i sekundet. EU: 5,9 milliarder lavverdivarer i 2025 ifølge EU-kommisjonen (gjengitt av E24), ca. 187 varer i sekundet. Tellerne viser enkeltvarer, ikke pakker. En pakke kan inneholde flere varer.</dd>
   <dt>Størrelse og vekt</dt><dd>Antakelse: 25 × 18 × 5 cm og 0,4 kg per pakke. Ingen offentlig kilde oppgir snittet for Norge.</dd>
   <dt>Fly</dt><dd>Pakkene flys som regel til knutepunkter i Europa, som Liège i Belgia, og fraktes videre med bil eller i lasterommet på vanlige fly. Antallet fly er derfor regnet om fra vekt: et Boeing 777-fraktfly tar ca. 102 tonn. Globalt sendte Temu og Shein ca. 9 000 tonn om dagen i 2024, ifølge Cargo Facts Consulting.</dd>
   <dt>Utslipp</dt><dd>Vekt × distanse × utslippsfaktor for flyfrakt, pluss produksjonsutslipp per vare. Faktoren for flyfrakt er britiske myndigheters faktor for langdistanse flyfrakt med høydeeffekt (0,90 kg CO₂e per tonn-km, 2025). Utslipp fra bil er regnet med 0,15 kg CO₂ per km. Norske utslipp per innbygger er 44,1 millioner tonn fordelt på 5,6 millioner innbyggere.</dd>
@@ -258,11 +262,11 @@
   var fmt=function(n,d){d=d||0;return n.toLocaleString('nb-NO',{minimumFractionDigits:d,maximumFractionDigits:d});};
   var $=function(id){return document.getElementById('pf-'+id);};
   var PARCELS=10.6e6, ITEMS=50e6, POP=5.6e6, NOR_T=44.1e6, KG=0.4, L=0.25, H=0.05, W=0.18;
-  var RATE=1.1e6/31/86400;
+  var YEAR=365*86400, RATE=ITEMS/YEAR, RATE_EU=5.9e9/YEAR;
 
-  var t0=performance.now(); $('every').textContent=fmt(1/RATE,1);
-  var tick=function(){$('live').textContent=fmt(Math.floor((performance.now()-t0)/1000*RATE));};
-  setInterval(tick,250); tick();
+  var t0=performance.now(); $('every').textContent=fmt(RATE,1); $('everyEU').textContent=fmt(RATE_EU);
+  var tick=function(){var s=(performance.now()-t0)/1000;$('live').textContent=fmt(Math.floor(s*RATE));$('liveEU').textContent=fmt(Math.floor(s*RATE_EU));};
+  setInterval(tick,50); tick();
 
   var hh=$('hh'); var upHH=function(){var n=+hh.value;$('hhOut').textContent=n;$('hhP').textContent=fmt(PARCELS/POP*n,1);$('hhV').textContent=fmt(ITEMS/POP*n);};
   hh.addEventListener('input',upHH); upHH();
