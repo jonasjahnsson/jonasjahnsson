@@ -71,7 +71,7 @@
     // JavaScript for toggling the profile picture
     const profilePic = document.getElementById('profile-pic');
 
-    profilePic.addEventListener('click', () => {
+    if (profilePic) profilePic.addEventListener('click', () => {
         profilePic.style.opacity = '0'; // Fade out
 
         setTimeout(() => {
