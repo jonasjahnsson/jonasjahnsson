@@ -39,10 +39,22 @@
 .pf ul.cmp li{margin:6px 0;padding-left:1.6em;text-indent:-1.6em;color:#444}
 .pf ul.cmp li::after{content:none}
 .pf ul.cmp li::before{content:"> ";color:var(--pf-acc);font-weight:700}
-.pf .grid162{display:grid;grid-template-columns:repeat(18,1fr);gap:3px;max-width:540px;margin:16px 0}
-.pf .grid162 span{aspect-ratio:1;background:var(--pf-soft);box-shadow:inset 0 0 0 1px #d3dde2}
+.pf .tcat{margin:18px 0 6px;font-weight:700;display:flex;flex-wrap:wrap;gap:4px 12px;align-items:baseline}
+.pf .tcat small{font-weight:400;color:var(--pf-muted)}
+.pf .grid162{display:grid;grid-template-columns:repeat(18,1fr);gap:3px;max-width:540px;margin:0}
+.pf .grid162 span{aspect-ratio:1;background:var(--pf-soft);box-shadow:inset 0 0 0 1px #d3dde2;cursor:pointer}
 .pf .grid162 span.bad{background:var(--pf-bad);box-shadow:none}
-.pf .grid162 span.pick{outline:3px solid var(--pf-ink);outline-offset:1px}
+.pf .grid162 span.fail{background:var(--pf-bad);opacity:.38;box-shadow:none}
+.pf .grid162 span.pick{outline:3px solid var(--pf-ink);outline-offset:1px;opacity:1}
+.pf .legend{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:.85em;color:var(--pf-muted);margin:14px 0}
+.pf .legend i{display:inline-block;width:12px;height:12px;margin-right:6px;vertical-align:-1px;background:var(--pf-soft);box-shadow:inset 0 0 0 1px #d3dde2}
+.pf .legend i.bad{background:var(--pf-bad);box-shadow:none}.pf .legend i.fail{background:var(--pf-bad);opacity:.38;box-shadow:none}
+.pf .pcard{margin:12px 0 0;max-width:640px}
+.pf .pcard .pname{font-weight:700;font-size:1.1em;color:var(--pf-ink)}
+.pf .pcard .pmeta{font-size:.85em;color:var(--pf-muted);margin:2px 0 8px}
+.pf .pcard .tag{display:inline-block;padding:0 6px;margin-right:6px;color:#fff;background:var(--pf-ink);font-size:.85em}
+.pf .pcard .tag.bad{background:var(--pf-bad)}.pf .pcard .tag.ok{background:var(--pf-acc)}
+.pf .pcard p{margin:0}
 .pf .draw{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
 .pf .draw .terminal-alert{margin:0;flex:1;min-width:240px}
 .pf .vs{display:grid;grid-template-columns:1fr 1fr;gap:15px}
@@ -301,15 +313,21 @@ h1.pf-title{display:block!important;font-size:clamp(2.4em,8vw,4.6em)!important;l
 
 <h2 id="sikkerhet"><span class="en">110 of 162 failed</span><span class="nb">110 av 162 strøk</span> <a class="anchor" href="#sikkerhet" aria-label="Link to this section">#</a></h2>
 <p class="cmd"><span class="en">grep -c FAIL consumer_council_test.log</span><span class="nb">grep -c FAIL forbrukerradet_test.log</span></p>
-<p class="en">The Norwegian Consumer Council tested 162 products from Temu and Shein. 110 of them broke European safety requirements. Almost all the toys had problems, and one piece of jewellery contained 8,500 times the permitted level of cadmium.</p>
-<p class="nb">Forbrukerrådet testet 162 produkter fra Temu og Shein. 110 av dem brøt europeiske sikkerhetskrav. Nesten alle lekene hadde problemer, og ett smykke inneholdt 8 500 ganger tillatt mengde kadmium.</p>
-<p class="en">Each square below is one tested product. Draw a random item and see whether it would have passed.</p>
-<p class="nb">Hver rute under er ett testet produkt. Trekk en tilfeldig vare og se om den ville bestått.</p>
-<div class="grid162" id="pf-g162" aria-hidden="true"></div>
+<p class="en">The Norwegian Consumer Council and its sister organisations in Europe, led by Germany's Stiftung Warentest, bought 162 products from Temu and Shein: 54 baby toys, 54 USB chargers and 54 necklaces. 110 of them broke European rules. 40 were so bad that the testers named them as dangerous. One necklace contained 8,500 times the permitted level of cadmium.</p>
+<p class="nb">Forbrukerrådet og søsterorganisasjonene i Europa, med tyske Stiftung Warentest i spissen, kjøpte 162 produkter fra Temu og Shein: 54 babyleker, 54 USB-ladere og 54 halskjeder. 110 av dem brøt europeiske regler. 40 var så ille at testerne navngav dem som farlige. Ett halskjede inneholdt 8 500 ganger tillatt mengde kadmium.</p>
+<p class="en">Each square is one tested product. Tap a square, or draw a random one, to see what it was and what was wrong with it.</p>
+<p class="nb">Hver rute er ett testet produkt. Trykk på en rute, eller trekk en tilfeldig, for å se hva det var og hva som var galt.</p>
+<div class="tcat"><span class="en">Baby toys</span><span class="nb">Babyleker</span> <small><span class="en">53 of 54 failed</span><span class="nb">53 av 54 strøk</span></small></div>
+<div class="grid162" id="pf-g-toy"></div>
+<div class="tcat"><span class="en">USB chargers</span><span class="nb">USB-ladere</span> <small><span class="en">52 of 54 failed</span><span class="nb">52 av 54 strøk</span></small></div>
+<div class="grid162" id="pf-g-charger"></div>
+<div class="tcat"><span class="en">Necklaces</span><span class="nb">Halskjeder</span> <small><span class="en">5 of 54 failed</span><span class="nb">5 av 54 strøk</span></small></div>
+<div class="grid162" id="pf-g-necklace"></div>
+<div class="legend"><span><i class="bad"></i><span class="en">dangerous, named by the testers</span><span class="nb">farlig, navngitt av testerne</span></span><span><i class="fail"></i><span class="en">failed other EU rules</span><span class="nb">strøk på andre EU-krav</span></span><span><i></i><span class="en">passed</span><span class="nb">besto</span></span></div>
 <div class="draw">
   <button type="button" class="btn btn-primary" id="pf-draw"><span class="en">Draw an item</span><span class="nb">Trekk en vare</span></button>
-  <div class="terminal-alert" id="pf-verdict" aria-live="polite"></div>
 </div>
+<div class="terminal-alert pcard" id="pf-verdict" aria-live="polite"></div>
 <p class="en">Taken to its extreme: if 68 % of 50 million items broke the rules, that would be <b class="num red">34 million</b> illegal products in Norwegian homes in one year. The test was not designed to be representative, so this figure is an illustration, not an estimate. The customs officers' union says Norwegian Customs has no control over what comes in.</p>
 <p class="nb">Satt på spissen: Hvis 68 % av 50 millioner varer brøt kravene, ville det vært <b class="num red">34 millioner</b> ulovlige produkter i norske hjem på ett år. Testen var ikke laget for å være representativ, så tallet er en illustrasjon og ikke et anslag. Tollerforbundet sier at Tolletaten ikke har kontroll på hva som kommer inn.</p>
 
@@ -356,6 +374,7 @@ h1.pf-title{display:block!important;font-size:clamp(2.4em,8vw,4.6em)!important;l
   <dt>Size and weight</dt><dd>Assumption: 25 × 18 × 5 cm and 0.4 kg per parcel. No public source gives the average for Norway.</dd>
   <dt>Emissions</dt><dd>Weight × distance × air freight emission factor, plus production emissions per item. The air freight factor is the UK government's factor for long-haul air freight including radiative forcing (0.90 kg CO₂e per tonne-km, 2025). Car emissions are calculated at 0.15 kg CO₂ per km. Norwegian emissions per person are 44.1 million tonnes divided by 5.6 million inhabitants.</dd>
   <dt>Production</dt><dd>The default is 1 kg CO₂e per item. Shein reported 11.2 million tonnes of CO₂e from production and materials in 2024, against 8.5 million tonnes from transport. Production therefore caused about 1.3 times the emissions of shipping. With 4.7 items per parcel and about 3 kg from shipping per parcel, that gives about 0.85 kg per item, rounded up to 1 kg. For comparison, a T-shirt is 7–18 kg CO₂e, with a median of 10.6 kg (Carbonfact). The figure is cautious.</dd>
+  <dt>Safety test</dt><dd>Stiftung Warentest and partners in the ICRT network, including the Norwegian Consumer Council, bought 27 baby toys, 27 USB chargers and 27 necklaces from each of Temu and Shein in 2025. Product names, prices, sellers and defects for the dangerous products come from Stiftung Warentest's published lists. The platforms removed the products after the test. For the other failed products, the testers did not publish names, so the grid shows them without names. The position of each square is random.</dd>
   <dt>Waste</dt><dd>The textile figures are from the NORSUS report "Kunnskapsstatus for tekstiler og tekstilavfall i Norge" (2026). The report itself says the figure for online imports is uncertain. Packaging is calculated with an assumed plastic bag of 15 g per parcel. The Eiffel Tower weighs about 7,300 tonnes.</dd>
   <dt>Comparisons</dt><dd>Mount Everest 8,849 m, the International Space Station about 400 km up, Lindesnes–Nordkapp (Norway's southern tip to North Cape) about 2,500 km by road, blue whale about 150 tonnes, Olympic pool 2,500 m³, a full bathtub about 150 litres, around the Earth 40,075 km.</dd>
 </dl>
@@ -365,6 +384,7 @@ h1.pf-title{display:block!important;font-size:clamp(2.4em,8vw,4.6em)!important;l
   <dt>Størrelse og vekt</dt><dd>Antakelse: 25 × 18 × 5 cm og 0,4 kg per pakke. Ingen offentlig kilde oppgir snittet for Norge.</dd>
   <dt>Utslipp</dt><dd>Vekt × distanse × utslippsfaktor for flyfrakt, pluss produksjonsutslipp per vare. Faktoren for flyfrakt er britiske myndigheters faktor for langdistanse flyfrakt med høydeeffekt (0,90 kg CO₂e per tonn-km, 2025). Utslipp fra bil er regnet med 0,15 kg CO₂ per km. Norske utslipp per innbygger er 44,1 millioner tonn fordelt på 5,6 millioner innbyggere.</dd>
   <dt>Produksjon</dt><dd>Standardverdien er 1 kg CO₂e per vare. Shein rapporterte 11,2 millioner tonn CO₂e fra produksjon og materialer i 2024, mot 8,5 millioner tonn fra transport. Produksjonen ga altså ca. 1,3 ganger så mye utslipp som frakten. Med 4,7 varer per pakke og ca. 3 kg fra frakt per pakke gir det ca. 0,85 kg per vare, som er rundet opp til 1 kg. Til sammenligning ligger en T-skjorte på 7–18 kg CO₂e, med en median på 10,6 kg (Carbonfact). Tallet er altså forsiktig.</dd>
+  <dt>Sikkerhetstest</dt><dd>Stiftung Warentest og partnere i ICRT-nettverket, blant dem Forbrukerrådet, kjøpte 27 babyleker, 27 USB-ladere og 27 halskjeder fra både Temu og Shein i 2025. Produktnavn, priser, selgere og feil for de farlige produktene er hentet fra Stiftung Warentests publiserte lister. Plattformene fjernet produktene etter testen. For de andre produktene som strøk, publiserte ikke testerne navn, så de vises uten navn. Plasseringen av rutene er tilfeldig.</dd>
   <dt>Avfall</dt><dd>Tekstiltallene er fra NORSUS-rapporten «Kunnskapsstatus for tekstiler og tekstilavfall i Norge» (2026). Tallet for nettimport er usikkert, ifølge rapporten selv. Emballasjen er regnet med en antatt plastpose på 15 g per pakke. Eiffeltårnet veier ca. 7 300 tonn.</dd>
   <dt>Sammenligninger</dt><dd>Mount Everest 8 849 m, Den internasjonale romstasjonen ca. 400 km over bakken, Lindesnes–Nordkapp ca. 2 500 km langs veien, blåhval ca. 150 tonn, olympisk basseng 2 500 m³, et fullt badekar ca. 150 liter, jorda rundt 40 075 km.</dd>
 </dl>
@@ -378,6 +398,9 @@ h1.pf-title{display:block!important;font-size:clamp(2.4em,8vw,4.6em)!important;l
   <li><a href="https://kommunikasjon.ntb.no/pressemelding/19095198/regjeringen-snakker-om-trygghet-men-gjor-norge-til-en-dumpingplass-for-risikofylte-varer?lang=no">Framtiden i våre hender: Regjeringen gjør Norge til en dumpingplass</a> (7.10.2026)</li>
   <li><a href="https://netthandel.no/norge-utreder-toll-og-kontrollavgifter-for-lavprisimport-fra-temu-og-shein/">Netthandel.no: Norge utreder toll og kontrollavgifter</a> (10.6.2026)</li>
   <li><a href="https://aktuelt.norsirk.no/den-norske-temu-boomen-sender-tekstilavfallet-til-v%C3%A6rs-44-000-tonn-g%C3%A5r-rett-til-forbrenning">NORSIRK: Den norske Temu-boomen sender tekstilavfallet til værs</a> (13.5.2026)</li>
+  <li><a href="https://www.forbrukerradet.no/siste-nytt/advarer-mot-leker-og-ladere-fra-temu-og-shein/">Forbrukerrådet: Advarer mot leker og ladere fra Temu og Shein</a> (30.11.2025)</li>
+  <li><a href="https://www.test.de/Temu-und-Shein-Gefaehrliche-Schnaeppchen-6253491-6255879/">Stiftung Warentest: Shein – Vorsicht vor diesen Produkten</a> (30.10.2025)</li>
+  <li><a href="https://www.test.de/Temu-und-Shein-Gefaehrliche-Schnaeppchen-6253491-6253500/">Stiftung Warentest: Temu – Vorsicht vor diesen Produkten</a> (30.10.2025)</li>
   <li><a href="https://theprint.in/science/fast-tech-has-a-slow-death-cheap-gadgets-pile-up-as-e-waste-says-new-study/3071624/">ThePrint: Fast tech has a slow death</a> (WEEE Forum, 10.2026)</li>
   <li><a href="https://scandasia.com/temu-sellers-avoid-e-waste-payments-burdening-danish-businesses/">ScandAsia/DR: Temu sellers avoid e-waste payments</a></li>
   <li><a href="https://fashionunited.uk/news/fashion/probe-reveals-persistent-labour-issues-at-shein-despite-promises-of-improvement/2024051475560">FashionUnited: Probe reveals persistent labour issues at Shein</a> (5.2024)</li>
@@ -409,9 +432,12 @@ h1.pf-title{display:block!important;font-size:clamp(2.4em,8vw,4.6em)!important;l
       per:function(tr,pr){return 'Shipping: '+fmt(tr,1)+' kg per parcel'+(pr>0?' · Production: '+fmt(pr,2)+' kg per item':'');},
       cmp:function(tr,tot){return ['The shipping of one parcel emits as much as driving <b>'+fmt(tr/0.15)+' km</b> in a petrol car.','In total, that equals driving a petrol car <b>'+fmt(tot*1000/0.15/40075)+' times</b> around the Earth.','That equals the Norwegian emissions of <b>'+fmt(tot/(NOR_T/POP))+' people</b> for a year.'];},
       share:function(p){return 'That is <b>'+fmt(p,2)+' %</b> of Norway\'s emissions in 2025, yet none of it appears in Norway\'s climate accounts.';},
-      verdictIdle:'Red means the product broke the rules.',
-      fail:function(n){return 'FAIL: Product '+n+' of 162 would have failed the test.';},
-      ok:function(n){return 'OK: Product '+n+' of 162 would have passed. This time.';}},
+      verdictIdle:'Tap a square to see the product.',
+      cat:{toy:'baby toy',charger:'USB charger',necklace:'necklace'},
+      tagBad:'FAIL · dangerous',tagFail:'FAIL',tagOk:'OK',seller:'seller',either:'Temu or Shein',
+      failText:{toy:'Failed EU rules, among other things because warnings or labelling were missing or misleading. Not named as directly dangerous.',charger:'Failed EU rules, for example a plug that bent too easily, damage in the drop test or wrong labelling. Not named as directly dangerous.'},
+      okText:'Passed the test. This time.',
+      unnamed:function(c){return 'Unnamed '+c;}},
     nb:{title:'Temus søppelhaug',
       head:{hoyde:'høyde',rekke:'rekke',vekt:'vekt',volum:'volum'},
       hoyde:function(km){return '<div class="big num red">'+fmt(km)+' km</div><p>Stablet oppå hverandre blir pakkene høyere enn banen til Den internasjonale romstasjonen. Mount Everest blir så vidt en strek ved siden av.</p>'+bar([['pakkestabelen',km,fmt(km)+' km',1],['romstasjonen',400,'ca. 400 km'],['mount everest',8.849,'8,8 km'],['galdhøpiggen',2.469,'2,5 km']]);},
@@ -421,9 +447,12 @@ h1.pf-title{display:block!important;font-size:clamp(2.4em,8vw,4.6em)!important;l
       per:function(tr,pr){return 'Frakt: '+fmt(tr,1)+' kg per pakke'+(pr>0?' · Produksjon: '+fmt(pr,2)+' kg per vare':'');},
       cmp:function(tr,tot){return ['En pakke slipper ut like mye fra frakten som å kjøre <b>'+fmt(tr/0.15)+' km</b> med bensinbil.','Til sammen tilsvarer det å kjøre bensinbil <b>'+fmt(tot*1000/0.15/40075)+' ganger</b> rundt jorda.','Det er like mye som de norske utslippene til <b>'+fmt(tot/(NOR_T/POP))+' innbyggere</b> i ett år.'];},
       share:function(p){return 'Det tilsvarer <b>'+fmt(p,2)+' %</b> av Norges utslipp i 2025, men ingenting av det står i norsk klimaregnskap.';},
-      verdictIdle:'Rødt betyr at varen brøt kravene.',
-      fail:function(n){return 'FAIL: Produkt '+n+' av 162 ville strøket i testen.';},
-      ok:function(n){return 'OK: Produkt '+n+' av 162 ville bestått. Denne gangen.';}}
+      verdictIdle:'Trykk på en rute for å se produktet.',
+      cat:{toy:'babyleke',charger:'USB-lader',necklace:'halskjede'},
+      tagBad:'FAIL · farlig',tagFail:'FAIL',tagOk:'OK',seller:'selger',either:'Temu eller Shein',
+      failText:{toy:'Strøk på EU-kravene, blant annet fordi advarsler eller merking manglet eller var villedende. Ikke navngitt som direkte farlig.',charger:'Strøk på EU-kravene, for eksempel støpsel som bøyde seg for lett, skade i falltest eller feil merking. Ikke navngitt som direkte farlig.'},
+      okText:'Besto testen. Denne gangen.',
+      unnamed:function(c){return 'Ikke navngitt '+c;}}
   };
 
   var bar=function(rows){var max=Math.max.apply(null,rows.map(function(r){return r[1];}));
@@ -468,20 +497,34 @@ h1.pf-title{display:block!important;font-size:clamp(2.4em,8vw,4.6em)!important;l
     $('share').innerHTML=t.share(tot/NOR_T*100);};
   ['w','ef','pr','dist'].forEach(function(id){$(id).addEventListener('input',calc);});
 
-  // safety grid
-  var g=$('g162'), bad={}, seed=7, rnd=function(){seed=(seed*16807)%2147483647;return seed/2147483647;};
-  var idx=[];for(var i=0;i<162;i++)idx.push(i);
-  for(i=idx.length-1;i>0;i--){var j=Math.floor(rnd()*(i+1)),tmp=idx[i];idx[i]=idx[j];idx[j]=tmp;}
-  idx.slice(0,110).forEach(function(k){bad[k]=1;});
-  var cells=[];for(i=0;i<162;i++){var s=document.createElement('span');if(bad[i])s.className='bad';g.appendChild(s);cells.push(s);}
+  // safety grid: products from Stiftung Warentest's lists (test.de, 30.10.2025)
+  var PROD=[["Shein", "toy", "Baller til ballbinge", "Balls for a ball pit", 12.33, "Ldawdfa", "Smådeler kan løsne og svelges.", "Small parts can come loose and be swallowed."], ["Shein", "toy", "Snurrebass med sugekopp, rasleballer og figurer", "Suction-cup spinner with rattle balls and figures", 3.86, "CXYTOYS", "Smådeler kan svelges. Formen og sugekoppene som løsner, kan gi skader eller kvelning.", "Small parts can be swallowed. The shape and detachable suction cups could cause injury or choking."], ["Shein", "toy", "Badeleke med vannlek", "Bath toy with water play", 10.25, "EDUVANKU TOY", "Klistremerke løsner lett og kan svelges. Vannøsen og sugekoppene kan gi skader eller kvelning.", "A sticker comes off easily and could be swallowed. The water scoop and suction cups could cause injury or choking."], ["Shein", "toy", "Badeleke: elefant", "Bath toy: elephant", 3.83, "BODELE", "Smådeler og sugekopper kan løsne og svelges.", "Small parts and suction cups can come loose and be swallowed."], ["Shein", "toy", "Fargerike pipeballer (6 stk.)", "Colourful squeaky balls (set of 6)", 3.83, "KRS941602", "Piper for høyt. Lydnivået er over grensen for barneleker.", "Squeaks too loud. The sound level is above the limit for children's toys."], ["Shein", "toy", "Gripeball for baby med bitedeler", "Baby grasping ball with teething parts", 4.04, "FYLM", "Bitedelene kan løsne og svelges.", "The teething parts can come loose and be swallowed."], ["Shein", "toy", "Lite babypiano: ape", "Small baby piano: monkey", 6.0, "WZBL", "Batteriluken åpner seg for lett. Små barn kan få tak i batteriene og svelge dem.", "The battery compartment opens too easily. Small children could reach the batteries and swallow them."], ["Shein", "toy", "Lite babypiano: hare", "Small baby piano: rabbit", 6.75, "STQile", "Batteriluken åpner seg for lett. Små barn kan få tak i batteriene og svelge dem.", "The battery compartment opens too easily. Small children could reach the batteries and swallow them."], ["Shein", "toy", "Lekebilnøkkel", "Toy car key", 6.0, "W", "Smådeler kan løsne. Formen kan gi skader eller kvelning, og batteriluken åpner seg for lett.", "Small parts can come loose. The shape could cause injury or choking, and the battery compartment opens too easily."], ["Shein", "toy", "Babyrangle i tre", "Wooden baby rattle", 4.04, "husihome", "Smådeler kan løsne og svelges.", "Small parts can come loose and be swallowed."], ["Temu", "toy", "Babyrangle", "Baby rattle", 2.88, "Nice baby", "Smådeler kan løsne og svelges.", "Small parts can come loose and be swallowed."], ["Temu", "toy", "Stableleke i tre", "Wooden stacking toy", 7.64, "TongHong", "Klistremerke løsner lett og kan svelges. Størrelsen og formen kan gi skader eller kvelning.", "A sticker comes off easily and could be swallowed. The size and shape could cause injury or choking."], ["Temu", "toy", "Badeleke: håv og figurer", "Bath toy: net and figures", 2.35, "Yi Qu Tong Yue Hui", "Klistremerke løsner lett og kan svelges. Størrelsen og formen kan gi skader eller kvelning.", "A sticker comes off easily and could be swallowed. The size and shape could cause injury or choking."], ["Temu", "toy", "Badeleke: oterfamilie", "Bath toy: otter family", 3.75, "Ziliyy", "Klistremerke løsner lett og kan svelges. Størrelsen og formen kan gi skader eller kvelning.", "A sticker comes off easily and could be swallowed. The size and shape could cause injury or choking."], ["Temu", "toy", "Lekeserviettboks: buss", "Toy tissue box: bus", 3.47, "HuierToy", "Smådeler kan løsne, og tøyservietten inneholder mer formaldehyd enn tillatt i leker for små barn.", "Small parts can come loose, and the cloths contain more formaldehyde than allowed in toys for small children."], ["Temu", "toy", "Stoffspiral med plysjfigurer", "Fabric spiral with plush figures", 6.25, "YATAOME", "For lange snorer og for store løkker som kan legge seg rundt halsen. Fare for kvelning.", "Cords too long and loops too large, which could wrap around a child's neck. Risk of strangulation."], ["Temu", "toy", "To bjellerangler", "Two bell rattles", 1.86, "Melalebo toys", "Smådeler kan løsne og svelges.", "Small parts can come loose and be swallowed."], ["Temu", "toy", "Bitevott i silikon", "Silicone teething mitten", 2.55, "Bestchica Baby", "Smådeler kan løsne. Borrelåsen inneholder for mye av det miljøskadelige stoffet nonylfenoletoksylat.", "Small parts can come loose. The velcro contains too much of the environmentally harmful substance nonylphenol ethoxylate."], ["Shein", "charger", "USB-lader ES-CD29", "USB charger ES-CD29", 8.25, "ESSAGER Official", "For liten avstand mellom strømførende deler, og skallet blir varmere enn tillatt.", "Too little distance between live parts, and the casing gets hotter than allowed."], ["Shein", "charger", "USB-lader PD-25B", "USB charger PD-25B", 4.0, "GadgetGalore", "Ladeskallet blir varmere enn tillatt under bruk.", "The casing gets hotter than allowed during use."], ["Shein", "charger", "USB-lader OFS-409", "USB charger OFS-409", 5.75, "REKNA", "Ladeskallet blir varmere enn tillatt under bruk.", "The casing gets hotter than allowed during use."], ["Shein", "charger", "USB-lader PD-30", "USB charger PD-30", 3.25, "SZXIANGQUN", "For liten avstand mellom strømførende deler (fare for støt).", "Too little distance between live parts (risk of electric shock)."], ["Shein", "charger", "USB-lader VTC1-33", "USB charger VTC1-33", 2.0, "Yuanjinkai", "For liten avstand mellom strømførende deler (fare for støt).", "Too little distance between live parts (risk of electric shock)."], ["Shein", "charger", "USB-lader K05-30W", "USB charger K05-30W", 6.0, "Yiliantuo", "Ladeskallet blir varmere enn tillatt under bruk.", "The casing gets hotter than allowed during use."], ["Shein", "charger", "USB-lader AJ-JTD-AC25W", "USB charger AJ-JTD-AC25W", 7.75, "HENGYSHENG", "Ladeskallet blir varmere enn tillatt under bruk.", "The casing gets hotter than allowed during use."], ["Shein", "charger", "USB-lader EU54", "USB charger EU54", 7.0, "Wei Zhuoyuan Technology", "Ladeskallet blir varmere enn tillatt under bruk.", "The casing gets hotter than allowed during use."], ["Shein", "charger", "USB-lader BK321-6U", "USB charger BK321-6U", 6.5, "XJDR", "Ladeskallet blir varmere enn tillatt under bruk.", "The casing gets hotter than allowed during use."], ["Shein", "charger", "USB-lader XD-11085", "USB charger XD-11085", 16.5, "gaoxinsj", "Ladeskallet blir varmere enn tillatt under bruk.", "The casing gets hotter than allowed during use."], ["Shein", "charger", "USB-lader BK304-2A2C", "USB charger BK304-2A2C", 6.75, "FANBEDA", "Ladeskallet blir varmere enn tillatt under bruk.", "The casing gets hotter than allowed during use."], ["Shein", "charger", "USB-lader G.S-057", "USB charger G.S-057", 3.0, "Yuanjinkai", "Ladeskallet blir varmere enn tillatt under bruk.", "The casing gets hotter than allowed during use."], ["Temu", "charger", "USB-lader Yili-PD3510", "USB charger Yili-PD3510", 5.43, "YL house", "Ladeskallet blir varmere enn tillatt under bruk.", "The casing gets hotter than allowed during use."], ["Temu", "charger", "USB-lader CY-967", "USB charger CY-967", 2.51, "Tyneek", "For liten avstand mellom strømførende deler (fare for støt).", "Too little distance between live parts (risk of electric shock)."], ["Temu", "charger", "USB-lader GN-04", "USB charger GN-04", 18.63, "ANSTY", "Ladeskallet blir varmere enn tillatt under bruk.", "The casing gets hotter than allowed during use."], ["Temu", "charger", "USB-lader BK320-3A3C", "USB charger BK320-3A3C", 5.63, "HCJTWIN", "Ladeskallet blir varmere enn tillatt under bruk.", "The casing gets hotter than allowed during use."], ["Temu", "charger", "USB-lader BK321-6U", "USB charger BK321-6U", 5.55, "YG Digital Technology", "Ladeskallet blir varmere enn tillatt under bruk.", "The casing gets hotter than allowed during use."], ["Shein", "necklace", "Gullfarget lagkjede med rundt anheng og strass", "Gold-coloured layered necklace with round rhinestone pendant", 2.6, "lalang", "Anhenget inneholder mange ganger mer kadmium enn tillatt. Kadmium er kreftfremkallende.", "The pendant contains many times more cadmium than allowed. Cadmium is carcinogenic."], ["Shein", "necklace", "Gullfarget kjede med kirsebær-anheng", "Gold-coloured necklace with cherry pendant", 1.6, "jeae crystal", "Metallet i anhenget inneholder over 8 500 ganger mer kadmium enn tillatt. Kadmium er kreftfremkallende.", "The metal in the pendant contains more than 8,500 times the permitted cadmium. Cadmium is carcinogenic."], ["Shein", "necklace", "Gullfarget kjede med roterende blomsteranheng", "Gold-coloured necklace with rotating flower pendant", 2.75, "Royal Elegance", "Anhenget avgir mange ganger mer nikkel enn tillatt. Nikkel gir allergi.", "The pendant releases many times more nickel than allowed. Nickel causes allergies."], ["Shein", "necklace", "Sølvfarget kjede med flere runde anheng", "Silver-coloured necklace with several round pendants", 2.35, "Xintianyou Jewelry", "Anhenget inneholder over 7 500 ganger mer kadmium enn tillatt. Kadmium er kreftfremkallende.", "The pendant contains more than 7,500 times the permitted cadmium. Cadmium is carcinogenic."], ["Shein", "necklace", "Gullfarget kjede med myntlignende anheng", "Gold-coloured necklace with coin-like pendant", 2.6, "gold jewelry", "Kjedet avgir opptil over 20 ganger mer nikkel enn tillatt. Nikkel gir allergi.", "The necklace releases in places more than 20 times the permitted nickel. Nickel causes allergies."]];
+  var esc=function(x){return String(x).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});};
+  var FAILS={toy:53,charger:52,necklace:5};
+  var items=[], cells=[];
+  ['toy','charger','necklace'].forEach(function(cat){
+    var named=PROD.filter(function(p){return p[1]===cat;});
+    var list=named.map(function(p){return {k:'bad',p:p,cat:cat};});
+    while(list.length<FAILS[cat])list.push({k:'fail',cat:cat});
+    while(list.length<54)list.push({k:'ok',cat:cat});
+    var seed=cat.length*7919, rnd=function(){seed=(seed*16807)%2147483647;return seed/2147483647;};
+    for(var i=list.length-1;i>0;i--){var j=Math.floor(rnd()*(i+1)),t=list[i];list[i]=list[j];list[j]=t;}
+    var g=$('g-'+cat);
+    list.forEach(function(it){var s=document.createElement('span');if(it.k!=='ok')s.className=it.k;var n=items.length;
+      s.addEventListener('click',function(){pick(n);});g.appendChild(s);cells.push(s);items.push(it);});
+  });
   var last=-1;
   var verdict=function(){var v=$('verdict'),t=T[lang];
-    if(last<0){v.className='terminal-alert';v.textContent=t.verdictIdle;}
-    else if(bad[last]){v.className='terminal-alert terminal-alert-error';v.textContent=t.fail(last+1);}
-    else{v.className='terminal-alert';v.textContent=t.ok(last+1);}};
-  $('draw').addEventListener('click',function(){
-    if(last>=0)cells[last].classList.remove('pick');
-    last=Math.floor(Math.random()*162);cells[last].classList.add('pick');verdict();});
+    if(last<0){v.className='terminal-alert pcard';v.textContent=t.verdictIdle;return;}
+    var it=items[last],c=t.cat[it.cat],h;
+    if(it.k==='bad'){var p=it.p;
+      h='<div class="pname">'+esc(lang==='nb'?p[2]:p[3])+'</div><div class="pmeta"><span class="tag bad">'+t.tagBad+'</span>'+p[0]+' · '+fmt(p[4],2)+' € · '+t.seller+' «'+esc(p[5])+'»</div><p>'+esc(lang==='nb'?p[6]:p[7])+'</p>';
+      v.className='terminal-alert terminal-alert-error pcard';}
+    else if(it.k==='fail'){h='<div class="pname">'+t.unnamed(c)+'</div><div class="pmeta"><span class="tag">'+t.tagFail+'</span>'+t.either+'</div><p>'+t.failText[it.cat]+'</p>';v.className='terminal-alert pcard';}
+    else{h='<div class="pname">'+t.unnamed(c)+'</div><div class="pmeta"><span class="tag ok">'+t.tagOk+'</span>'+t.either+'</div><p>'+t.okText+'</p>';v.className='terminal-alert pcard';}
+    v.innerHTML=h;};
+  var pick=function(n){if(last>=0)cells[last].classList.remove('pick');last=n;cells[n].classList.add('pick');verdict();};
+  $('draw').addEventListener('click',function(){pick(Math.floor(Math.random()*items.length));});
 
   // anchors: copy link (keeps ?lang)
   $$('.pf h2 .anchor').forEach(function(a){a.addEventListener('click',function(){
