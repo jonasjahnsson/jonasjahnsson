@@ -9,7 +9,7 @@
 <meta property="og:description" content="Frakt, kort, Vipps, BNPL og krypto i én checkout. Med merchant-visning som viser kundereisen og hver krone i gebyr.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://www.jonasjahnsson.com/checkout2030/">
-<link rel="icon" href="/favicon-32x32.png">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='16' fill='%23FFBED7'/%3E%3Ctext x='16' y='23' text-anchor='middle' font-family='Arial,sans-serif' font-weight='800' font-size='20' fill='%23252729'%3Eb%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -315,7 +315,7 @@ input[type=range]{width:100%;accent-color:var(--pink)}
 
 <header class="top">
   <div class="top-in">
-    <a class="logo" href="/checkout2030/" aria-label="Blivakker Checkout 2030">blivakker</a>
+    <a class="logo" href="./" aria-label="Blivakker Checkout 2030">blivakker</a>
     <span class="b2030">CHECKOUT 2030</span>
     <span class="demo"><i></i>Demo · ingen ekte betalinger</span>
     <div class="viewsw" role="group" aria-label="Velg visning">
@@ -395,7 +395,7 @@ input[type=range]{width:100%;accent-color:var(--pink)}
 
     <div id="done" hidden></div>
 
-    <p class="foot">Konseptdemo av Jonas Jahnsson. Ikke en offisiell Blivakker-tjeneste, og ingen av tallene er Blivakkers egne priser eller avtaler. Gebyrene er satt under Stripes publiserte listepriser for Norge (hentet 3. november 2026). Fraktkostnader, produktpriser og kryptokurser er antatte demo-tall. <a href="/posts/checkout2030/">Om prosjektet</a>.</p>
+    <p class="foot">Konseptdemo av Jonas Jahnsson. Ikke en offisiell Blivakker-tjeneste, og ingen av tallene er Blivakkers egne priser eller avtaler. Gebyrene er satt under Stripes publiserte listepriser for Norge (hentet 3. november 2026). Fraktkostnader, produktpriser og kryptokurser er antatte demo-tall. <a href="https://www.jonasjahnsson.com/posts/checkout2030/">Om prosjektet</a>.</p>
   </div>
 
   <aside class="merchant" id="merchant" aria-label="Merchant-visning">
@@ -475,10 +475,10 @@ const M = {
   invoice: {group: 'bnpl', name: 'Faktura', sub: 'Betal om 30 dager, 0 kr', pct: 2.49, fix: 3.5, payout: 2, ref: BNPL_REF, risk: BNPL_RISK},
   split3: {group: 'bnpl', name: 'Del opp i 3', sub: 'Rentefritt, 0 kr i gebyr', pct: 2.49, fix: 3.5, payout: 2, ref: BNPL_REF, risk: BNPL_RISK, min: 300},
   finance: {group: 'bnpl', name: 'Delbetaling', sub: '12 måneder, fra 1 000 kr', pct: 2.49, fix: 3.5, payout: 2, ref: BNPL_REF, risk: BNPL_RISK, min: 1000},
-  usdc_base: {group: 'crypto', name: 'USDC på Base', sub: 'Stablecoin, bekreftet på ca. 2 sek', pct: 1.2, fix: 0, payout: 0,
+  usdc_base: {group: 'crypto', name: 'USDC på Base', sub: 'Stablecoin, bekreftet på ca. 2 sek', pct: .5, fix: 0, payout: 0,
     ref: {pct: 1.5, fix: 0, label: 'Stablecoins (oppgjør i USD)'}, unit: 'USDC', rate: 10.5, dec: 2, net: 'Base', gas: .05, wallets: ['Coinbase Wallet', 'MetaMask', 'Rainbow'],
     risk: 'Ingen tvister. Betalingen er endelig når blokken er bekreftet. Butikken får kroner, ikke krypto.'},
-  usdc_sol: {group: 'crypto', name: 'USDC på Solana', sub: 'Stablecoin, bekreftet på under 1 sek', pct: 1.2, fix: 0, payout: 0,
+  usdc_sol: {group: 'crypto', name: 'USDC på Solana', sub: 'Stablecoin, bekreftet på under 1 sek', pct: .5, fix: 0, payout: 0,
     ref: {pct: 1.5, fix: 0, label: 'Stablecoins (oppgjør i USD)'}, unit: 'USDC', rate: 10.5, dec: 2, net: 'Solana', gas: .01, wallets: ['Phantom', 'Solflare'],
     risk: 'Ingen tvister. Betalingen er endelig når blokken er bekreftet. Butikken får kroner, ikke krypto.'},
   eth: {group: 'crypto', name: 'ETH på Base', sub: 'Veksles til kroner med en gang', pct: 1.7, pctLabel: '1,2 % + 0,5 % veksling', fix: 0, payout: 0,
@@ -941,7 +941,7 @@ function renderPrices() {
     </table></div>
   </div>
   <div class="mcard src">
-    <b style="color:var(--m-text)">Kilder og forutsetninger.</b> Stripe-prisene er listepriser for Norge, hentet 3. november 2026 fra <a href="https://stripe.com/no/pricing" target="_blank" rel="noopener">stripe.com/no/pricing</a>, <a href="https://stripe.com/no/pricing/local-payment-methods" target="_blank" rel="noopener">lokale betalingsmetoder</a> og <a href="https://docs.stripe.com/crypto/stablecoins" target="_blank" rel="noopener">stablecoin-dokumentasjonen</a>. Store butikker får ofte egne priser hos Stripe og andre. Checkout 2030-prisene er satt 15–25 % under listeprisen. Fraktkostnader, CO₂-tall og kryptokurser er antatte demo-tall, ikke avtalepriser. Ingen av tallene er Blivakkers egne.
+    <b style="color:var(--m-text)">Kilder og forutsetninger.</b> Stripe-prisene er listepriser for Norge, hentet 3. november 2026 fra <a href="https://stripe.com/no/pricing" target="_blank" rel="noopener">stripe.com/no/pricing</a>, <a href="https://stripe.com/no/pricing/local-payment-methods" target="_blank" rel="noopener">lokale betalingsmetoder</a> og <a href="https://docs.stripe.com/crypto/stablecoins" target="_blank" rel="noopener">stablecoin-dokumentasjonen</a>. Store butikker får ofte egne priser hos Stripe og andre. Checkout 2030-prisene er satt 15–25 % under listeprisen. USDC koster 0,5 %, en tredjedel av Stripes pris, fordi en stablecoin-overføring nesten ikke koster noe og ikke har kursrisiko. Fraktkostnader, CO₂-tall og kryptokurser er antatte demo-tall, ikke avtalepriser. Ingen av tallene er Blivakkers egne.
   </div>`;
 }
 

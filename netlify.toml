@@ -4,3 +4,16 @@
 
 [build.environment]
   HUGO_VERSION = "0.85.0"
+
+# checkout.jonasjahnsson.com viser Checkout 2030. Domenet må også legges inn som alias i Netlify.
+[[redirects]]
+  from = "https://checkout.jonasjahnsson.com/"
+  to = "/checkout2030/index.html"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "https://checkout.jonasjahnsson.com/*"
+  to = "/checkout2030/:splat"
+  status = 200
+  force = true
