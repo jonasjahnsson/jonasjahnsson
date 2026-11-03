@@ -1,0 +1,1325 @@
+<!doctype html>
+<html lang="nb">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Blivakker Checkout 2030</title>
+<meta name="description" content="Konseptdemo: Blivakkers checkout i 2030 med frakt, kort, Vipps, BNPL og krypto, og en merchant-visning med kundereise og alle gebyrer.">
+<meta property="og:title" content="Blivakker Checkout 2030">
+<meta property="og:description" content="Frakt, kort, Vipps, BNPL og krypto i én checkout. Med merchant-visning som viser kundereisen og hver krone i gebyr.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.jonasjahnsson.com/checkout2030/">
+<link rel="icon" href="/favicon-32x32.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-7V1LJKDCLD"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-7V1LJKDCLD');</script>
+<style>
+/* Blivakker Checkout 2030: lys kundeside, mørk merchant-side. Farger fra BG-profilen. */
+*,*::before,*::after{box-sizing:border-box}
+:root{
+  --pink:#FFBED7;--pink-l:#FFE0EE;--pink-xl:#FFF5F9;--pink-s:#F460A1;
+  --ink:#252729;--text:#3b3e41;--muted:#6a6e73;--line:#e6e6e6;--bg:#faf7f8;--green:#8CE0B0;--green-d:#1d7347;
+  --m-bg:#252729;--m-card:#2f3236;--m-line:#43474c;--m-text:#f4f4f5;--m-muted:#a9aeb4;
+  --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+}
+html,body{margin:0}
+body{font-family:"Public Sans",system-ui,-apple-system,"Segoe UI",sans-serif;background:var(--bg);color:var(--ink);font-size:15px;line-height:1.45;-webkit-font-smoothing:antialiased}
+button,input,select{font:inherit;color:inherit}
+button{cursor:pointer}
+a{color:inherit}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.num{font-variant-numeric:tabular-nums}
+
+/* Toppstripe */
+.top{position:sticky;top:0;z-index:30;background:#fff;border-bottom:1px solid var(--line)}
+.top-in{max-width:1320px;margin:0 auto;padding:10px 16px;display:flex;align-items:center;gap:10px 14px;flex-wrap:wrap}
+.logo{font-weight:800;font-size:25px;letter-spacing:-.04em;text-decoration:none;color:var(--ink);line-height:1}
+.b2030{background:var(--ink);color:var(--pink);font-weight:700;font-size:12px;padding:4px 10px;border-radius:999px;letter-spacing:.03em}
+.demo{font-size:12.5px;color:var(--muted);margin-left:auto;display:flex;align-items:center;gap:6px}
+.demo i{width:8px;height:8px;border-radius:50%;background:var(--pink-s);display:inline-block}
+.viewsw{display:none;width:100%;background:#f1eef0;border-radius:12px;padding:4px;gap:4px}
+.viewsw button{flex:1;border:0;background:none;padding:8px;border-radius:9px;font-weight:600;color:var(--muted)}
+.viewsw button[aria-pressed=true]{background:#fff;color:var(--ink);box-shadow:0 1px 3px rgba(0,0,0,.08)}
+.viewsw .vs-m[aria-pressed=true]{background:var(--ink);color:var(--pink)}
+
+/* Oppsett */
+.wrap{max-width:1320px;margin:0 auto;padding:18px 16px 70px;display:grid;grid-template-columns:minmax(0,600px) minmax(0,1fr);gap:24px;align-items:start}
+.merchant{position:sticky;top:72px;max-height:calc(100vh - 88px);overflow:auto;overscroll-behavior:contain}
+@media (max-width:1100px){
+  .wrap{grid-template-columns:minmax(0,1fr);max-width:640px}
+  .viewsw{display:flex}
+  .merchant{position:static;max-height:none;overflow:visible}
+  body[data-view=kunde] .merchant{display:none}
+  body[data-view=merchant] .shop{display:none}
+  body[data-view=kunde] .mbar{display:flex}
+  .demo{margin-left:auto}
+}
+
+/* Kundeside */
+.intro{background:var(--pink-l);border-radius:16px;padding:14px 16px;margin-bottom:14px;font-size:14px;color:var(--text)}
+.intro b{color:var(--ink)}
+.intro .feat{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.intro .feat span{background:#fff;border-radius:999px;padding:3px 10px;font-size:12.5px;font-weight:600;color:var(--ink)}
+.card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:18px;margin-bottom:14px}
+.card h2{font-size:17px;margin:0 0 12px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.card h2 small{font-weight:500;color:var(--muted);font-size:13px}
+.n{width:26px;height:26px;border-radius:50%;background:var(--pink);font-size:13px;font-weight:700;display:inline-grid;place-items:center;flex:none}
+.n.ok{background:var(--green)}
+.line{display:grid;grid-template-columns:56px minmax(0,1fr) auto;gap:12px;align-items:center;padding:12px 0;border-top:1px solid var(--line)}
+.line:first-child{border-top:0;padding-top:2px}
+.thumb{width:56px;height:56px;border-radius:12px;display:grid;place-items:center}
+.l-name{font-weight:600;line-height:1.25}
+.l-meta{font-size:13px;color:var(--muted);margin:2px 0 6px}
+.l-price{text-align:right;font-weight:700;white-space:nowrap}
+.l-price small{display:block;font-weight:400;color:var(--muted);font-size:12px}
+.qty{display:inline-flex;align-items:center;border:1px solid var(--line);border-radius:999px}
+.qty button{width:30px;height:28px;border:0;background:none;font-size:17px;line-height:1;color:var(--ink)}
+.qty span{min-width:22px;text-align:center;font-weight:600;font-size:14px}
+.freebar{margin:12px 0 4px;font-size:13.5px}
+.freebar .track{height:6px;background:#f0eaed;border-radius:3px;margin-top:6px;overflow:hidden}
+.freebar .fill{height:100%;background:var(--pink-s);border-radius:3px;transition:width .3s}
+.freebar.ok .fill{background:var(--green)}
+.upsell{display:flex;align-items:center;gap:10px;margin-top:12px;padding:10px;border:1px dashed #e3cfd8;border-radius:12px;font-size:13.5px}
+.upsell .thumb{width:40px;height:40px;border-radius:9px}
+.upsell > div:not(.thumb){flex:1;min-width:0}
+.code{display:flex;gap:8px;margin-top:12px}
+.code input{flex:1;min-width:0}
+.code-ok{margin-top:12px;font-size:13.5px;display:flex;justify-content:space-between;gap:10px;background:var(--pink-xl);border-radius:10px;padding:8px 12px}
+.msg{font-size:12.5px;color:var(--muted);margin-top:4px}
+.msg.err{color:#b0225f}
+.empty{padding:16px;text-align:center;color:var(--muted)}
+
+.btn{border:1.5px solid var(--ink);background:#fff;border-radius:11px;padding:10px 14px;font-weight:600;color:var(--ink);display:inline-flex;align-items:center;justify-content:center;gap:8px}
+.btn:hover{background:var(--pink-xl)}
+.btn-pink{background:var(--pink);border-color:var(--pink)}
+.btn-pink:hover{background:#ffb0cd}
+.btn-ink{background:var(--ink);color:#fff}
+.btn-ink:hover{background:#3a3d40}
+.btn-sm{padding:7px 10px;font-size:13px;border-radius:9px}
+.link{border:0;background:none;padding:0;color:var(--ink);text-decoration:underline;font-weight:600}
+input[type=text],input[type=email],input[type=tel]{border:1.5px solid var(--line);border-radius:10px;padding:10px 12px;background:#fff;width:100%;min-width:0}
+input:focus-visible,select:focus-visible,button:focus-visible,.opt:focus-within{outline:2px solid var(--pink-s);outline-offset:2px}
+input.err{border-color:#d3437f;background:#fff6fa}
+select{border:1.5px solid var(--line);border-radius:10px;padding:8px 10px;background:#fff;width:100%}
+
+.fast{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:14px}
+.fast .or{font-size:13px;color:var(--muted)}
+.form{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.form .full{grid-column:1/-1}
+.field{display:flex;flex-direction:column;gap:4px;font-size:13px;font-weight:600;color:var(--text)}
+.inrow{display:flex;gap:6px}
+.chips{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-top:12px;font-size:12.5px;color:var(--muted)}
+.chips button{border:1px solid var(--line);background:#fff;border-radius:999px;padding:4px 10px;font-size:12.5px}
+.chips button:hover{border-color:var(--ink)}
+.note{font-size:12.5px;color:var(--muted);margin:10px 0 0}
+@media (max-width:520px){.form{grid-template-columns:1fr}}
+
+.opt{display:grid;grid-template-columns:20px minmax(0,1fr) auto;gap:12px;align-items:start;padding:12px 14px;border:1.5px solid var(--line);border-radius:13px;margin-top:8px;cursor:pointer;background:#fff;transition:border-color .15s,background .15s}
+.opt:first-child{margin-top:0}
+.opt:hover{border-color:#b9b9b9}
+.opt.sel{border-color:var(--ink);background:var(--pink-xl)}
+.opt.dis{opacity:.5;cursor:not-allowed}
+.radio{width:20px;height:20px;border-radius:50%;border:2px solid #b5b5b5;margin-top:1px;display:grid;place-items:center;background:#fff}
+.opt.sel .radio{border-color:var(--ink)}
+.opt.sel .radio::after{content:"";width:10px;height:10px;border-radius:50%;background:var(--ink)}
+.o-title{font-weight:600;display:flex;align-items:center;gap:6px 8px;flex-wrap:wrap}
+.o-sub{font-size:13px;color:var(--text);margin-top:2px}
+.o-desc{font-size:12.5px;color:var(--muted);margin-top:2px}
+.o-price{font-weight:700;white-space:nowrap;text-align:right}
+.o-price s{font-weight:400;color:var(--muted);font-size:12.5px;display:block}
+.o-more{margin-top:10px;font-size:13.5px}
+.tag{font-size:11px;font-weight:700;padding:2px 7px;border-radius:999px;background:#f0f0f0;color:var(--ink);letter-spacing:.01em}
+.tag.p{background:var(--pink)}.tag.g{background:var(--green)}.tag.d{background:var(--ink);color:#fff}
+.carrier{font-size:11.5px;font-weight:600;color:var(--muted);border:1px solid var(--line);border-radius:6px;padding:1px 6px}
+.co2{color:var(--green-d);font-weight:600}
+
+.seg{display:flex;background:#f3f0f2;border-radius:12px;padding:4px;gap:4px;margin-bottom:12px}
+.seg button{flex:1;border:0;background:none;padding:9px 6px;border-radius:9px;font-weight:600;font-size:14px;color:var(--muted)}
+.seg button[aria-selected=true]{background:#fff;color:var(--ink);box-shadow:0 1px 3px rgba(0,0,0,.08)}
+.seg button small{display:block;font-weight:500;font-size:11px}
+.logo-m{display:inline-flex;gap:3px;align-items:center}
+.lg{font-size:10.5px;font-weight:800;border-radius:5px;padding:2px 5px;line-height:1.2;letter-spacing:.02em}
+.testcard{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:6px}
+.testcard div{background:#fff;border:1.5px solid var(--line);border-radius:10px;padding:8px 10px;font-family:var(--mono);font-size:13px;color:var(--text)}
+.testcard div span{display:block;font-family:"Public Sans",sans-serif;font-size:11px;color:var(--muted)}
+.testcard .full{grid-column:1/-1}
+.toggle{display:flex;gap:6px;margin-top:10px;flex-wrap:wrap}
+.toggle button{border:1.5px solid var(--line);background:#fff;border-radius:999px;padding:5px 11px;font-size:12.5px;font-weight:600}
+.toggle button[aria-pressed=true]{border-color:var(--ink);background:var(--ink);color:#fff}
+.plan{display:grid;gap:4px;margin-top:6px}
+.plan div{display:flex;justify-content:space-between;gap:10px;background:#fff;border-radius:9px;padding:7px 10px;border:1px solid var(--line)}
+.legal{font-size:12px;color:var(--muted);margin-top:8px}
+.crypto-amt{font-size:22px;font-weight:800;letter-spacing:-.01em;margin:4px 0 2px}
+.lock{display:inline-flex;gap:6px;align-items:center;font-size:12.5px;background:#fff;border:1px solid var(--line);border-radius:999px;padding:3px 10px;margin-top:6px}
+
+.sum .row{display:flex;justify-content:space-between;gap:10px;padding:4px 0;font-size:14.5px}
+.sum .row.tot{font-size:18px;font-weight:800;border-top:1px solid var(--line);margin-top:6px;padding-top:10px}
+.sum .row.vat{color:var(--muted);font-size:13px}
+.sum .row.disc{color:#b0225f}
+.pay{width:100%;margin-top:14px;border:0;background:var(--ink);color:#fff;border-radius:14px;padding:16px;font-size:16.5px;font-weight:700;display:flex;align-items:center;justify-content:center;gap:10px}
+.pay:hover{background:#3a3d40}
+.pay[disabled]{opacity:.45;cursor:not-allowed}
+.trust{display:flex;flex-wrap:wrap;gap:6px 16px;justify-content:center;font-size:12.5px;color:var(--muted);margin-top:12px}
+.trust span{display:inline-flex;gap:5px;align-items:center}
+.foot{font-size:12px;color:var(--muted);margin-top:18px;line-height:1.5}
+
+.confirm{text-align:left}
+.confirm .big{font-size:26px;font-weight:800;letter-spacing:-.02em;margin:4px 0}
+.confirm .ok{width:54px;height:54px;border-radius:50%;background:var(--green);display:grid;place-items:center;margin-bottom:8px}
+.tl{list-style:none;padding:0;margin:14px 0 0}
+.tl li{position:relative;padding:0 0 14px 24px;font-size:14px}
+.tl li::before{content:"";position:absolute;left:5px;top:6px;width:10px;height:10px;border-radius:50%;background:#d9d9d9}
+.tl li::after{content:"";position:absolute;left:9px;top:18px;bottom:0;width:2px;background:#ececec}
+.tl li:last-child::after{display:none}
+.tl li.now::before{background:var(--green)}
+.tl li b{display:block}
+.tl li span{color:var(--muted);font-size:13px}
+
+.mbar{display:none;position:fixed;left:12px;right:12px;bottom:12px;z-index:25;background:var(--ink);color:#fff;border-radius:14px;padding:10px 12px 10px 14px;align-items:center;gap:10px;font-size:13.5px;box-shadow:0 6px 24px rgba(0,0,0,.18)}
+.mbar b{color:var(--pink)}
+.mbar span{flex:1;min-width:0}
+.mbar button{border:0;background:var(--pink);color:var(--ink);font-weight:700;border-radius:10px;padding:8px 10px;font-size:13px;white-space:nowrap}
+
+/* Merchant-side */
+.merchant{background:var(--m-bg);color:var(--m-text);border-radius:20px;padding:18px}
+.mhead{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
+.mtitle{font-size:19px;font-weight:800;letter-spacing:-.01em}
+.msub{font-size:13px;color:var(--m-muted)}
+.live{font-size:11px;font-weight:700;letter-spacing:.08em;color:var(--green);display:inline-flex;align-items:center;gap:6px;white-space:nowrap;border:1px solid var(--m-line);border-radius:999px;padding:4px 10px}
+.live i{width:7px;height:7px;border-radius:50%;background:var(--green)}
+.live.flash i{animation:flash .6s}
+@keyframes flash{0%{transform:scale(1)}50%{transform:scale(1.9);background:var(--pink)}100%{transform:scale(1)}}
+.mtabs{display:flex;gap:4px;margin:14px 0 4px;background:#1d1f21;border-radius:12px;padding:4px}
+.mtabs button{flex:1;border:0;background:none;color:var(--m-muted);padding:8px 6px;border-radius:9px;font-weight:600;font-size:14px}
+.mtabs button[aria-selected=true]{background:var(--m-card);color:var(--m-text)}
+@media (max-width:460px){.mtabs button{font-size:13px;padding:8px 2px;white-space:nowrap}.mtabs .cnt{margin-left:2px}}
+.mtabs .cnt{display:inline-block;min-width:20px;font-size:11px;background:var(--pink);color:var(--ink);border-radius:999px;padding:1px 6px;margin-left:4px}
+.mcard{background:var(--m-card);border:1px solid var(--m-line);border-radius:14px;padding:14px;margin-top:12px}
+.mcard h3{margin:0 0 10px;font-size:14px;font-weight:700;display:flex;justify-content:space-between;gap:8px;align-items:baseline;flex-wrap:wrap}
+.mcard h3 small{font-weight:500;color:var(--m-muted);font-size:12px}
+.mut{color:var(--m-muted)}
+.hero-n{font-size:34px;font-weight:800;letter-spacing:-.02em;line-height:1.05;color:var(--pink)}
+.hero-s{font-size:13px;color:var(--m-muted);margin-top:4px}
+.stack{display:flex;height:14px;border-radius:7px;overflow:hidden;margin:14px 0 8px;background:#1d1f21}
+.stack span{height:100%;transition:width .3s}
+.legend{display:flex;flex-wrap:wrap;gap:4px 14px;font-size:12px;color:var(--m-muted)}
+.legend i{display:inline-block;width:9px;height:9px;border-radius:2px;margin-right:5px;vertical-align:0}
+.led{font-size:14px}
+.led .r{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:2px 12px;padding:7px 0;border-bottom:1px dashed var(--m-line)}
+.led .r:last-child{border-bottom:0}
+.led .r small{grid-column:1/-1;color:var(--m-muted);font-size:12px}
+.led .r .v{font-variant-numeric:tabular-nums;text-align:right;white-space:nowrap}
+.led .r.sub{font-weight:700}
+.led .r.res{font-weight:800;font-size:15.5px;color:var(--pink)}
+.neg{color:#ff9cc6}
+.pos{color:var(--green)}
+.facts{display:grid;grid-template-columns:auto minmax(0,1fr);gap:8px 14px;font-size:13.5px;margin:0}
+.facts dt{color:var(--m-muted)}
+.facts dd{margin:0}
+.save{display:inline-block;background:rgba(140,224,176,.14);color:var(--green);border-radius:8px;padding:3px 8px;font-size:12.5px;font-weight:600;margin-top:10px}
+.cmp{display:grid;gap:6px}
+.cmp-row{display:grid;grid-template-columns:minmax(0,9.5em) minmax(0,1fr) 6.6em;gap:10px;align-items:center;font-size:13px;border:0;background:none;color:inherit;text-align:left;padding:5px 6px;border-radius:9px;width:100%}
+.cmp-row:hover{background:#383c40}
+.cmp-row.on{background:#3d3236;box-shadow:inset 0 0 0 1px var(--pink)}
+.cmp-row[disabled]{cursor:default}
+.cmp-row[disabled]:hover{background:none}
+.cmp-track{position:relative;height:10px;background:#1d1f21;border-radius:5px}
+.cmp-track .ref{position:absolute;left:0;top:0;bottom:0;background:#5b6066;border-radius:5px}
+.cmp-track .fee{position:absolute;left:0;top:0;bottom:0;background:var(--pink);border-radius:5px}
+.cmp-row.on .fee{background:var(--pink-s)}
+.cmp-val{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.cmp-val small{display:block;color:var(--m-muted);font-size:11px}
+@media (max-width:460px){.cmp-row{grid-template-columns:minmax(0,1fr) 6.4em}.cmp-track{grid-column:1/-1;grid-row:2}}
+table.mt{width:100%;border-collapse:collapse;font-size:13px}
+table.mt th{text-align:left;font-weight:600;color:var(--m-muted);font-size:11.5px;padding:0 6px 6px;border-bottom:1px solid var(--m-line)}
+table.mt td{padding:7px 6px;border-bottom:1px dashed var(--m-line);vertical-align:top}
+table.mt tr:last-child td{border-bottom:0}
+table.mt .rt{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
+table.mt tr.on td{background:#3d3236}
+table.mt tr.off td{opacity:.45}
+table.mt td small{display:block;color:var(--m-muted);font-size:11.5px}
+.scroll-x{overflow-x:auto}
+.ctrls{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media (max-width:460px){.ctrls{grid-template-columns:1fr}}
+.ctrls label{display:flex;flex-direction:column;gap:5px;font-size:12.5px;color:var(--m-muted);font-weight:600}
+.ctrls select{background:#1d1f21;border-color:var(--m-line);color:var(--m-text)}
+.scn{display:flex;gap:6px;flex-wrap:wrap}
+.scn button{flex:1;min-width:0;border:1px solid var(--m-line);background:#1d1f21;color:var(--m-text);border-radius:10px;padding:7px 6px;font-size:12.5px;font-weight:600;line-height:1.2}
+.scn button small{display:block;font-weight:500;color:var(--m-muted);font-size:11px}
+.scn button[aria-pressed=true]{border-color:var(--pink);background:#3d3236}
+input[type=range]{width:100%;accent-color:var(--pink)}
+.mon{display:grid;grid-template-columns:1fr auto;gap:6px 12px;font-size:13.5px;margin-top:10px}
+.mon .v{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+.stats div{background:#1d1f21;border-radius:10px;padding:9px 10px}
+.stats b{display:block;font-size:20px;font-variant-numeric:tabular-nums;line-height:1.1}
+.stats span{font-size:11.5px;color:var(--m-muted)}
+@media (max-width:460px){.stats{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.funnel{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+.funnel span{font-size:12px;border:1px solid var(--m-line);border-radius:999px;padding:4px 10px;color:var(--m-muted)}
+.funnel span.ok{border-color:var(--green);color:var(--m-text)}
+.funnel span.ok::before{content:"✓ ";color:var(--green)}
+.funnel span em{font-style:normal;color:var(--m-muted);font-family:var(--mono);font-size:11px;margin-left:4px}
+.evs{list-style:none;margin:0;padding:0}
+.ev{display:grid;grid-template-columns:44px minmax(0,1fr);gap:10px;padding:9px 0;border-bottom:1px dashed var(--m-line);font-size:13.5px}
+.ev:last-child{border-bottom:0}
+.ev time{font-family:var(--mono);font-size:12px;color:var(--m-muted);padding-top:2px}
+.ev .tg{display:inline-block;font-size:10px;font-weight:800;letter-spacing:.06em;padding:1px 6px;border-radius:5px;margin-right:6px;vertical-align:1px;text-transform:uppercase}
+.tg.kunde{background:var(--pink);color:var(--ink)}
+.tg.system{background:#4b5056;color:#fff}
+.tg.frakt{background:#bcd6ff;color:var(--ink)}
+.tg.betaling{background:var(--green);color:var(--ink)}
+.tg.risiko{background:#ffd88f;color:var(--ink)}
+.tg.ordre{background:var(--pink-s);color:var(--ink)}
+.tg.merchant{background:none;color:var(--m-muted);box-shadow:inset 0 0 0 1px var(--m-line)}
+.ev .d{color:var(--m-muted);font-size:12.5px;margin-top:1px}
+.ev code{display:block;font-family:var(--mono);font-size:11.5px;color:#c9b3bd;margin-top:3px;word-break:break-all}
+.ev.new{animation:evin .5s}
+@keyframes evin{from{background:#3d3236}to{background:none}}
+.mtl{list-style:none;padding:0;margin:0}
+.mtl li{display:grid;grid-template-columns:7.5em minmax(0,1fr);gap:10px;padding:6px 0;font-size:13.5px;border-bottom:1px dashed var(--m-line)}
+.mtl li:last-child{border-bottom:0}
+.mtl li time{color:var(--m-muted);font-size:12.5px}
+.src{font-size:12px;color:var(--m-muted);line-height:1.55}
+.src a{color:var(--pink)}
+
+/* Betalingsdialog */
+.modal{position:fixed;inset:0;background:rgba(37,39,41,.55);display:grid;place-items:center;z-index:60;padding:16px}
+.modal[hidden]{display:none}
+.sheet{background:#fff;border-radius:22px;max-width:400px;width:100%;padding:22px;box-shadow:0 20px 60px rgba(0,0,0,.25);text-align:center}
+.sheet h3{margin:10px 0 6px;font-size:19px}
+.sheet p{margin:0 0 6px;color:var(--text);font-size:14.5px}
+.sheet .acts{display:grid;gap:8px;margin-top:16px}
+.sheet .acts .btn{width:100%;padding:12px}
+.sheet .choices{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:14px}
+.sheet .choices .btn{padding:12px 8px}
+.sheet .tiny{font-size:12px;color:var(--muted);margin-top:10px}
+.ico{width:58px;height:58px;border-radius:50%;background:var(--pink-l);display:grid;place-items:center;margin:0 auto}
+.ico.ok{background:var(--green)}
+.spin{width:34px;height:34px;border:3px solid var(--pink);border-top-color:var(--ink);border-radius:50%;animation:sp 0.8s linear infinite}
+@keyframes sp{to{transform:rotate(360deg)}}
+.phone{width:200px;margin:12px auto 0;border:6px solid var(--ink);border-radius:26px;padding:14px 12px;text-align:left;background:#fff}
+.phone .app{font-size:11px;font-weight:800;letter-spacing:.04em}
+.phone .amt{font-size:22px;font-weight:800;margin:8px 0 2px}
+.phone .to{font-size:12px;color:var(--muted)}
+.txbox{background:#f6f4f5;border-radius:12px;padding:10px 12px;text-align:left;font-size:13px;margin-top:10px;display:grid;grid-template-columns:auto 1fr;gap:4px 12px}
+.txbox span{color:var(--muted)}
+.txbox b{text-align:right;font-weight:600;word-break:break-all}
+.qr{width:170px;height:170px;margin:10px auto 0;display:block}
+@media (prefers-reduced-motion:reduce){.spin{animation-duration:3s}.live.flash i,.ev.new{animation:none}}
+</style>
+</head>
+<body data-view="kunde">
+
+<header class="top">
+  <div class="top-in">
+    <a class="logo" href="/checkout2030/" aria-label="Blivakker Checkout 2030">blivakker</a>
+    <span class="b2030">CHECKOUT 2030</span>
+    <span class="demo"><i></i>Demo · ingen ekte betalinger</span>
+    <div class="viewsw" role="group" aria-label="Velg visning">
+      <button type="button" data-view="kunde" aria-pressed="true">Kunde</button>
+      <button type="button" class="vs-m" data-view="merchant" aria-pressed="false">Merchant</button>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="shop" id="shop">
+    <div class="intro" id="intro">
+      <b>Slik kan Blivakkers checkout se ut i 2030.</b> Alt er en demo: ingen ekte betalinger, og ingenting du skriver lagres eller sendes. <span id="intro-side">Til høyre ser du det butikken ser: kundereisen og hver krone i gebyr.</span>
+      <div class="feat"><span>Passkey i stedet for passord</span><span>CO₂ per leveringsvalg</span><span>Kort, Vipps, BNPL og krypto</span><span>Åpne gebyrer for butikken</span></div>
+    </div>
+
+    <div id="flow">
+      <section class="card" aria-labelledby="h-kurv">
+        <h2 id="h-kurv"><span class="n" id="n-kurv">1</span>Handlekurv <small id="cart-count"></small></h2>
+        <div id="cart"></div>
+      </section>
+
+      <section class="card" id="sec-kontakt" aria-labelledby="h-kontakt">
+        <h2 id="h-kontakt"><span class="n" id="n-kontakt">2</span>Deg</h2>
+        <div class="fast">
+          <button type="button" class="btn btn-pink" id="passkey">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 11v3a6 6 0 0 1-1.2 3.6"/><path d="M8 11a4 4 0 0 1 8 0v1.5"/><path d="M5 12a7 7 0 0 1 14 0v2"/><path d="M16 15.5a10 10 0 0 1-1 4.5"/><path d="M8.5 16a9 9 0 0 1-1.5 3.5"/></svg>
+            Fortsett med passkey
+          </button>
+          <span class="or">eller fyll inn selv</span>
+        </div>
+        <div class="form">
+          <label class="field">E-post<input id="f-email" type="email" autocomplete="off" placeholder="kari@example.no" data-label="e-post"></label>
+          <label class="field">Mobil
+            <span class="inrow"><input id="f-phone" type="tel" inputmode="numeric" autocomplete="off" placeholder="123 45 678" data-label="mobilnummer"><button type="button" class="btn btn-sm" id="lookup">Finn adresse</button></span>
+          </label>
+          <label class="field">Fornavn<input id="f-first" type="text" autocomplete="off" data-label="fornavn"></label>
+          <label class="field">Etternavn<input id="f-last" type="text" autocomplete="off" data-label="etternavn"></label>
+          <label class="field full">Gateadresse<input id="f-street" type="text" autocomplete="off" data-label="gateadresse"></label>
+          <label class="field">Postnummer<input id="f-pc" type="text" inputmode="numeric" maxlength="4" autocomplete="off" data-label="postnummer"></label>
+          <label class="field">Sted<input id="f-city" type="text" autocomplete="off" data-label="sted"></label>
+        </div>
+        <div class="chips">Prøv et annet sted:
+          <button type="button" data-pc="0155">0155 Oslo</button>
+          <button type="button" data-pc="5003">5003 Bergen</button>
+          <button type="button" data-pc="7010">7010 Trondheim</button>
+          <button type="button" data-pc="9008">9008 Tromsø</button>
+          <button type="button" data-pc="8006">8006 Bodø</button>
+        </div>
+      </section>
+
+      <section class="card" aria-labelledby="h-lev">
+        <h2 id="h-lev"><span class="n" id="n-lev">3</span>Levering <small id="ship-to"></small></h2>
+        <div id="ship" role="radiogroup" aria-labelledby="h-lev"></div>
+      </section>
+
+      <section class="card" aria-labelledby="h-bet">
+        <h2 id="h-bet"><span class="n" id="n-bet">4</span>Betaling</h2>
+        <div class="seg" role="tablist" aria-label="Betalingstype">
+          <button type="button" role="tab" data-group="fiat" aria-selected="true">Kort og bank<small>Fiat</small></button>
+          <button type="button" role="tab" data-group="bnpl" aria-selected="false">Betal senere<small>BNPL</small></button>
+          <button type="button" role="tab" data-group="crypto" aria-selected="false">Krypto<small>Stablecoins, ETH, BTC</small></button>
+        </div>
+        <div id="pay-list" role="radiogroup" aria-labelledby="h-bet"></div>
+      </section>
+
+      <section class="card sum" aria-label="Oppsummering">
+        <div id="sum"></div>
+        <button type="button" class="pay" id="pay"></button>
+        <div class="trust">
+          <span><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>Kryptert</span>
+          <span>30 dagers åpent kjøp</span>
+          <span>Gratis retur til hentested</span>
+        </div>
+      </section>
+    </div>
+
+    <div id="done" hidden></div>
+
+    <p class="foot">Konseptdemo av Jonas Jahnsson. Ikke en offisiell Blivakker-tjeneste, og ingen av tallene er Blivakkers egne priser eller avtaler. Gebyrene er satt under Stripes publiserte listepriser for Norge (hentet 3. november 2026). Fraktkostnader, produktpriser og kryptokurser er antatte demo-tall. <a href="/posts/checkout2030/">Om prosjektet</a>.</p>
+  </div>
+
+  <aside class="merchant" id="merchant" aria-label="Merchant-visning">
+    <div class="mhead">
+      <div>
+        <div class="mtitle">Merchant-visning</div>
+        <div class="msub">Det butikken ser. Oppdateres mens kunden klikker.</div>
+      </div>
+      <span class="live" id="live"><i></i>LIVE</span>
+    </div>
+    <div class="mtabs" role="tablist" aria-label="Merchant">
+      <button type="button" role="tab" data-mtab="cost" aria-selected="true">Kostnader</button>
+      <button type="button" role="tab" data-mtab="journey" aria-selected="false">Kundereise<span class="cnt" id="ev-count">0</span></button>
+      <button type="button" role="tab" data-mtab="prices" aria-selected="false">Prisliste</button>
+    </div>
+    <div id="tab-cost" role="tabpanel"></div>
+    <div id="tab-journey" role="tabpanel" hidden></div>
+    <div id="tab-prices" role="tabpanel" hidden></div>
+  </aside>
+</main>
+
+<div class="mbar" id="mbar"><span id="mbar-t"></span><button type="button" data-view="merchant">Se merchant</button></div>
+
+<div class="modal" id="modal" hidden><div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-live="polite"></div></div>
+
+<script>
+(() => {
+const $ = (s, el = document) => el.querySelector(s);
+const $$ = (s, el = document) => [...el.querySelectorAll(s)];
+const r2 = n => Math.round(n * 100) / 100;
+const nf2 = new Intl.NumberFormat('nb-NO', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+const nf0 = new Intl.NumberFormat('nb-NO', {maximumFractionDigits: 0});
+const nfp = new Intl.NumberFormat('nb-NO', {maximumFractionDigits: 2});
+const kr = n => nf2.format(n) + '\u00a0kr';
+const kr0 = n => (Math.abs(n - Math.round(n)) < .005 ? nf0.format(Math.round(n)) : nf2.format(n)) + '\u00a0kr';
+const krInt = n => nf0.format(Math.round(n)) + '\u00a0kr';
+const pc = n => nfp.format(n) + '\u00a0%';
+const dShort = new Intl.DateTimeFormat('nb-NO', {weekday: 'short', day: 'numeric', month: 'short'});
+const dDay = new Intl.DateTimeFormat('nb-NO', {day: 'numeric', month: 'short'});
+const cap = s => s.charAt(0).toUpperCase() + s.slice(1);
+const fd = d => cap(dShort.format(d));
+const esc = s => String(s).replace(/[&<>"]/g, c => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;'}[c]));
+
+// Produkter og priser er oppdiktet, men på et realistisk nivå for norsk netthandel med skjønnhet
+const P = {
+  krem: {name: 'Fuktighetskrem for tørr hud', cat: 'Ansikt', size: '50 ml', price: 289, kind: 'jar', bg: '#FFE0EE'},
+  serum: {name: 'Serum med 10 % niacinamid', cat: 'Ansikt', size: '30 ml', price: 119, kind: 'dropper', bg: '#E7EEFF'},
+  sol: {name: 'Solkrem til ansiktet SPF 50', cat: 'Sol', size: '50 ml', price: 199, kind: 'tube', bg: '#FFF1CF'},
+  leppe: {name: 'Leppepomade med sheasmør', cat: 'Lepper', size: '4,8 g', price: 79, kind: 'stick', bg: '#FFD6E3'},
+  parfyme: {name: 'Eau de Parfum, blomstrende', cat: 'Parfyme', size: '50 ml', price: 949, kind: 'perfume', bg: '#F1E8FF'},
+  sjampo: {name: 'Reparerende sjampo', cat: 'Hår', size: '250 ml', price: 259, kind: 'bottle', bg: '#E2F6EA'},
+  micellar: {name: 'Micellarvann, reisestørrelse', cat: 'Rens', size: '100 ml', price: 69, kind: 'bottle', bg: '#E6F4FB'}
+};
+const SCN = {
+  liten: {name: 'Liten kurv', cart: {leppe: 1}},
+  typisk: {name: 'Typisk kurv', cart: {krem: 1, serum: 1, sol: 1}},
+  stor: {name: 'Stor kurv', cart: {parfyme: 1, sjampo: 1, krem: 1, sol: 1}}
+};
+
+// Gebyrer: Checkout 2030 ligger under Stripes listepris for Norge (stripe.com/no/pricing, 3. nov. 2026)
+const CARD_REF = {pct: 2.4, fix: 2, label: 'Kort fra Norge og EØS'};
+const BNPL_REF = {pct: 2.99, fix: 4, label: 'Klarna, Norge'};
+const BNPL_RISK = 'Ingen kredittrisiko for butikken. BNPL-leverandøren betaler butikken og tar risikoen hvis kunden ikke betaler.';
+const M = {
+  vipps: {group: 'fiat', name: 'Vipps MobilePay', sub: 'Bekreft i appen', pct: 1.99, fix: 2, payout: 2,
+    ref: {pct: 2.4, fix: 2.5, label: 'MobilePay (Vipps er ikke listet)'},
+    risk: 'Lav. Kunden bekrefter i appen med sterk autentisering. Innsigelse er mulig via kortet som ligger i appen.'},
+  card: {group: 'fiat', name: 'Kort', sub: 'Visa, Mastercard', pct: 1.89, fix: 1.75, payout: 2, ref: CARD_REF,
+    intl: {pct: 2.9, fix: 1.75, ref: {pct: 3.25, fix: 2, label: 'Internasjonale kort'}},
+    risk: 'Lav med 3-D Secure: ansvaret for svindel flyttes til kortutstederen. Kunden kan fortsatt kreve pengene tilbake (tvist: 150 kr).'},
+  wallet: {group: 'fiat', name: 'Apple Pay / Google Pay', sub: 'Face ID eller fingeravtrykk', pct: 1.89, fix: 1.75, payout: 2,
+    ref: {pct: 2.4, fix: 2, label: 'Prises som kort'},
+    risk: 'Svært lav. Kortet er tokenisert og bekreftet med biometri, så det trengs ingen ekstra kode.'},
+  bank: {group: 'fiat', name: 'Bankbetaling', sub: 'Rett fra kontoen med BankID', pct: .4, fix: 2, cap: 45, payout: 1,
+    ref: {pct: .5, fix: 2.5, cap: 60, label: 'Pay by Bank'},
+    risk: 'Ingen tvister. Pengene er trukket fra kontoen før ordren bekreftes. Refusjon sendes som bankoverføring.'},
+  invoice: {group: 'bnpl', name: 'Faktura', sub: 'Betal om 30 dager, 0 kr', pct: 2.49, fix: 3.5, payout: 2, ref: BNPL_REF, risk: BNPL_RISK},
+  split3: {group: 'bnpl', name: 'Del opp i 3', sub: 'Rentefritt, 0 kr i gebyr', pct: 2.49, fix: 3.5, payout: 2, ref: BNPL_REF, risk: BNPL_RISK, min: 300},
+  finance: {group: 'bnpl', name: 'Delbetaling', sub: '12 måneder, fra 1 000 kr', pct: 2.49, fix: 3.5, payout: 2, ref: BNPL_REF, risk: BNPL_RISK, min: 1000},
+  usdc_base: {group: 'crypto', name: 'USDC på Base', sub: 'Stablecoin, bekreftet på ca. 2 sek', pct: 1.2, fix: 0, payout: 0,
+    ref: {pct: 1.5, fix: 0, label: 'Stablecoins (oppgjør i USD)'}, unit: 'USDC', rate: 10.5, dec: 2, net: 'Base', gas: .05, wallets: ['Coinbase Wallet', 'MetaMask', 'Rainbow'],
+    risk: 'Ingen tvister. Betalingen er endelig når blokken er bekreftet. Butikken får kroner, ikke krypto.'},
+  usdc_sol: {group: 'crypto', name: 'USDC på Solana', sub: 'Stablecoin, bekreftet på under 1 sek', pct: 1.2, fix: 0, payout: 0,
+    ref: {pct: 1.5, fix: 0, label: 'Stablecoins (oppgjør i USD)'}, unit: 'USDC', rate: 10.5, dec: 2, net: 'Solana', gas: .01, wallets: ['Phantom', 'Solflare'],
+    risk: 'Ingen tvister. Betalingen er endelig når blokken er bekreftet. Butikken får kroner, ikke krypto.'},
+  eth: {group: 'crypto', name: 'ETH på Base', sub: 'Veksles til kroner med en gang', pct: 1.7, pctLabel: '1,2 % + 0,5 % veksling', fix: 0, payout: 0,
+    ref: null, unit: 'ETH', rate: 31500, dec: 5, net: 'Base', gas: .05, wallets: ['Coinbase Wallet', 'MetaMask', 'Rainbow'],
+    risk: 'Ingen tvister. Kursen er låst i 10 minutter, og kursrisikoen ligger hos betalingsleverandøren, ikke hos butikken.'},
+  btc: {group: 'crypto', name: 'Bitcoin (Lightning)', sub: 'Betalt på under ett sekund', pct: 1.7, pctLabel: '1,2 % + 0,5 % veksling', fix: 0, payout: 0,
+    ref: null, unit: 'sats', rate: .0105, dec: 0, net: 'Lightning', gas: .01, wallets: ['Lightning-lommebok'],
+    risk: 'Ingen tvister. Kursen er låst i 10 minutter, og kursrisikoen ligger hos betalingsleverandøren, ikke hos butikken.'}
+};
+const RATE_TXT = {usdc_base: '1 USDC = 10,50 kr', usdc_sol: '1 USDC = 10,50 kr', eth: '1 ETH = 31 500 kr', btc: '1 BTC = 1 050 000 kr'};
+
+// Fraktkostnad er et grovt estimat for en stor nettbutikk, eks. mva. Kundepris er inkl. mva.
+const SHIP = [
+  {id: 'postkassen', carrier: 'Posten', name: 'Pakke i postkassen', price: 49, cost: 46, days: [2, 3], co2: .25, free: true, desc: 'Rett i postkassen. Du trenger ikke være hjemme.'},
+  {id: 'pakkeboks', carrier: 'Budbee', name: 'Pakkeboks', price: 39, cost: 37, days: [1, 2], co2: .12, free: true, pickup: true, desc: 'Hent når det passer deg. Døgnåpent.'},
+  {id: 'hentested', carrier: 'Bring', name: 'Hentested', price: 59, cost: 54, days: [1, 3], co2: .30, free: true, pickup: true, desc: 'Hent i en butikk i nærheten.'},
+  {id: 'kveld', carrier: 'Helthjem', name: 'Kveldslevering på døra', price: 79, cost: 66, days: [1, 2], co2: .40, desc: 'På døra mellom kl. 17 og 22.'},
+  {id: 'sameday', carrier: 'Bud', name: 'Samme dag med elsykkel', price: 149, cost: 125, days: [0, 0], co2: .03, desc: 'Bestill før kl. 15, så er pakken hos deg før kl. 21.'},
+  {id: 'gronn', carrier: 'Samlerute', name: 'Grønn samlelevering', price: 0, cost: 31, days: 'fre', co2: .08, desc: 'Vi samler pakkene i nabolaget og kjører én rute på fredag.'}
+];
+const SHIP_BY = Object.fromEntries(SHIP.map(s => [s.id, s]));
+const CITY = {'0155': 'Oslo', '5003': 'Bergen', '7010': 'Trondheim', '9008': 'Tromsø', '8006': 'Bodø', '4006': 'Stavanger'};
+const cityFor = code => CITY[code] || ['Oslo', 'Oslo', 'Hamar', 'Drammen', 'Stavanger', 'Bergen', 'Ålesund', 'Trondheim', 'Bodø', 'Tromsø'][+code[0]];
+const DEMO = {email: 'kari.nordmann@example.no', phone: '123 45 678', first: 'Kari', last: 'Nordmann', street: 'Storgata 12', pc: '0155', city: 'Oslo'};
+const FIELDS = ['email', 'phone', 'first', 'last', 'street', 'pc', 'city'];
+
+const S = {
+  cart: {...SCN.typisk.cart}, scn: 'typisk', code: false,
+  ship: 'postkassen', pickup: 0, group: 'fiat', method: 'vipps', cardIntl: false,
+  threshold: 549, orders: 50000, mtab: 'cost',
+  t0: Date.now(), events: [], touched: new Set(), steps: {}, attempts: 0, lockEnd: 0, lastPc: '', done: null
+};
+
+// Hjelpere for tid og dato
+const isBiz = d => d.getDay() !== 0 && d.getDay() !== 6;
+function addBiz(d, n) { const x = new Date(d); let k = 0; while (k < n) { x.setDate(x.getDate() + 1); if (isBiz(x)) k++; } return x; }
+function addDays(d, n) { const x = new Date(d); x.setDate(x.getDate() + n); return x; }
+const mmss = ms => { const s = Math.max(0, Math.floor(ms / 1000)); return String(Math.floor(s / 60)).padStart(2, '0') + ':' + String(s % 60).padStart(2, '0'); };
+const hex = n => Array.from({length: n}, () => '0123456789abcdef'[Math.floor(Math.random() * 16)]).join('');
+
+function f(id) { return $('#f-' + id).value.trim(); }
+function postcode() { const v = f('pc'); return /^\d{4}$/.test(v) ? v : ''; }
+function missing() {
+  const m = [];
+  if (!/^\S+@\S+\.\S+$/.test(f('email'))) m.push('email');
+  if (!f('first')) m.push('first');
+  if (!f('street')) m.push('street');
+  if (!postcode()) m.push('pc');
+  return m;
+}
+const profileOk = () => missing().length === 0;
+
+function priceOf(m, intl) { return m === M.card && intl ? M.card.intl : m; }
+function feeWith(p, total) { let x = total * p.pct / 100 + p.fix; if (p.cap) x = Math.min(x, p.cap); return r2(x); }
+function priceLabel(p) {
+  if (p.pctLabel) return p.pctLabel;
+  let s = pc(p.pct) + (p.fix ? ' + ' + kr(p.fix) : '');
+  if (p.cap) s += ', maks ' + kr0(p.cap);
+  return s;
+}
+
+function shipAvail(o, code) {
+  if (!code) return o.id === 'sameday' ? {ok: false, why: 'Skriv inn postnummer for å sjekke'} : {ok: true};
+  const north = /^[89]/.test(code);
+  if (o.id === 'sameday' && !/^(0|1[0-2]|40|50|51|70)/.test(code)) return {ok: false, why: 'Kun i Oslo, Bergen, Stavanger og Trondheim'};
+  if (o.id === 'kveld' && north) return {ok: false, why: 'Ikke tilgjengelig i Nord-Norge ennå'};
+  if (o.id === 'pakkeboks' && north && !/^90/.test(code)) return {ok: false, why: 'Ingen pakkebokser i nærheten'};
+  return {ok: true};
+}
+function eta(o, code) {
+  const now = new Date();
+  const extra = !code ? 0 : /^[89]/.test(code) ? 2 : /^[567]/.test(code) ? 1 : 0;
+  if (o.id === 'sameday') {
+    const today = now.getHours() < 15 && isBiz(now);
+    const d = today ? now : addBiz(now, 1);
+    return {from: d, to: d, label: today ? 'I dag før kl. 21' : fd(d) + ' før kl. 21'};
+  }
+  if (o.days === 'fre') {
+    let d = addDays(now, 1);
+    while (d.getDay() !== 5 || d - now < 2 * 864e5) d = addDays(d, 1);
+    return {from: d, to: d, label: fd(d)};
+  }
+  const late = now.getHours() >= 15 ? 1 : 0;
+  const from = addBiz(now, o.days[0] + extra + late), to = addBiz(now, o.days[1] + extra + late);
+  const label = !code ? `${o.days[0]}–${o.days[1]} virkedager` : from.toDateString() === to.toDateString() ? fd(from) : `${fd(from)} – ${dShort.format(to)}`;
+  return {from, to, label};
+}
+function pickups(o) {
+  const city = f('city') || 'Oslo';
+  const street = (f('street') || 'Storgata').replace(/\s*\d.*$/, '');
+  return o.id === 'pakkeboks'
+    ? [`Pakkeboks ved ${city} stasjon · 450 m`, `Pakkeboks i ${street} · 700 m`, `Pakkeboks på kjøpesenteret · 1,4 km`]
+    : [`Dagligvare i ${street} · 300 m`, `Kiosk ved ${city} torg · 850 m`, `Bensinstasjon ${city} nord · 1,9 km`];
+}
+
+function calc(methodId = S.method, shipId = S.ship, intl = S.cardIntl) {
+  const goods = Object.entries(S.cart).reduce((a, [id, q]) => a + P[id].price * q, 0);
+  const disc = S.code ? r2(goods * .1) : 0;
+  const net = r2(goods - disc);
+  const o = SHIP_BY[shipId];
+  const freeOk = o.free && S.threshold > 0 && net >= S.threshold;
+  const shipCust = o.price === 0 || freeOk ? 0 : o.price;
+  const total = goods ? r2(net + shipCust) : 0;
+  const vat = r2(total * .2);
+  const exVat = r2(total - vat);
+  const m = M[methodId];
+  const p = priceOf(m, intl);
+  const fee = total ? feeWith(p, total) : 0;
+  const ref = total && p.ref ? feeWith(p.ref, total) : null;
+  const carrier = goods ? o.cost : 0;
+  const left = r2(exVat - fee - carrier);
+  return {goods, disc, net, o, freeOk, shipCust, total, vat, exVat, m, p, fee, ref, carrier, left, intl};
+}
+function finance(total) {
+  const r = .199 / 12, n = 12;
+  const pmt = r2(total * r / (1 - Math.pow(1 + r, -n)));
+  const paid = r2(pmt * n);
+  return {pmt, paid, cost: r2(paid - total), eff: (Math.pow(1 + r, 12) - 1) * 100};
+}
+function split3(total) { const a = Math.floor(total / 3 * 100) / 100; return [a, a, r2(total - 2 * a)]; }
+function cryptoAmt(m, total) { const v = total / m.rate; return m.dec ? v.toFixed(m.dec).replace('.', ',') : nf0.format(Math.round(v)); }
+function customerExtra(c) {
+  if (c.m === M.finance) { const fi = finance(c.total); return {kr: fi.cost, txt: `Renter ${kr(fi.cost)} over 12 måneder`}; }
+  if (c.m.group === 'crypto') return {kr: c.m.gas, txt: `Nettverksgebyr ca. ${kr(c.m.gas)}, betalt fra lommeboka`};
+  return {kr: 0, txt: '0 kr'};
+}
+
+// Kundereisen
+function log(tag, title, detail = '', tech = '') {
+  S.events.push({t: Date.now() - S.t0, tag, title, detail, tech, id: S.events.length});
+  renderJourney(true);
+  const l = $('#live'); l.classList.remove('flash'); void l.offsetWidth; l.classList.add('flash');
+}
+function markStep(id) { if (!(id in S.steps)) S.steps[id] = Date.now() - S.t0; }
+
+// Produktillustrasjoner
+function thumb(p, size = 56) {
+  const k = {
+    jar: '<rect x="9" y="18" width="22" height="14" rx="4" fill="#fff" stroke="#252729" stroke-width="1.6"/><rect x="11" y="12" width="18" height="7" rx="2" fill="#252729"/>',
+    dropper: '<rect x="13" y="17" width="14" height="16" rx="3" fill="#fff" stroke="#252729" stroke-width="1.6"/><rect x="16" y="11" width="8" height="6" rx="1" fill="#252729"/><rect x="18" y="5" width="4" height="7" rx="2" fill="#F460A1"/>',
+    tube: '<path d="M12 7h16l-2.5 23h-11z" fill="#fff" stroke="#252729" stroke-width="1.6" stroke-linejoin="round"/><rect x="15" y="30" width="10" height="5" rx="1.5" fill="#252729"/>',
+    stick: '<rect x="15" y="15" width="10" height="19" rx="2" fill="#fff" stroke="#252729" stroke-width="1.6"/><path d="M16 15V9a4 4 0 0 1 8 0v6z" fill="#F460A1"/>',
+    perfume: '<rect x="10" y="16" width="20" height="18" rx="5" fill="#fff" stroke="#252729" stroke-width="1.6"/><rect x="17" y="11" width="6" height="5" fill="#252729"/><rect x="14" y="6" width="12" height="5" rx="2" fill="#FFBED7" stroke="#252729" stroke-width="1.2"/>',
+    bottle: '<rect x="12" y="14" width="16" height="20" rx="4" fill="#fff" stroke="#252729" stroke-width="1.6"/><rect x="16" y="8" width="8" height="6" rx="1" fill="#252729"/><rect x="15" y="20" width="10" height="6" rx="1" fill="#FFBED7"/>'
+  }[p.kind];
+  return `<div class="thumb" style="background:${p.bg};width:${size}px;height:${size}px" aria-hidden="true"><svg viewBox="0 0 40 40" width="${Math.round(size * .62)}" height="${Math.round(size * .62)}">${k}</svg></div>`;
+}
+function methodLogo(id) {
+  const L = (t, bg, fg = '#fff', x = '') => `<span class="lg" style="background:${bg};color:${fg};${x}">${t}</span>`;
+  return '<span class="logo-m" aria-hidden="true">' + ({
+    vipps: L('vipps', '#FF5B24'),
+    card: L('VISA', '#1a1f71') + L('MC', '#252729'),
+    wallet: L('Apple Pay', '#000') + L('G Pay', '#fff', '#3c4043', 'box-shadow:inset 0 0 0 1px #ccc'),
+    bank: L('BankID', '#39134C'),
+    invoice: L('30 d', '#FFBED7', '#252729'), split3: L('3×', '#FFBED7', '#252729'), finance: L('12 m', '#FFBED7', '#252729'),
+    usdc_base: L('USDC', '#2775CA') + L('Base', '#0052FF'), usdc_sol: L('USDC', '#2775CA') + L('SOL', '#14141f', '#14F195'),
+    eth: L('ETH', '#627EEA') + L('Base', '#0052FF'), btc: L('₿ ⚡', '#F7931A')
+  }[id] || '') + '</span>';
+}
+
+// Kundesiden
+function renderCart() {
+  const c = calc();
+  const ids = Object.keys(S.cart);
+  const n = ids.reduce((a, id) => a + S.cart[id], 0);
+  $('#cart-count').textContent = n ? `${n} ${n === 1 ? 'vare' : 'varer'}` : '';
+  $('#n-kurv').className = 'n' + (n ? ' ok' : '');
+  $('#n-kurv').textContent = n ? '✓' : '1';
+  if (!ids.length) { $('#cart').innerHTML = `<div class="empty">Handlekurven er tom. <button type="button" class="link" data-scn="typisk">Fyll den igjen</button></div>`; return; }
+  let h = ids.map(id => { const p = P[id], q = S.cart[id]; return `<div class="line">${thumb(p)}<div><div class="l-name">${p.name}</div><div class="l-meta">${p.cat} · ${p.size}</div><div class="qty"><button type="button" data-dec="${id}" aria-label="Fjern én ${esc(p.name)}">−</button><span class="num">${q}</span><button type="button" data-inc="${id}" aria-label="Legg til én ${esc(p.name)}">+</button></div></div><div class="l-price num">${kr0(p.price * q)}${q > 1 ? `<small>${kr0(p.price)} stk</small>` : ''}</div></div>`; }).join('');
+  if (S.threshold > 0) {
+    const left = S.threshold - c.net, ok = left <= 0;
+    h += `<div class="freebar${ok ? ' ok' : ''}">${ok ? '<b>Du har fri frakt.</b> Postkassen, pakkeboks og hentested er gratis.' : `Handle for <b>${kr0(left)}</b> til, så får du fri frakt.`}<div class="track"><div class="fill" style="width:${Math.min(100, c.net / S.threshold * 100)}%"></div></div></div>`;
+  }
+  if (!S.cart.micellar) {
+    const p = P.micellar;
+    h += `<div class="upsell">${thumb(p, 40)}<div><b>Ofte kjøpt sammen:</b> ${p.name}, ${p.size}</div><button type="button" class="btn btn-sm" data-inc="micellar">+ ${kr0(p.price)}</button></div>`;
+  }
+  h += S.code
+    ? `<div class="code-ok"><span>Rabattkode <b>2030</b>: 10 % på varene</span><button type="button" class="link" id="code-off">Fjern</button></div>`
+    : `<form class="code" id="code-form"><input type="text" id="code-in" placeholder="Rabattkode" aria-label="Rabattkode" autocomplete="off"><button class="btn btn-sm" type="submit">Bruk</button></form><div class="msg" id="code-msg">Tips: prøv koden 2030.</div>`;
+  $('#cart').innerHTML = h;
+}
+
+function renderShip() {
+  const code = postcode();
+  const city = f('city');
+  $('#ship-to').textContent = code ? `til ${code} ${city}` : '';
+  const c = calc();
+  const avail = SHIP.map(o => ({o, a: shipAvail(o, code)}));
+  const ok = avail.filter(x => x.a.ok).map(x => x.o);
+  const fastest = ok.find(o => o.id === 'sameday') || ok.find(o => o.id === 'kveld');
+  const greenest = ok.reduce((a, o) => (!a || o.co2 < a.co2 ? o : a), null);
+  $('#n-lev').className = 'n' + (code && S.steps.levering != null ? ' ok' : '');
+  $('#n-lev').textContent = code && S.steps.levering != null ? '✓' : '3';
+  $('#ship').innerHTML = avail.map(({o, a}) => {
+    const sel = S.ship === o.id;
+    const cust = calc(S.method, o.id).shipCust;
+    const e = eta(o, code);
+    const tags = [o.id === 'postkassen' ? '<span class="tag d">Mest valgt</span>' : '', fastest === o ? '<span class="tag p">Raskest</span>' : '', greenest === o ? '<span class="tag g">Lavest CO₂</span>' : ''].join('');
+    const priceTxt = cust === 0 ? 'Gratis' : kr0(cust);
+    const strike = cust === 0 && o.price > 0 ? `<s>${kr0(o.price)}</s>` : '';
+    let more = '';
+    if (sel && o.pickup && a.ok) more = `<div class="o-more"><select id="pickup" aria-label="Velg hentested">${pickups(o).map((p, i) => `<option value="${i}"${i === S.pickup ? ' selected' : ''}>${esc(p)}</option>`).join('')}</select></div>`;
+    return `<label class="opt${sel ? ' sel' : ''}${a.ok ? '' : ' dis'}"><input class="sr" type="radio" name="ship" value="${o.id}"${sel ? ' checked' : ''}${a.ok ? '' : ' disabled'}><span class="radio"></span><div><div class="o-title">${o.name} <span class="carrier">${o.carrier}</span>${tags}</div><div class="o-sub">${a.ok ? `${e.label} · <span class="co2">≈ ${nfp.format(o.co2)} kg CO₂e</span>` : a.why}</div><div class="o-desc">${o.desc}</div>${more}</div><div class="o-price num">${a.ok ? strike + priceTxt : '–'}</div></label>`;
+  }).join('');
+}
+
+function payDetail(id, c) {
+  const m = M[id];
+  if (id === 'card') return `<div class="o-more"><div class="testcard"><div class="full"><span>Kortnummer (testkort)</span>${S.cardIntl ? '5555 5555 5555 4444' : '4242 4242 4242 4242'}</div><div><span>Utløper</span>12/30</div><div><span>CVC</span>123</div></div><div class="toggle" role="group" aria-label="Velg testkort"><button type="button" data-intl="0" aria-pressed="${!S.cardIntl}">Norsk Visa (EØS)</button><button type="button" data-intl="1" aria-pressed="${S.cardIntl}">Amerikansk Mastercard</button></div><div class="legal">Demoen tar ikke imot ekte kortdata. Testkortet er fylt inn for deg.</div></div>`;
+  if (id === 'vipps') return `<div class="o-more">Vi sender en forespørsel til ${f('phone') || 'mobilnummeret ditt'}. Du godkjenner i appen.</div>`;
+  if (id === 'wallet') return `<div class="o-more">Du bekrefter med Face ID eller fingeravtrykk. Ingen kortnummer å skrive inn.</div>`;
+  if (id === 'bank') return `<div class="o-more">Velg banken din i neste steg og bekreft med BankID. Ingen kortdata deles med butikken.</div>`;
+  if (id === 'invoice') return `<div class="o-more">Betal ${kr(c.total)} innen <b>${fd(addDays(new Date(), 30))}</b>. 0 kr i gebyr med e-faktura eller i appen.</div>`;
+  if (id === 'split3') { const a = split3(c.total); return `<div class="o-more"><div class="plan">${a.map((v, i) => `<div><span>${i === 0 ? 'I dag' : fd(addDays(new Date(), 30 * i))}</span><b class="num">${kr(v)}</b></div>`).join('')}</div><div class="legal">Ingen renter og ingen gebyrer.</div></div>`; }
+  if (id === 'finance') {
+    if (c.total < 1000) return `<div class="o-more">Delbetaling er tilgjengelig fra 1 000 kr. Legg til varer for ${kr0(1000 - c.total)} til.</div>`;
+    const fi = finance(c.total);
+    return `<div class="o-more"><b>${kr(fi.pmt)} i måneden</b> i 12 måneder.<div class="legal">Eff. rente ${nfp.format(Math.round(fi.eff * 10) / 10)} %, ${kr(c.total)} o/12 mnd. Kostnad: ${kr(fi.cost)}. Totalt: ${kr(fi.paid)}. Nominell rente 19,9 %, ingen gebyrer.</div></div>`;
+  }
+  if (m.group === 'crypto') {
+    const left = Math.max(0, S.lockEnd - Date.now());
+    return `<div class="o-more"><div class="crypto-amt num">${cryptoAmt(m, c.total)} ${m.unit}</div><div>${RATE_TXT[id]} · nettverksgebyr ca. ${kr(m.gas)}</div><div class="lock"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>Kursen er låst i <b class="num" id="lock">${mmss(left)}</b></div><div class="legal">Du betaler fra din egen lommebok. Butikken får kroner. Demokurs, ikke live.</div></div>`;
+  }
+  return '';
+}
+
+function renderPay() {
+  const c = calc();
+  $$('.seg [data-group]').forEach(b => b.setAttribute('aria-selected', b.dataset.group === S.group));
+  const ids = Object.keys(M).filter(id => M[id].group === S.group);
+  $('#pay-list').innerHTML = ids.map(id => {
+    const m = M[id], sel = S.method === id;
+    const dis = m.min && c.total < m.min;
+    let price = '';
+    if (id === 'split3') price = `3 × ${kr0(split3(c.total)[0])}`;
+    else if (id === 'finance' && !dis) price = `${kr0(finance(c.total).pmt)}/mnd`;
+    return `<label class="opt${sel ? ' sel' : ''}${dis && !sel ? ' dis' : ''}"><input class="sr" type="radio" name="pay" value="${id}"${sel ? ' checked' : ''}${dis && !sel ? ' disabled' : ''}><span class="radio"></span><div><div class="o-title">${m.name} ${methodLogo(id)}</div><div class="o-desc">${dis ? `Fra ${kr0(m.min)}` : m.sub}</div>${sel ? payDetail(id, c) : ''}</div><div class="o-price num">${price}</div></label>`;
+  }).join('');
+  $('#n-bet').className = 'n' + (S.steps.betaling != null ? ' ok' : '');
+  $('#n-bet').textContent = S.steps.betaling != null ? '✓' : '4';
+}
+
+function payLabel(c) {
+  const m = c.m;
+  if (!c.goods) return 'Handlekurven er tom';
+  if (m.min && c.total < m.min) return `${m.name} krever minst ${kr0(m.min)}`;
+  if (m === M.vipps) return `Betal ${kr0(c.total)} med Vipps MobilePay`;
+  if (m === M.wallet) return `Betal ${kr0(c.total)} med Apple Pay`;
+  if (m === M.bank) return `Betal ${kr0(c.total)} fra banken`;
+  if (m === M.invoice) return 'Fullfør, betal om 30 dager';
+  if (m === M.split3) return `Fullfør, 3 × ${kr0(split3(c.total)[0])}`;
+  if (m === M.finance) return `Fullfør, ${kr0(finance(c.total).pmt)} i måneden`;
+  if (m.group === 'crypto') return `Betal ${cryptoAmt(m, c.total)} ${m.unit}`;
+  return `Betal ${kr0(c.total)}`;
+}
+function renderSum() {
+  const c = calc();
+  let h = `<div class="row"><span>Varer</span><span class="num">${kr(c.goods)}</span></div>`;
+  if (c.disc) h += `<div class="row disc"><span>Rabatt (2030)</span><span class="num">−${kr(c.disc)}</span></div>`;
+  h += `<div class="row"><span>Frakt · ${c.o.name}</span><span class="num">${c.goods ? (c.shipCust ? kr(c.shipCust) : 'Gratis') : '–'}</span></div>`;
+  h += `<div class="row tot"><span>Totalt</span><span class="num">${kr(c.total)}</span></div>`;
+  h += `<div class="row vat"><span>Herav mva</span><span class="num">${kr(c.vat)}</span></div>`;
+  $('#sum').innerHTML = h;
+  const b = $('#pay');
+  b.textContent = payLabel(c);
+  b.disabled = !c.goods || !!(c.m.min && c.total < c.m.min);
+  $('#mbar-t').innerHTML = c.goods ? `Butikken betaler <b>${kr(c.fee + c.carrier)}</b> i gebyr og frakt` : 'Tom kurv';
+}
+
+// Merchant-siden
+function compareRows(c) {
+  const rows = [
+    {k: 'card', name: 'Kort (EØS)', m: 'card', intl: false},
+    {k: 'cardi', name: 'Kort utenfor EØS', m: 'card', intl: true},
+    {k: 'vipps', name: 'Vipps MobilePay', m: 'vipps'},
+    {k: 'bank', name: 'Bankbetaling', m: 'bank'},
+    {k: 'bnpl', name: 'BNPL (alle)', m: 'invoice'},
+    {k: 'usdc', name: 'USDC', m: 'usdc_base'},
+    {k: 'eth', name: 'ETH / BTC', m: 'eth'}
+  ].map(r => ({...r, ...calc(r.m, S.ship, !!r.intl)}));
+  const active = r => r.m === S.method && !!r.intl === (S.method === 'card' && S.cardIntl)
+    || (r.k === 'bnpl' && M[S.method].group === 'bnpl')
+    || (r.k === 'card' && S.method === 'wallet')
+    || (r.k === 'usdc' && S.method === 'usdc_sol')
+    || (r.k === 'eth' && S.method === 'btc');
+  const max = Math.max(...rows.map(r => Math.max(r.fee, r.ref || 0)), .01);
+  rows.sort((a, b) => a.fee - b.fee);
+  return rows.map(r => `<button type="button" class="cmp-row${active(r) ? ' on' : ''}" data-pick="${r.m}" data-intl="${r.intl ? 1 : 0}"${S.done ? ' disabled' : ''}><span>${r.name}</span><span class="cmp-track" aria-hidden="true">${r.ref != null ? `<span class="ref" style="width:${r.ref / max * 100}%"></span>` : ''}<span class="fee" style="width:${r.fee / max * 100}%"></span></span><span class="cmp-val">${kr(r.fee)}<small>${r.ref != null ? 'Stripe ' + kr(r.ref) : 'Stripe: tilbys ikke'}</small></span></button>`).join('');
+}
+
+function renderCost() {
+  const d = S.done;
+  const c = d ? d.c : calc();
+  const el = $('#tab-cost');
+  if (!c.goods) { el.innerHTML = `<div class="mcard">Handlekurven er tom, så det er ingen kostnader å vise ennå.</div>` + controls(); bindControls(); return; }
+  const cost = r2(c.fee + c.carrier);
+  const share = c.exVat ? cost / c.exVat * 100 : 0;
+  const ex = customerExtra(c);
+  const payout = c.m.payout ? addBiz(new Date(), c.m.payout) : new Date();
+  const seg = [['Mva', c.vat, '#6c7075'], ['Betaling', c.fee, '#F460A1'], ['Frakt', c.carrier, '#FFBED7'], ['Igjen', Math.max(0, c.left), '#8CE0B0']];
+  const sumSeg = seg.reduce((a, s) => a + s[1], 0) || 1;
+  const methodName = c.m === M.card && c.intl ? 'Kort utenfor EØS' : c.m.name;
+  const saved = c.ref != null ? r2(c.ref - c.fee) : null;
+  el.innerHTML = `
+  <div class="mcard">
+    <div class="mut" style="font-size:13px">${d ? `Ordre #${d.id} er betalt. Butikken sitter igjen med` : 'Hvis kunden betaler nå, sitter butikken igjen med'}</div>
+    <div class="hero-n num">${kr(c.left)}</div>
+    <div class="hero-s">av ${kr(c.total)} som kunden betaler, før varekost, plukk og pakk. Betaling og frakt koster <b style="color:var(--m-text)">${kr(cost)}</b>, som er ${pc(Math.round(share * 10) / 10)} av omsetningen eks. mva.</div>
+    <div class="stack" role="img" aria-label="Fordeling av ordren">${seg.map(s => `<span style="width:${s[1] / sumSeg * 100}%;background:${s[2]}"></span>`).join('')}</div>
+    <div class="legend">${seg.map(s => `<span><i style="background:${s[2]}"></i>${s[0]} ${kr0(s[1])}</span>`).join('')}</div>
+  </div>
+  <div class="mcard led">
+    <h3>Regnestykket for denne ordren <small>NOK</small></h3>
+    <div class="r"><span>Kunden betaler</span><span class="v">${kr(c.total)}</span><small>Varer ${kr(c.net)}${c.disc ? ` (etter ${kr(c.disc)} rabatt)` : ''} · frakt ${kr(c.shipCust)}</small></div>
+    <div class="r"><span>Merverdiavgift (25 %)</span><span class="v neg">−${kr(c.vat)}</span></div>
+    <div class="r sub"><span>Omsetning eks. mva</span><span class="v">${kr(c.exVat)}</span></div>
+    <div class="r"><span>Betalingsgebyr · ${methodName}</span><span class="v neg">−${kr(c.fee)}</span><small>${priceLabel(c.p)}${c.p.cap && c.fee >= c.p.cap ? ' (taket er nådd)' : ''}</small></div>
+    <div class="r"><span>Frakt til ${c.o.carrier} (estimat)</span><span class="v neg">−${kr(c.carrier)}</span><small>${c.o.name}. Kunden betalte ${kr(r2(c.shipCust / 1.25))} eks. mva, så frakten gir ${c.shipCust / 1.25 - c.carrier >= 0 ? '+' : '−'}${kr(Math.abs(r2(c.shipCust / 1.25 - c.carrier)))}</small></div>
+    <div class="r res"><span>Igjen før varekost</span><span class="v">${kr(c.left)}</span></div>
+    ${saved != null && saved > 0 ? `<div class="save">${kr(saved)} billigere enn Stripes listepris (${kr(c.ref)})</div>` : c.ref == null ? `<div class="save">Stripe tilbyr ikke ${methodName}</div>` : ''}
+  </div>
+  <div class="mcard">
+    <h3>Om betalingen <small>${methodName}</small></h3>
+    <dl class="facts">
+      <dt>Pris</dt><dd>${priceLabel(c.p)}</dd>
+      <dt>Utbetaling</dt><dd>${kr(r2(c.total - c.fee))} ${c.m.payout ? `${fd(payout)} (${c.m.payout} ${c.m.payout === 1 ? 'virkedag' : 'virkedager'})` : 'i dag, i kroner'}</dd>
+      <dt>Kunden betaler ekstra</dt><dd>${ex.txt}</dd>
+      <dt>Risiko</dt><dd>${c.m.risk}</dd>
+    </dl>
+  </div>
+  <div class="mcard">
+    <h3>Hva hvis kunden betalte annerledes? <small>${d ? 'samme kurv' : 'trykk for å bytte'}</small></h3>
+    <div class="cmp">${compareRows(c)}</div>
+    <div class="legend" style="margin-top:10px"><span><i style="background:var(--pink)"></i>Checkout 2030</span><span><i style="background:#5b6066"></i>Stripes listepris</span></div>
+  </div>
+  <div class="mcard">
+    <h3>Frakt: hva kunden betaler og hva den koster <small>eks. mva</small></h3>
+    <div class="scroll-x"><table class="mt">
+      <thead><tr><th>Valg</th><th class="rt">Kunden</th><th class="rt">Transportør</th><th class="rt">Resultat</th></tr></thead>
+      <tbody>${SHIP.map(o => { const cc = calc(S.method, o.id); const a = shipAvail(o, postcode()); const ce = r2(cc.shipCust / 1.25); const res = r2(ce - o.cost); return `<tr class="${o.id === c.o.id ? 'on' : ''}${a.ok ? '' : ' off'}"><td>${o.name}<small>${o.carrier}${cc.freeOk ? ' · fri frakt' : ''}</small></td><td class="rt">${kr(ce)}</td><td class="rt">${kr(o.cost)}</td><td class="rt ${res < 0 ? 'neg' : 'pos'}">${res < 0 ? '−' : '+'}${kr(Math.abs(res))}</td></tr>`; }).join('')}</tbody>
+    </table></div>
+  </div>
+  <div class="mcard">
+    <h3>Månedsestimat <small>hvis alle ordre lignet denne</small></h3>
+    <label class="mut" style="font-size:13px" for="orders">Ordre per måned: <b style="color:var(--m-text)" id="orders-v" class="num">${nf0.format(S.orders)}</b></label>
+    <input type="range" id="orders" min="1000" max="200000" step="1000" value="${S.orders}">
+    <div class="mon" id="mon"></div>
+  </div>` + controls();
+  renderMonthly();
+  bindControls();
+}
+function renderMonthly() {
+  const c = S.done ? S.done.c : calc();
+  const n = S.orders;
+  const fee = c.fee * n, ref = c.ref != null ? c.ref * n : null, ship = (r2(c.shipCust / 1.25) - c.carrier) * n;
+  $('#mon').innerHTML = `<span>Betalingsgebyr</span><span class="v">${krInt(fee)}</span>`
+    + (ref != null ? `<span class="mut">Med Stripes listepris</span><span class="v mut">${krInt(ref)}</span><span>Spart per måned</span><span class="v pos">${krInt(ref - fee)}</span><span class="mut">Spart per år</span><span class="v pos">${krInt((ref - fee) * 12)}</span>` : `<span class="mut">Med Stripes listepris</span><span class="v mut">tilbys ikke</span>`)
+    + `<span>Frakt, netto for butikken</span><span class="v ${ship < 0 ? 'neg' : 'pos'}">${ship < 0 ? '−' : '+'}${krInt(Math.abs(ship))}</span>`;
+}
+function controls() {
+  return `<div class="mcard"><h3>Juster demoen <small>som butikk</small></h3><div class="ctrls">
+    <label>Kurv<span class="scn">${Object.entries(SCN).map(([k, s]) => { const t = Object.entries(s.cart).reduce((a, [id, q]) => a + P[id].price * q, 0); return `<button type="button" data-scn="${k}" aria-pressed="${S.scn === k}">${s.name.replace(' kurv', '')}<small>${kr0(t)}</small></button>`; }).join('')}</span></label>
+    <label for="thr">Fri frakt over<select id="thr">${[0, 399, 549, 799].map(v => `<option value="${v}"${v === S.threshold ? ' selected' : ''}>${v ? kr0(v) : 'Ingen fri frakt'}</option>`).join('')}</select></label>
+  </div></div>`;
+}
+function bindControls() {
+  const o = $('#orders');
+  if (o) o.oninput = () => { S.orders = +o.value; $('#orders-v').textContent = nf0.format(S.orders); renderMonthly(); };
+  $('#thr').onchange = e => {
+    S.threshold = +e.target.value;
+    log('merchant', 'Fri frakt-grensen endret', S.threshold ? `Fri frakt over ${kr0(S.threshold)}` : 'Ingen fri frakt');
+    renderAll();
+  };
+}
+
+function afterTimeline(d) {
+  const c = d.c, now = d.at, e = eta(c.o, d.pc);
+  const payout = c.m.payout ? addBiz(now, c.m.payout) : now;
+  const t = [];
+  const instant = c.m.group === 'crypto' || c.m === M.bank;
+  t.push([now, instant ? 'Pengene er mottatt' : c.m.group === 'bnpl' ? 'Kjøpet er godkjent av BNPL-leverandøren' : 'Beløpet er reservert på kortet']);
+  t.push([now, 'Varene plukkes og pakkes']);
+  if (c.m.group === 'fiat' && !instant) t.push([addBiz(now, now.getHours() >= 15 ? 1 : 0), 'Beløpet trekkes når pakken sendes']);
+  t.push([payout, `Utbetaling til butikken: ${kr(r2(c.total - c.fee))}`]);
+  t.push([e.to, `Levert med ${c.o.name.toLowerCase()}`]);
+  if (c.m === M.invoice) t.push([addDays(now, 30), `Kunden betaler fakturaen på ${kr(c.total)}`]);
+  if (c.m === M.split3) split3(c.total).forEach((v, i) => i && t.push([addDays(now, 30 * i), `Kunden betaler del ${i + 1} av 3: ${kr(v)}`]));
+  if (c.m === M.finance) t.push([addDays(now, 30), `Første avdrag fra kunden: ${kr(finance(c.total).pmt)}`]);
+  return t.sort((a, b) => a[0] - b[0]);
+}
+
+function renderJourney(fresh) {
+  $('#ev-count').textContent = S.events.length;
+  if (S.mtab !== 'journey') return;
+  const t = (S.done ? S.done.at - S.t0 : Date.now() - S.t0);
+  const steps = [['kurv', 'Handlekurv'], ['kontakt', 'Kontakt'], ['levering', 'Levering'], ['betaling', 'Betaling'], ['fullfort', 'Fullført']];
+  const kunde = S.events.filter(e => e.tag === 'kunde').length;
+  const lastId = S.events.length - 1;
+  $('#tab-journey').innerHTML = `
+  <div class="mcard">
+    <div class="stats">
+      <div><b id="j-time">${mmss(t)}</b><span>tid i checkout</span></div>
+      <div><b>${kunde}</b><span>valg og klikk</span></div>
+      <div><b>${S.touched.size}</b><span>felt fylt manuelt</span></div>
+      <div><b>${S.attempts + (S.done ? 1 : 0)}</b><span>betalingsforsøk</span></div>
+    </div>
+    <div class="funnel">${steps.map(([k, n]) => `<span class="${k in S.steps ? 'ok' : ''}">${n}${k in S.steps ? `<em>${mmss(S.steps[k])}</em>` : ''}</span>`).join('')}</div>
+  </div>
+  ${S.done ? `<div class="mcard"><h3>Etter kjøpet <small>ordre #${S.done.id}</small></h3><ul class="mtl">${afterTimeline(S.done).map(([d, txt]) => `<li><time>${fd(d)}</time><span>${txt}</span></li>`).join('')}</ul></div>` : ''}
+  <div class="mcard">
+    <h3>Hendelser <small>nyeste øverst · tid siden checkout åpnet</small></h3>
+    <ol class="evs" reversed>${S.events.slice().reverse().map(e => `<li class="ev${fresh && e.id === lastId ? ' new' : ''}"><time>${mmss(e.t)}</time><div><span class="tg ${e.tag}">${e.tag}</span><b>${esc(e.title)}</b>${e.detail ? `<div class="d">${esc(e.detail)}</div>` : ''}${e.tech ? `<code>${esc(e.tech)}</code>` : ''}</div></li>`).join('')}</ol>
+  </div>`;
+}
+
+function renderPrices() {
+  if (S.mtab !== 'prices') return;
+  const c = S.done ? S.done.c : calc();
+  const amt = c.total || 607;
+  const rows = [
+    ['Kort fra Norge og EØS', M.card, 'Inkl. Apple Pay og Google Pay'],
+    ['Kort utenfor EØS', M.card.intl, ''],
+    ['Vipps MobilePay', M.vipps, 'Stripe har MobilePay, ikke Vipps'],
+    ['Bankbetaling', M.bank, 'Stripe: Pay by Bank'],
+    ['Faktura, Del opp i 3, Delbetaling', M.invoice, 'Stripe: Klarna i Norge'],
+    ['USDC (Base, Solana)', M.usdc_base, 'Stripe gjør opp i USD, vi i NOK'],
+    ['ETH og BTC (Lightning)', M.eth, 'Veksles til NOK straks']
+  ];
+  $('#tab-prices').innerHTML = `
+  <div class="mcard">
+    <h3>Betalingsmetoder <small>per vellykket betaling</small></h3>
+    <div class="scroll-x"><table class="mt">
+      <thead><tr><th>Metode</th><th>Checkout 2030</th><th>Stripe liste</th><th class="rt">På ${kr0(amt)}</th></tr></thead>
+      <tbody>${rows.map(([n, p, note]) => { const a = feeWith(p, amt), b = p.ref ? feeWith(p.ref, amt) : null; return `<tr><td>${n}${note ? `<small>${note}</small>` : ''}</td><td>${priceLabel(p)}</td><td>${p.ref ? priceLabel(p.ref) : '–'}</td><td class="rt">${kr(a)}${b != null ? `<small class="pos">−${kr(r2(b - a))}</small>` : ''}</td></tr>`; }).join('')}</tbody>
+    </table></div>
+  </div>
+  <div class="mcard">
+    <h3>Andre gebyrer</h3>
+    <div class="scroll-x"><table class="mt">
+      <thead><tr><th>Hva</th><th>Checkout 2030</th><th>Stripe liste</th></tr></thead>
+      <tbody>
+        <tr><td>Månedspris og etablering</td><td>0 kr</td><td>0 kr</td></tr>
+        <tr><td>Tvist (chargeback)</td><td>150 kr, tilbake hvis du vinner</td><td>200 kr</td></tr>
+        <tr><td>Refusjon</td><td>0 kr. Prosentdelen av gebyret betales tilbake</td><td>0 kr, men gebyret beholdes</td></tr>
+        <tr><td>Utbetaling</td><td>Gratis, 1–2 virkedager. Krypto samme dag</td><td>Gratis</td></tr>
+        <tr><td>Lynutbetaling</td><td>0,8 %, minst 4 kr</td><td>1 %, minst 5 kr</td></tr>
+        <tr><td>Valutaveksling</td><td>1,5 %</td><td>2 %</td></tr>
+        <tr><td>Svindelsjekk</td><td>Inkludert</td><td>Radar fra 0,50 kr per sjekk</td></tr>
+        <tr><td>3-D Secure</td><td>Inkludert</td><td>Inkludert</td></tr>
+      </tbody>
+    </table></div>
+  </div>
+  <div class="mcard">
+    <h3>Frakt <small>estimert transportørkost eks. mva</small></h3>
+    <div class="scroll-x"><table class="mt">
+      <thead><tr><th>Valg</th><th class="rt">Kundepris</th><th class="rt">Kostnad</th><th class="rt">CO₂e</th></tr></thead>
+      <tbody>${SHIP.map(o => `<tr><td>${o.name}<small>${o.carrier}${o.free ? ' · gratis over grensen' : ''}</small></td><td class="rt">${o.price ? kr0(o.price) : 'Gratis'}</td><td class="rt">${kr(o.cost)}</td><td class="rt">${nfp.format(o.co2)} kg</td></tr>`).join('')}</tbody>
+    </table></div>
+  </div>
+  <div class="mcard src">
+    <b style="color:var(--m-text)">Kilder og forutsetninger.</b> Stripe-prisene er listepriser for Norge, hentet 3. november 2026 fra <a href="https://stripe.com/no/pricing" target="_blank" rel="noopener">stripe.com/no/pricing</a>, <a href="https://stripe.com/no/pricing/local-payment-methods" target="_blank" rel="noopener">lokale betalingsmetoder</a> og <a href="https://docs.stripe.com/crypto/stablecoins" target="_blank" rel="noopener">stablecoin-dokumentasjonen</a>. Store butikker får ofte egne priser hos Stripe og andre. Checkout 2030-prisene er satt 15–25 % under listeprisen. Fraktkostnader, CO₂-tall og kryptokurser er antatte demo-tall, ikke avtalepriser. Ingen av tallene er Blivakkers egne.
+  </div>`;
+}
+
+function renderMerchant() {
+  $$('.mtabs [data-mtab]').forEach(b => b.setAttribute('aria-selected', b.dataset.mtab === S.mtab));
+  ['cost', 'journey', 'prices'].forEach(k => { $('#tab-' + k).hidden = S.mtab !== k; });
+  if (S.mtab === 'cost') renderCost();
+  renderJourney(false);
+  renderPrices();
+}
+
+function renderContactState() {
+  const ok = profileOk();
+  if (ok) markStep('kontakt');
+  $('#n-kontakt').className = 'n' + (ok ? ' ok' : '');
+  $('#n-kontakt').textContent = ok ? '✓' : '2';
+}
+
+function renderAll() {
+  if (Object.keys(S.cart).length) markStep('kurv');
+  renderContactState();
+  renderCart();
+  renderShip();
+  renderPay();
+  renderSum();
+  renderMerchant();
+}
+
+// Handlinger
+function setCart(cart, scn) {
+  S.cart = {...cart}; S.scn = scn || null;
+  if (!M[S.method].min || calc().total >= M[S.method].min) return;
+  S.method = 'invoice';
+}
+function selectShip(id, silent) {
+  if (S.ship === id) return;
+  S.ship = id; S.pickup = 0; markStep('levering');
+  const c = calc();
+  if (!silent) log('kunde', `Valgte ${c.o.name}`, `Kunden betaler ${c.shipCust ? kr0(c.shipCust) : '0 kr'}. ${c.o.carrier} koster butikken ${kr(c.o.cost)}.`);
+  renderAll();
+}
+function selectMethod(id, intl) {
+  const changed = S.method !== id || (intl != null && intl !== S.cardIntl);
+  S.method = id; S.group = M[id].group;
+  if (intl != null) S.cardIntl = intl;
+  if (!changed) return;
+  markStep('betaling');
+  const c = calc();
+  log('kunde', `Valgte ${c.m === M.card && c.intl ? 'kort utenfor EØS' : c.m.name}`, `Butikken betaler ${kr(c.fee)} i gebyr (${priceLabel(c.p)})`);
+  if (M[id].group === 'crypto') {
+    S.lockEnd = Date.now() + 600000;
+    log('system', 'Kryptokurs låst i 10 minutter', `${RATE_TXT[id]} · ${cryptoAmt(M[id], c.total)} ${M[id].unit}`, `POST /v2030/quotes {asset:"${M[id].unit}", network:"${M[id].net}"} → 201`);
+  }
+  renderAll();
+}
+function fill(data) {
+  FIELDS.forEach(k => { const el = $('#f-' + k); if (data[k] != null) { el.value = data[k]; el.classList.remove('err'); } });
+  onPostcode(true);
+  renderAll();
+}
+function onPostcode(quiet) {
+  const code = postcode();
+  if (code && code !== S.lastPc) {
+    $('#f-city').value = cityFor(code);
+    S.lastPc = code;
+    const n = SHIP.filter(o => shipAvail(o, code).ok).length;
+    log('frakt', 'Fraktalternativer hentet', `${n} av ${SHIP.length} tilgjengelige til ${code} ${f('city')}`, `POST /v2030/shipping/rates {postcode:"${code}"} → 200 · ${90 + Math.floor(Math.random() * 80)} ms`);
+    const cur = SHIP_BY[S.ship];
+    if (!shipAvail(cur, code).ok) {
+      S.ship = 'postkassen';
+      log('frakt', `${cur.name} er ikke tilgjengelig her`, 'Byttet automatisk til Pakke i postkassen');
+    }
+  }
+  if (!quiet) renderAll();
+}
+
+// Betalingsdialog
+const modal = $('#modal'), sheet = $('#sheet');
+const ICO = {
+  ok: '<div class="ico ok"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#252729" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>',
+  spin: '<div class="ico"><div class="spin"></div></div>',
+  bank: '<div class="ico"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#252729" stroke-width="2" aria-hidden="true"><path d="M3 10l9-6 9 6M5 10v8M9 10v8M15 10v8M19 10v8M3 20h18"/></svg></div>',
+  face: '<div class="ico"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#252729" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 8V6a2 2 0 0 1 2-2h2M16 4h2a2 2 0 0 1 2 2v2M20 16v2a2 2 0 0 1-2 2h-2M8 20H6a2 2 0 0 1-2-2v-2M9 10v1M15 10v1M12 10v3h-1M9.5 16a3.5 3.5 0 0 0 5 0"/></svg></div>',
+  wallet: '<div class="ico"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#252729" stroke-width="2" aria-hidden="true"><rect x="3" y="6" width="18" height="14" rx="3"/><path d="M3 10h18M16 15h2"/></svg></div>'
+};
+let pending = null;
+function step({icon = '', title, text = '', html = '', primary, secondary, choices, auto}) {
+  return new Promise((resolve, reject) => {
+    pending = {resolve, reject};
+    sheet.innerHTML = `${icon ? ICO[icon] : ''}<h3>${title}</h3>${text ? `<p>${text}</p>` : ''}${html}${choices ? `<div class="choices">${choices.map(c => `<button type="button" class="btn" data-choice="${esc(c)}">${esc(c)}</button>`).join('')}</div>` : ''}<div class="acts">${primary ? `<button type="button" class="btn btn-ink" data-act="ok">${primary}</button>` : ''}${secondary ? `<button type="button" class="btn" data-act="no">${secondary}</button>` : ''}</div>${auto ? '' : '<div class="tiny">Simulert i demoen. Ingenting sendes.</div>'}`;
+    modal.hidden = false;
+    const first = $('[data-choice], [data-act=ok]', sheet);
+    if (first) first.focus();
+    if (auto) setTimeout(() => { if (pending && pending.resolve === resolve) { pending = null; resolve(); } }, auto);
+  });
+}
+sheet.addEventListener('click', e => {
+  const b = e.target.closest('[data-act], [data-choice]');
+  if (!b || !pending) return;
+  const p = pending; pending = null;
+  if (b.dataset.act === 'no') p.reject(new Error('cancel'));
+  else p.resolve(b.dataset.choice || true);
+});
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape' && !modal.hidden && pending && $('[data-act=no]', sheet)) { const p = pending; pending = null; p.reject(new Error('cancel')); }
+});
+function fakeQR(seed) {
+  let s = [...seed].reduce((a, ch) => (a * 31 + ch.charCodeAt(0)) >>> 0, 7);
+  const rnd = () => { s ^= s << 13; s ^= s >>> 17; s ^= s << 5; return ((s >>> 0) % 1000) / 1000; };
+  const N = 25, finder = (x, y) => [[0, 0], [N - 7, 0], [0, N - 7]].some(([a, b]) => x >= a && x < a + 7 && y >= b && y < b + 7);
+  let r = '';
+  for (let y = 0; y < N; y++) for (let x = 0; x < N; x++) {
+    if (finder(x, y)) continue;
+    if (x > 8 && x < 16 && y > 9 && y < 15) continue;
+    if (rnd() > .52) r += `<rect x="${x}" y="${y}" width="1" height="1"/>`;
+  }
+  const fp = ([a, b]) => `<rect x="${a}" y="${b}" width="7" height="7"/><rect x="${a + 1}" y="${b + 1}" width="5" height="5" fill="#fff"/><rect x="${a + 2}" y="${b + 2}" width="3" height="3"/>`;
+  return `<svg class="qr" viewBox="-1 -1 27 27" role="img" aria-label="Demo-QR som ikke kan skannes"><rect x="-1" y="-1" width="27" height="27" fill="#fff"/><g fill="#252729">${r}${[[0, 0], [N - 7, 0], [0, N - 7]].map(fp).join('')}</g><rect x="8.5" y="10" width="8" height="5" rx="1" fill="#FFBED7"/><text x="12.5" y="13.4" text-anchor="middle" font-size="2.6" font-weight="800" fill="#252729" font-family="Public Sans,sans-serif">DEMO</text></svg>`;
+}
+
+const FLOWS = {
+  async card(c) {
+    await step({icon: 'spin', title: 'Kontakter banken …', text: `${c.intl ? 'Mastercard fra USA' : 'Visa fra Norge'} · ${kr(c.total)}`, auto: 900});
+    log('betaling', '3-D Secure: banken ber om bekreftelse', c.intl ? 'Kortet er utstedt utenfor EØS' : 'Norsk debetkort', '3DS2 challenge · versjon 2.3 · ECI 05');
+    await step({icon: 'bank', title: 'Bekreft i bankappen', text: `Banken har sendt et varsel. Bekreft kjøpet hos Blivakker på ${kr(c.total)}.`, primary: 'Godkjenn i bankappen', secondary: 'Avbryt'});
+    log('betaling', 'Kortbetaling autorisert', `${kr(c.total)} er reservert på kortet`, `auth ${hex(6).toUpperCase()} · ansvar flyttet til utsteder: ja`);
+  },
+  async wallet(c) {
+    await step({icon: 'face', title: 'Apple Pay', html: `<div class="txbox"><span>Til</span><b>Blivakker</b><span>Kort</span><b>Visa ••4242</b><span>Beløp</span><b>${kr(c.total)}</b></div>`, primary: 'Bekreft med Face ID', secondary: 'Avbryt'});
+    log('betaling', 'Lommebok-betaling autorisert', 'Tokenisert kort, bekreftet med biometri. Ingen ekstra kode.', 'network token · kryptogram ok · 3DS ikke nødvendig');
+  },
+  async vipps(c) {
+    log('betaling', 'Forespørsel sendt til Vipps MobilePay', `Til ${f('phone') || DEMO.phone}`, 'POST /epayment/v1/payments → 201 · state: CREATED');
+    await step({title: 'Åpne Vipps MobilePay', html: `<div class="phone"><div class="app" style="color:#FF5B24">VIPPS MOBILEPAY</div><div class="amt num">${kr(c.total)}</div><div class="to">til Blivakker</div></div>`, primary: 'Godkjenn i appen', secondary: 'Avvis'});
+    log('betaling', 'Kunden godkjente i appen', `${kr(c.total)} er reservert`, 'webhook payment.authorized · state: AUTHORIZED');
+  },
+  async bank(c) {
+    const bank = await step({icon: 'bank', title: 'Velg banken din', text: `Du betaler ${kr(c.total)} rett fra kontoen.`, choices: ['DNB', 'SpareBank 1', 'Nordea', 'Handelsbanken'], secondary: 'Avbryt'});
+    log('kunde', `Valgte ${bank}`, 'Videresendt til banken');
+    await step({icon: 'face', title: 'Bekreft med BankID', text: `Logg inn i ${bank} og godkjenn betalingen på ${kr(c.total)}.`, primary: 'Bekreft med BankID', secondary: 'Avbryt'});
+    log('betaling', 'Bankbetaling gjennomført', `Trukket fra konto i ${bank}`, 'PISP · sterk autentisering ok · status ACSC');
+  },
+  async bnpl(c) {
+    await step({icon: 'spin', title: 'Sjekker kjøpet …', text: 'Myk kredittsjekk. Den er ikke synlig for andre långivere.', auto: 1300});
+    log('risiko', 'Kredittvurdering godkjent', 'Myk sjekk, innenfor grensen', `POST /v2030/bnpl/assess → APPROVED · ${180 + Math.floor(Math.random() * 90)} ms`);
+    let plan;
+    if (c.m === M.invoice) plan = `<div class="plan"><div><span>${fd(addDays(new Date(), 30))}</span><b>${kr(c.total)}</b></div></div>`;
+    else if (c.m === M.split3) plan = `<div class="plan">${split3(c.total).map((v, i) => `<div><span>${i ? fd(addDays(new Date(), 30 * i)) : 'I dag'}</span><b>${kr(v)}</b></div>`).join('')}</div>`;
+    else { const fi = finance(c.total); plan = `<div class="plan"><div><span>12 × hver måned</span><b>${kr(fi.pmt)}</b></div><div><span>Totalt</span><b>${kr(fi.paid)}</b></div></div>`; }
+    await step({icon: 'ok', title: 'Du er godkjent', text: c.m.name, html: plan, primary: 'Bekreft kjøpet', secondary: 'Avbryt'});
+    log('betaling', `${c.m.name} bekreftet`, 'BNPL-leverandøren betaler butikken. Kunden betaler leverandøren.', 'bnpl.order.created · oppgjør til butikk T+2');
+  },
+  async crypto(c) {
+    const m = c.m, amt = `${cryptoAmt(m, c.total)} ${m.unit}`;
+    const w = await step({icon: 'wallet', title: 'Velg lommebok', text: `Du betaler ${amt} på ${m.net}.`, choices: [...m.wallets, 'Vis QR-kode'], secondary: 'Avbryt'});
+    const hash = m.net === 'Lightning' ? 'lnbc' + hex(20) : m.net === 'Solana' ? hex(44) : '0x' + hex(64);
+    if (w === 'Vis QR-kode') {
+      await step({title: 'Skann for å betale', html: fakeQR(hash) + `<p style="margin-top:8px"><b>${amt}</b></p><p class="tiny">Demo-QR. Den kan ikke skannes og peker ikke til noen ekte adresse.</p>`, primary: 'Jeg har betalt', secondary: 'Avbryt'});
+    } else {
+      log('kunde', `Koblet til ${w}`, `Nettverk: ${m.net}`, m.net === 'Solana' ? 'wallet-standard connect → ok' : m.net === 'Lightning' ? 'LNURL-pay → faktura laget' : 'eth_requestAccounts → 0xdemo…2030');
+      await step({icon: 'wallet', title: `Bekreft i ${w}`, html: `<div class="txbox"><span>Til</span><b>Blivakker (demo)</b><span>Beløp</span><b>${amt}</b><span>Nettverk</span><b>${m.net}</b><span>Gebyr</span><b>ca. ${kr(m.gas)}</b></div>`, primary: m.net === 'Lightning' ? 'Betal faktura' : 'Signer og send', secondary: 'Avvis'});
+    }
+    log('kunde', 'Sendte betalingen', amt, (m.net === 'Lightning' ? 'payment_hash ' : 'tx ') + hash.slice(0, 18) + '…');
+    await step({icon: 'spin', title: m.net === 'Lightning' ? 'Betaler faktura …' : 'Venter på blokk …', text: m.net === 'Solana' ? 'Solana bekrefter på under ett sekund.' : m.net === 'Lightning' ? 'Lightning er nesten umiddelbart.' : 'Base bekrefter på ca. 2 sekunder.', auto: m.net === 'Base' ? 2000 : 900});
+    log('betaling', m.net === 'Lightning' ? 'Lightning-faktura betalt' : 'Betaling bekreftet on-chain', m.net === 'Lightning' ? 'Endelig med en gang' : `Blokk ${nf0.format(20000000 + Math.floor(Math.random() * 9e6))} · 1 bekreftelse`, `${m.net} · ${hash.slice(0, 18)}…`);
+    log('system', 'Vekslet til kroner', `${amt} → ${kr(c.total)} til låst kurs`, 'autoveksling · utbetaling i NOK samme dag');
+    c.hash = hash;
+  }
+};
+
+async function pay() {
+  const c = calc();
+  if (!c.goods || $('#pay').disabled) return;
+  const miss = missing();
+  if (miss.length) {
+    miss.forEach(k => $('#f-' + k).classList.add('err'));
+    log('kunde', 'Trykket Betal, men noe mangler', 'Mangler: ' + miss.map(k => $('#f-' + k).dataset.label).join(', '), 'Stoppet i nettleseren før noe ble sendt');
+    $('#sec-kontakt').scrollIntoView({behavior: 'smooth', block: 'start'});
+    setTimeout(() => $('#f-' + miss[0]).focus({preventScroll: true}), 400);
+    return;
+  }
+  if (M[S.method].group === 'crypto' && Date.now() > S.lockEnd) {
+    S.lockEnd = Date.now() + 600000;
+    log('system', 'Kurslåsen gikk ut, ny kurs hentet', RATE_TXT[S.method]);
+  }
+  markStep('levering'); markStep('betaling');
+  log('kunde', `Trykket «${payLabel(c)}»`, `${kr(c.total)} · ${c.o.name}`);
+  log('risiko', 'Svindelsjekk: lav risiko', `Score ${8 + Math.floor(Math.random() * 14)} av 100. Kjent enhet, adressen stemmer.`, `POST /v2030/risk/score → 200 · ${25 + Math.floor(Math.random() * 30)} ms`);
+  log('system', 'Betaling opprettet', `${c.m.name} · ${kr(c.total)}`, `POST /v2030/payments {amount:${Math.round(c.total * 100)}, currency:"NOK", method:"${S.method}"} → 201`);
+  try {
+    const flow = c.m.group === 'bnpl' ? 'bnpl' : c.m.group === 'crypto' ? 'crypto' : S.method;
+    await FLOWS[flow](c);
+    await step({icon: 'ok', title: c.m.group === 'bnpl' ? 'Kjøpet er fullført' : 'Betalingen er godkjent', auto: 800});
+    success(c);
+  } catch (e) {
+    if (e.message !== 'cancel') throw e;
+    S.attempts++;
+    modal.hidden = true;
+    log('kunde', 'Avbrøt betalingen', `${c.m.name}. Kunden er tilbake i checkouten.`, 'payment.canceled · reservasjon frigitt');
+  }
+}
+
+function success(c) {
+  modal.hidden = true;
+  const id = 'BV-2030-' + String(10000 + Math.floor(Math.random() * 89999));
+  S.done = {id, c, at: new Date(), pc: postcode(), name: f('first'), email: f('email')};
+  markStep('fullfort');
+  log('ordre', 'Ordre bekreftet', `#${id} · ${kr(c.total)} · ${c.m.name}`, 'POST /v2030/orders → 201');
+  log('system', 'Varsler sendt', 'Ordrebekreftelse på e-post, varene er reservert på lageret', 'webhook order.confirmed → lager, ERP, e-post');
+  const e = eta(c.o, S.done.pc);
+  const pickup = c.o.pickup ? pickups(c.o)[S.pickup] : '';
+  let payTxt = c.m === M.invoice ? `Faktura på ${kr(c.total)} forfaller ${fd(addDays(new Date(), 30))}.`
+    : c.m === M.split3 ? `Første del på ${kr(split3(c.total)[0])} er betalt. Neste trekkes ${fd(addDays(new Date(), 30))}.`
+    : c.m === M.finance ? `${kr(finance(c.total).pmt)} i måneden i 12 måneder.`
+    : c.m.group === 'crypto' ? `${cryptoAmt(c.m, c.total)} ${c.m.unit} er mottatt på ${c.m.net}.`
+    : `${kr(c.total)} med ${c.m === M.card ? 'kort' : c.m.name}.`;
+  $('#flow').hidden = true;
+  $('#done').hidden = false;
+  $('#done').innerHTML = `<section class="card confirm">
+    ${ICO.ok.replace('class="ico ok"', 'class="ok"')}
+    <div class="big">Takk, ${esc(S.done.name || 'Kari')}!</div>
+    <p style="margin:0;color:var(--text)">Ordre <b>#${id}</b> er bekreftet. Vi har sendt en kvittering til ${esc(S.done.email)}.</p>
+    <ul class="tl">
+      <li class="now"><b>Ordre mottatt</b><span>Nå · ${payTxt}</span></li>
+      <li><b>Pakkes på lageret</b><span>I dag</span></li>
+      <li><b>${c.o.name} med ${c.o.carrier}</b><span>${e.label}${pickup ? ' · ' + esc(pickup) : ''}</span></li>
+      <li><b>Levert</b><span>≈ ${nfp.format(c.o.co2)} kg CO₂e for denne leveringen</span></li>
+    </ul>
+    <div class="txbox" style="margin-top:6px"><span>Varer</span><b>${kr(c.net)}</b><span>Frakt</span><b>${c.shipCust ? kr(c.shipCust) : 'Gratis'}</b><span>Totalt</span><b>${kr(c.total)}</b>${c.hash ? `<span>Transaksjon</span><b style="font-family:var(--mono);font-size:12px">${c.hash.slice(0, 14)}…</b>` : ''}</div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:16px">
+      <button type="button" class="btn btn-ink" id="restart">Start en ny demo</button>
+      <button type="button" class="btn" data-view="merchant" data-mtab="journey">Se kundereisen</button>
+    </div>
+  </section>`;
+  if (innerWidth > 1100) S.mtab = 'journey';
+  renderMerchant();
+  window.scrollTo({top: 0, behavior: 'smooth'});
+}
+
+function reset(scn = 'typisk') {
+  FIELDS.forEach(k => { $('#f-' + k).value = ''; $('#f-' + k).classList.remove('err'); });
+  Object.assign(S, {cart: {...SCN[scn].cart}, scn, code: false, ship: 'postkassen', pickup: 0, group: 'fiat', method: 'vipps', cardIntl: false,
+    t0: Date.now(), events: [], touched: new Set(), steps: {}, attempts: 0, lockEnd: 0, lastPc: '', done: null, mtab: 'cost'});
+  $('#flow').hidden = false; $('#done').hidden = true;
+  start();
+}
+function start() {
+  const c = calc();
+  const n = Object.values(S.cart).reduce((a, q) => a + q, 0);
+  log('system', 'Checkout åpnet', `${n} ${n === 1 ? 'vare' : 'varer'} · ${kr(c.goods)}`, `POST /v2030/checkout/sessions → 201 · ${50 + Math.floor(Math.random() * 30)} ms`);
+  log('frakt', 'Fraktalternativer hentet', 'Uten postnummer vises anslått leveringstid', `POST /v2030/shipping/rates → 200 · ${100 + Math.floor(Math.random() * 40)} ms`);
+  renderAll();
+}
+
+// Lyttere
+document.addEventListener('click', e => {
+  const t = e.target;
+  const v = t.closest('button[data-view]');
+  if (v) {
+    document.body.dataset.view = v.dataset.view;
+    $$('.viewsw [data-view]').forEach(b => b.setAttribute('aria-pressed', b.dataset.view === v.dataset.view));
+    if (v.dataset.mtab) { S.mtab = v.dataset.mtab; renderMerchant(); }
+    if (v.dataset.view === 'merchant' && innerWidth <= 1100) window.scrollTo({top: 0});
+    if (v.dataset.view === 'merchant' && innerWidth > 1100 && v.dataset.mtab) $('#merchant').scrollTo({top: 0});
+    return;
+  }
+  const inc = t.closest('[data-inc]'), dec = t.closest('[data-dec]');
+  if (inc || dec) {
+    const id = (inc || dec).dataset[inc ? 'inc' : 'dec'];
+    const q = (S.cart[id] || 0) + (inc ? 1 : -1);
+    const cart = {...S.cart};
+    if (q > 0) cart[id] = q; else delete cart[id];
+    setCart(cart);
+    log('kunde', q > 0 ? `${inc ? 'La til' : 'Fjernet'} én ${P[id].name.toLowerCase()}` : `Fjernet ${P[id].name.toLowerCase()}`, `Kurven er nå ${kr(calc().goods)}`, `PATCH /v2030/checkout/sessions/lines → 200`);
+    renderAll();
+    return;
+  }
+  const scn = t.closest('[data-scn]');
+  if (scn) {
+    const k = scn.dataset.scn;
+    if (S.done) { reset(k); return; }
+    setCart(SCN[k].cart, k);
+    log('merchant', `Byttet til ${SCN[k].name.toLowerCase()}`, `Kurven er nå ${kr(calc().goods)}`);
+    renderAll();
+    return;
+  }
+  const g = t.closest('.seg [data-group]');
+  if (g) {
+    if (S.group === g.dataset.group) return;
+    const first = Object.keys(M).find(id => M[id].group === g.dataset.group && !(M[id].min && calc(id).total < M[id].min));
+    selectMethod(first);
+    return;
+  }
+  const intl = t.closest('.toggle [data-intl]');
+  if (intl) { e.preventDefault(); selectMethod('card', intl.dataset.intl === '1'); return; }
+  const pick = t.closest('.cmp-row[data-pick]');
+  if (pick && !S.done) {
+    selectMethod(pick.dataset.pick, pick.dataset.pick === 'card' ? pick.dataset.intl === '1' : null);
+    return;
+  }
+  const mt = t.closest('.mtabs [data-mtab]');
+  if (mt) { S.mtab = mt.dataset.mtab; renderMerchant(); return; }
+  const chip = t.closest('.chips [data-pc]');
+  if (chip) {
+    $('#f-pc').value = chip.dataset.pc;
+    if (!f('street')) $('#f-street').value = DEMO.street;
+    log('kunde', `Endret postnummer til ${chip.dataset.pc}`, CITY[chip.dataset.pc]);
+    onPostcode();
+    return;
+  }
+  if (t.closest('#code-off')) { S.code = false; log('kunde', 'Fjernet rabattkoden'); renderAll(); return; }
+  if (t.closest('#restart')) { reset(S.scn || 'typisk'); return; }
+});
+document.addEventListener('submit', e => {
+  if (e.target.id !== 'code-form') return;
+  e.preventDefault();
+  const v = $('#code-in').value.trim();
+  if (v === '2030') {
+    S.code = true;
+    const c = calc();
+    log('kunde', 'Brukte rabattkoden 2030', `−${kr(c.disc)} på varene`, 'POST /v2030/discounts/validate → 200');
+    renderAll();
+  } else {
+    $('#code-msg').textContent = v ? `«${v}» er ikke en gyldig kode. Prøv 2030.` : 'Skriv inn en kode. Prøv 2030.';
+    $('#code-msg').className = 'msg err';
+    if (v) log('kunde', 'Prøvde en ugyldig rabattkode', `«${v}»`, 'POST /v2030/discounts/validate → 404');
+  }
+});
+$('#ship').addEventListener('change', e => {
+  if (e.target.name === 'ship') selectShip(e.target.value);
+  if (e.target.id === 'pickup') { S.pickup = +e.target.value; log('kunde', 'Valgte hentested', pickups(SHIP_BY[S.ship])[S.pickup]); }
+});
+$('#pay-list').addEventListener('change', e => { if (e.target.name === 'pay') selectMethod(e.target.value); });
+$('#pay').addEventListener('click', pay);
+$('#passkey').addEventListener('click', async () => {
+  try {
+    await step({icon: 'face', title: 'Logg inn med passkey', text: 'Bekreft med Face ID eller fingeravtrykk for blivakker.no.', primary: 'Bruk passkey', secondary: 'Avbryt'});
+  } catch (e) { modal.hidden = true; log('kunde', 'Avbrøt innlogging med passkey'); return; }
+  modal.hidden = true;
+  log('kunde', 'Logget inn med passkey', 'Ingen passord, ingen kode på SMS', 'WebAuthn assertion ok · profil hentet');
+  log('system', 'Lagret profil fylt inn', 'Navn, e-post, mobil og adresse', 'GET /v2030/customers/me → 200 · 34 ms');
+  fill(DEMO);
+});
+$('#lookup').addEventListener('click', () => {
+  const phone = f('phone') || DEMO.phone;
+  log('kunde', 'Trykket Finn adresse');
+  log('system', 'Adresse funnet via mobilnummer', 'Navn og adresse fylt inn. Kunden skriver bare e-post.', 'GET /v2030/address-lookup?phone=•••• → 200 · 41 ms');
+  fill({...DEMO, phone, email: f('email') || null});
+});
+FIELDS.forEach(k => {
+  const el = $('#f-' + k);
+  el.addEventListener('input', () => {
+    el.classList.remove('err');
+    if (k === 'pc') { el.value = el.value.replace(/\D/g, '').slice(0, 4); if (el.value.length === 4) onPostcode(); }
+  });
+  el.addEventListener('change', () => {
+    if (el.value.trim() && !S.touched.has(k)) { S.touched.add(k); log('kunde', `Fylte inn ${el.dataset.label}`, '', ''); }
+    renderAll();
+  });
+});
+setInterval(() => {
+  const jt = $('#j-time');
+  if (jt && !S.done) jt.textContent = mmss(Date.now() - S.t0);
+  const lk = $('#lock');
+  if (lk) {
+    const left = S.lockEnd - Date.now();
+    lk.textContent = mmss(left);
+    if (left <= 0 && !S.done && M[S.method].group === 'crypto') {
+      S.lockEnd = Date.now() + 600000;
+      log('system', 'Kurslåsen gikk ut, ny kurs hentet', RATE_TXT[S.method]);
+      renderAll();
+    }
+  }
+}, 1000);
+if (innerWidth <= 1100) $('#intro-side').textContent = 'Trykk Merchant øverst for å se det butikken ser: kundereisen og hver krone i gebyr.';
+
+start();
+})();
+</script>
+</body>
+</html>
